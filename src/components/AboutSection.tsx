@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import taniaPhoto from "@/assets/tania-photo.jpg";
 
 const AboutSection = () => {
   const { t } = useLanguage();
@@ -17,9 +18,7 @@ const AboutSection = () => {
           <div className="flex justify-center">
             <div className="relative">
               <div className="h-[420px] w-[320px] overflow-hidden rounded-sm bg-muted">
-                <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-                  <span className="font-serif-display text-lg italic">{t("Tu foto aquí", "Your photo here")}</span>
-                </div>
+                <img src={taniaPhoto} alt="Tania Ono" className="h-full w-full object-cover object-top" />
               </div>
               <div className="absolute -bottom-4 -right-4 h-[420px] w-[320px] rounded-sm border-2 border-accent/30" />
             </div>

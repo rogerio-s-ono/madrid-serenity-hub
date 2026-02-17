@@ -23,7 +23,7 @@ const HeroSection = () => {
             {t("Psicoterapia de Excelencia", "Excellence in Psychotherapy")}
           </p>
           <h1 className="mb-6 font-serif-display text-5xl font-medium leading-tight tracking-wide text-primary-foreground md:text-7xl">
-            Dra. María García
+            Tania Ono
           </h1>
           <p className="mx-auto mb-10 max-w-lg text-lg font-light leading-relaxed text-primary-foreground/80">
             {t(
