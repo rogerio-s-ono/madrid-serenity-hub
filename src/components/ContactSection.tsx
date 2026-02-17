@@ -15,7 +15,9 @@ const ContactSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <p className="mb-2 text-sm font-light uppercase tracking-[0.25em] text-accent">{t("Contacto", "Contact")}</p>
+          <p className="mb-2 text-sm font-light uppercase tracking-[0.25em] text-accent">
+            {t("Contacto", "Contact")}
+          </p>
           <h2 className="mb-4 font-serif-display text-4xl font-medium text-foreground">
             {t("Da el primer paso", "Take the first step")}
           </h2>
@@ -23,7 +25,7 @@ const ContactSection = () => {
           <p className="mx-auto mb-12 max-w-lg font-light leading-relaxed text-muted-foreground">
             {t(
               "Tu bienestar emocional merece atención profesional. Estoy aquí para acompañarte.",
-              "Your emotional wellbeing deserves professional attention. I'm here to accompany you.",
+              "Your emotional wellbeing deserves professional attention. I'm here to accompany you."
             )}
           </p>
 
@@ -31,7 +33,7 @@ const ContactSection = () => {
             <div className="flex flex-col items-center gap-3">
               <MapPin className="h-6 w-6 text-accent" strokeWidth={1.2} />
               <p className="text-sm font-light text-muted-foreground">
-                {t("Barrio de Retiro, Madrid", "Retiro District, Madrid")}
+                {t("Barrio de Salamanca, Madrid", "Salamanca District, Madrid")}
               </p>
             </div>
             <div className="flex flex-col items-center gap-3">
@@ -40,12 +42,12 @@ const ContactSection = () => {
             </div>
             <div className="flex flex-col items-center gap-3">
               <Mail className="h-6 w-6 text-accent" strokeWidth={1.2} />
-              <p className="text-sm font-light text-muted-foreground">consulta@taniaono.es</p>
+              <p className="text-sm font-light text-muted-foreground">consulta@dramariagarcia.es</p>
             </div>
           </div>
 
           <a
-            href="mailto:consulta@taniaono.es"
+            href="mailto:consulta@dramariagarcia.es"
             className="gold-gradient inline-block rounded-sm px-10 py-4 text-sm font-medium uppercase tracking-widest text-accent-foreground transition-transform hover:scale-105"
           >
             {t("Solicitar Cita", "Book a Session")}
