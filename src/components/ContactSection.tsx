@@ -36,7 +36,7 @@ const ContactSection = () => {
             </div>
             <div className="flex flex-col items-center gap-3">
               <Phone className="h-6 w-6 text-accent" strokeWidth={1.2} />
-              <p className="text-sm font-light text-muted-foreground">+34 600 000 000</p>
+              <p className="text-sm font-light text-muted-foreground">+34 699 19 27 50</p>
             </div>
             <div className="flex flex-col items-center gap-3">
               <Mail className="h-6 w-6 text-accent" strokeWidth={1.2} />
