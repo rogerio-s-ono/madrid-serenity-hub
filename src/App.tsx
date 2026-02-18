@@ -7,6 +7,8 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SpecialtyPage from "./pages/SpecialtyPage";
+import ApproachPage from "./pages/ApproachPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -17,9 +19,11 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/especialidad/:slug" element={<SpecialtyPage />} />
+            <Route path="/enfoque/:slug" element={<ApproachPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
