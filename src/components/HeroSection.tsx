@@ -23,7 +23,7 @@ const HeroSection = () => {
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
         >
           {/* Eyebrow */}
-          <p className="section-label mb-8" style={{ color: "hsl(var(--gold-light))" }}>
+          <p className="section-label mb-8" style={{ color: "hsl(var(--gold-light))", opacity: 1, textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}>
             {t(
               "Psicoterapia para Familias Internacionales · Madrid",
               "Psychotherapy for International Families · Madrid",
