@@ -22,15 +22,6 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
         >
-          {/* Eyebrow */}
-          <p className="section-label mb-8" style={{ color: "hsl(var(--gold-light))", opacity: 1, textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}>
-            {t(
-              "Psicoterapia para Familias Internacionales · Madrid",
-              "Psychotherapy for International Families · Madrid",
-              "Psicoterapia para Famílias Internacionais · Madrid"
-            )}
-          </p>
-
           {/* Main heading */}
           <h1 className="font-serif-display mb-8 text-5xl font-light leading-[1.12] tracking-wide text-primary-foreground md:text-7xl lg:text-[82px]">
             {lang === "es" && (<>Claridad interior para quienes<br /><em>exigen excelencia</em></>)}
@@ -49,6 +40,27 @@ const HeroSection = () => {
               "Para famílias internacionais que vivem em Madrid. Um espaço confidencial onde a complexidade de criar, amar e crescer entre culturas é sustentada com rigor clínico e discrição absoluta."
             )}
           </p>
+
+          {/* Premium tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
+            className="mb-10 font-serif-display text-2xl font-light italic tracking-widest md:text-3xl"
+            style={{
+              background: "linear-gradient(90deg, hsl(var(--gold-muted)) 0%, hsl(var(--gold)) 40%, hsl(var(--gold-light)) 70%, hsl(var(--gold)) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              textShadow: "none",
+            }}
+          >
+            {t(
+              "Psicoterapia para Familias Internacionales · Madrid",
+              "Psychotherapy for International Families · Madrid",
+              "Psicoterapia para Famílias Internacionais · Madrid"
+            )}
+          </motion.p>
 
           {/* CTAs */}
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
