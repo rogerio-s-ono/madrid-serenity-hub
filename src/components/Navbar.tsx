@@ -21,15 +21,19 @@ const Navbar = () => {
     { href: "#contact", label: t("Contacto", "Contact", "Contato") },
   ];
 
+  const [hovered, setHovered] = useState(false);
+
   return (
     <motion.nav
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        scrolled
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled || hovered
           ? "bg-ivory shadow-[0_2px_30px_rgba(0,0,0,0.06)] border-b border-border/60"
-          : "bg-ivory/96 backdrop-blur-sm"
+          : "bg-ivory/60 backdrop-blur-sm"
       }`}
     >
       {/* Gold top bar */}
