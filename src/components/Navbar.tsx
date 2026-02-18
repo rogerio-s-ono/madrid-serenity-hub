@@ -2,7 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
-  const { lang, toggle, t } = useLanguage();
+  const { lang, setLang, t } = useLanguage();
 
   return (
     <motion.nav
@@ -28,12 +28,19 @@ const Navbar = () => {
           <a href="#contact" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
             {t("Contacto", "Contact", "Contato")}
           </a>
-          <button
-            onClick={toggle}
-            className="ml-4 rounded border border-accent/40 px-3 py-1 text-xs font-light uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground"
-          >
-            {lang === "es" ? "EN" : lang === "en" ? "PT" : "ES"}
-          </button>
+          <div className="ml-4 flex gap-2">
+            {(["es", "en", "pt"] as const)
+              .filter((l) => l !== lang)
+              .map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className="rounded border border-accent/40 px-3 py-1 text-xs font-light uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground"
+                >
+                  {l === "es" ? "ES" : l === "en" ? "EN" : "PT"}
+                </button>
+              ))}
+          </div>
         </div>
       </div>
     </motion.nav>
