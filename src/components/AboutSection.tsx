@@ -28,21 +28,21 @@ const AboutSection = () => {
               {t("Sobre Mí", "About Me", "Sobre Mim")}
             </p>
             <h2 className="mb-6 font-serif-display text-4xl font-medium text-foreground">
-              {t("Dedicación al bienestar emocional", "Dedicated to emotional wellbeing", "Dedicada ao bem-estar emocional")}
+              {t("Claridad emocional, desde adentro", "Emotional clarity, from within", "Clareza emocional, de dentro para fora")}
             </h2>
             <div className="gold-line mb-6 w-16" />
             <p className="mb-4 font-light leading-relaxed text-muted-foreground">
               {t(
-                "Con más de 15 años de experiencia, ofrezco un enfoque terapéutico personalizado que combina las técnicas más avanzadas con una profunda empatía y comprensión.",
-                "With over 15 years of experience, I offer a personalized therapeutic approach that combines the most advanced techniques with deep empathy and understanding.",
-                "Com mais de 15 anos de experiência, ofereço uma abordagem terapêutica personalizada que combina as técnicas mais avançadas com profunda empatia e compreensão."
+                "Con más de 15 años acompañando procesos de transformación personal, guío a cada persona hacia una mayor claridad emocional y fortaleza interior — con técnicas avanzadas y una profunda empatía.",
+                "With over 15 years guiding personal transformation, I help each person find emotional clarity and inner strength — through advanced techniques and deep empathy.",
+                "Com mais de 15 anos acompanhando processos de transformação pessoal, guio cada pessoa em direção à clareza emocional e à força interior — com técnicas avançadas e profunda empatia."
               )}
             </p>
             <p className="font-light leading-relaxed text-muted-foreground">
               {t(
-                "Mi consulta en el corazón de Madrid es un espacio diseñado para que te sientas seguro/a y acompañado/a en tu proceso de crecimiento personal.",
-                "My practice in the heart of Madrid is a space designed for you to feel safe and supported in your personal growth journey.",
-                "Meu consultório no coração de Madrid é um espaço projetado para que você se sinta seguro/a e acompanhado/a em sua jornada de crescimento pessoal."
+                "Mi consulta en el corazón de Madrid es un lugar donde ocurre la transformación duradera: un espacio seguro, confidencial y dedicado a ti.",
+                "My practice in the heart of Madrid is where lasting transformation happens — a safe, confidential space dedicated entirely to you.",
+                "Meu consultório no coração de Madrid é onde acontece a transformação duradoura — um espaço seguro, confidencial e dedicado a você."
               )}
             </p>
           </div>

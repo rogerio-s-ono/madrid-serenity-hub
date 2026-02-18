@@ -19,14 +19,14 @@ const ContactSection = () => {
             {t("Contacto", "Contact", "Contato")}
           </p>
           <h2 className="mb-4 font-serif-display text-4xl font-medium text-foreground">
-            {t("Da el primer paso", "Take the first step", "Dê o primeiro passo")}
+            {t("Tu transformación comienza aquí", "Your transformation begins here", "A sua transformação começa aqui")}
           </h2>
           <div className="gold-line mx-auto mb-8 w-16" />
           <p className="mx-auto mb-12 max-w-lg font-light leading-relaxed text-muted-foreground">
             {t(
-              "Tu bienestar emocional merece atención profesional. Estoy aquí para acompañarte.",
-              "Your emotional wellbeing deserves professional attention. I'm here to accompany you.",
-              "O seu bem-estar emocional merece atenção profissional. Estou aqui para acompanhá-lo/a."
+              "Claridad emocional, fortaleza interior y transformación duradera están a un paso. Estoy aquí para acompañarte.",
+              "Emotional clarity, inner strength, and lasting transformation are one step away. I'm here to guide you.",
+              "Clareza emocional, força interior e transformação duradoura estão a um passo. Estou aqui para guiá-lo/a."
             )}
           </p>
 
