@@ -20,16 +20,27 @@ const HeroSection = () => {
         >
           <div className="gold-line mx-auto mb-8 w-24" />
           <p className="mb-4 text-sm font-light uppercase tracking-[0.3em] text-accent">
-            {t("Psicoterapia de Excelencia", "Excellence in Psychotherapy", "Psicoterapia de Excelência")}
+            {t("Psicoterapia con Tania Ono", "Psychotherapy with Tania Ono", "Psicoterapia com Tania Ono")}
           </p>
-          <h1 className="mb-6 font-serif-display text-5xl font-medium leading-tight tracking-wide text-primary-foreground md:text-7xl">
-            Tania Ono
-          </h1>
-          <p className="mx-auto mb-10 max-w-lg text-lg font-light leading-relaxed text-primary-foreground/80">
+          <h1 className="mb-4 font-serif-display text-5xl font-medium leading-tight tracking-wide text-primary-foreground md:text-7xl">
             {t(
-              "Un espacio seguro y confidencial para tu bienestar emocional en el corazón de Madrid.",
-              "A safe and confidential space for your emotional wellbeing in the heart of Madrid.",
-              "Um espaço seguro e confidencial para o seu bem-estar emocional no coração de Madrid."
+              "Terapia para tu Corazón y tu Alma",
+              "Therapy for your Heart & Soul",
+              "Terapia para o seu Coração e Alma"
+            )}
+          </h1>
+          <p className="mx-auto mb-4 max-w-lg text-base font-light italic leading-relaxed text-accent/90">
+            {t(
+              "Claridad emocional. Fortaleza interior. Transformación duradera.",
+              "Emotional clarity. Inner strength. Lasting transformation.",
+              "Clareza emocional. Força interior. Transformação duradoura."
+            )}
+          </p>
+          <p className="mx-auto mb-10 max-w-lg text-lg font-light leading-relaxed text-primary-foreground/75">
+            {t(
+              "Un espacio seguro y confidencial para sanar, crecer y reconectar contigo mismo/a.",
+              "A safe and confidential space to heal, grow, and reconnect with yourself.",
+              "Um espaço seguro e confidencial para curar, crescer e reconectar-se consigo mesmo/a."
             )}
           </p>
           <a
