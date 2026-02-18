@@ -48,11 +48,8 @@ const HeroSection = () => {
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
             className="mb-10 font-serif-display text-2xl font-light italic tracking-widest md:text-3xl"
             style={{
-              background: "linear-gradient(90deg, hsl(var(--gold-muted)) 0%, hsl(var(--gold)) 40%, hsl(var(--gold-light)) 70%, hsl(var(--gold)) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              textShadow: "none",
+              color: "hsl(38 55% 68%)",
+              textShadow: "0 0 40px hsl(38 58% 44% / 0.6), 0 2px 8px rgba(0,0,0,0.4)",
             }}
           >
             {t(
