@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useConsultation } from "@/contexts/ConsultationContext";
 import { specialties } from "@/data/specialties";
 
 interface ConsultationModalProps {
@@ -37,12 +38,20 @@ const labelClass =
 
 const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
   const { t, lang } = useLanguage();
+  const { preselectedSpecialty } = useConsultation();
   const [dialCode, setDialCode] = useState("+34");
   const [showDial, setShowDial] = useState(false);
   const [therapy, setTherapy] = useState("");
   const [showTherapy, setShowTherapy] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+
+  // Sync preselection whenever the modal opens or the preselectedSpecialty changes
+  useEffect(() => {
+    if (open && preselectedSpecialty) {
+      setTherapy(preselectedSpecialty);
+    }
+  }, [open, preselectedSpecialty]);
 
   const therapyOptions = [
     ...specialties.map((s) => ({
@@ -314,13 +323,19 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                           "Por que precisa da minha ajuda?"
                         )}
                       </label>
-                      <p className="font-sans-body mb-3 text-[11px] font-light leading-[1.7] text-primary-foreground/35">
-                        {t(
-                          "Comparta un breve resumen de su situación. No hay respuesta incorrecta.",
-                          "Please share a brief summary of your situation. There is no wrong answer.",
-                          "Por favor, compartilhe um breve resumo da sua situação. Não há resposta errada."
-                        )}
-                      </p>
+                      {/* Friendly required notice */}
+                      <div
+                        className="mb-4 border-l-2 pl-4 py-2"
+                        style={{ borderColor: "hsl(var(--gold-light) / 0.4)" }}
+                      >
+                        <p className="font-sans-body text-[11px] font-light leading-[1.8] text-primary-foreground/50">
+                          {t(
+                            "Para poder atenderle de la mejor manera posible, necesito conocer brevemente su situación. Esta información me permite priorizar y adaptar nuestra primera consulta a sus necesidades reales. No hay respuesta incorrecta — toda experiencia merece ser escuchada.",
+                            "To serve you in the best possible way, I need a brief understanding of your situation. This helps me prioritise and tailor our first consultation to your real needs. There is no wrong answer — every experience deserves to be heard.",
+                            "Para poder atendê-lo da melhor forma possível, preciso conhecer brevemente a sua situação. Esta informação permite-me priorizar e adaptar a nossa primeira consulta às suas necessidades reais. Não há resposta errada — toda experiência merece ser ouvida."
+                          )}
+                        </p>
+                      </div>
                       <textarea
                         required
                         maxLength={1000}

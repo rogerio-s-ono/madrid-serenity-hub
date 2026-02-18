@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useConsultation } from "@/contexts/ConsultationContext";
 import { specialties } from "@/data/specialties";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,6 +10,7 @@ import { ArrowLeft } from "lucide-react";
 const SpecialtyPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const { lang, t } = useLanguage();
+  const { openModal } = useConsultation();
   const navigate = useNavigate();
 
   const sp = specialties.find((s) => s.slug === slug);
@@ -150,12 +152,12 @@ const SpecialtyPage = () => {
           </p>
 
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <a
-              href="/#contact"
+            <button
+              onClick={() => openModal(sp.slug)}
               className="gold-gradient font-sans-body inline-block px-12 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-accent-foreground transition-all duration-300 hover:opacity-90 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
             >
               {t("Consulta Privada", "Private Consultation", "Consulta Privada")}
-            </a>
+            </button>
             <button
               onClick={() => navigate(-1)}
               className="font-sans-body inline-flex items-center gap-2 border border-primary-foreground/25 px-10 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/60 transition-all duration-300 hover:border-gold/50 hover:text-primary-foreground"
