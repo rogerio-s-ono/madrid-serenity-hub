@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
@@ -12,8 +13,11 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm"
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <a href="#" className="font-serif-display text-xl font-semibold tracking-wide text-primary-foreground">
-          Tania Ono
+        <a href="#" className="flex items-center gap-3">
+          <img src={logo} alt="Therapy for your Heart and Soul" className="h-12 w-auto" />
+          <span className="hidden font-serif-display text-lg font-semibold tracking-wide text-primary-foreground md:block">
+            Heart &amp; Soul
+          </span>
         </a>
         <div className="hidden items-center gap-8 md:flex">
           <a href="#about" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
