@@ -2,6 +2,118 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useCallback } from "react";
 
+// Minimalistic SVG illustrations — one per testimonial
+const IllustrationFamily = () => (
+  <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    {/* House */}
+    <polyline points="30,65 30,40 55,22 80,40 80,65" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+    <line x1="30" y1="65" x2="80" y2="65" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    {/* Door */}
+    <rect x="48" y="50" width="14" height="15" rx="0.5" stroke="currentColor" strokeWidth="0.9" />
+    {/* Window */}
+    <rect x="35" y="45" width="9" height="9" rx="0.5" stroke="currentColor" strokeWidth="0.9" />
+    <line x1="39.5" y1="45" x2="39.5" y2="54" stroke="currentColor" strokeWidth="0.7" />
+    <line x1="35" y1="49.5" x2="44" y2="49.5" stroke="currentColor" strokeWidth="0.7" />
+    {/* Adult figure left */}
+    <circle cx="100" cy="38" r="5" stroke="currentColor" strokeWidth="0.9" />
+    <line x1="100" y1="43" x2="100" y2="58" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="100" y1="48" x2="93" y2="54" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="100" y1="48" x2="107" y2="52" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="100" y1="58" x2="94" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="100" y1="58" x2="106" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    {/* Adult figure right */}
+    <circle cx="118" cy="38" r="5" stroke="currentColor" strokeWidth="0.9" />
+    <line x1="118" y1="43" x2="118" y2="58" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="118" y1="48" x2="111" y2="54" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="118" y1="48" x2="125" y2="52" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="118" y1="58" x2="112" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="118" y1="58" x2="124" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    {/* Child figure small */}
+    <circle cx="109" cy="45" r="3.5" stroke="currentColor" strokeWidth="0.8" />
+    <line x1="109" y1="48.5" x2="109" y2="59" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <line x1="109" y1="52" x2="104" y2="56" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <line x1="109" y1="52" x2="114" y2="56" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <line x1="109" y1="59" x2="105" y2="65" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <line x1="109" y1="59" x2="113" y2="65" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    {/* Heart above */}
+    <path d="M109,31 C109,31 106,27 103.5,29 C101,31 103,34 109,37 C115,34 117,31 114.5,29 C112,27 109,31 109,31Z" stroke="currentColor" strokeWidth="0.8" fill="none" />
+  </svg>
+);
+
+const IllustrationCouple = () => (
+  <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    {/* Figure left */}
+    <circle cx="50" cy="32" r="6" stroke="currentColor" strokeWidth="1" />
+    <line x1="50" y1="38" x2="50" y2="56" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="50" y1="44" x2="42" y2="52" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="50" y1="44" x2="62" y2="50" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="50" y1="56" x2="44" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="50" y1="56" x2="56" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    {/* Figure right */}
+    <circle cx="110" cy="32" r="6" stroke="currentColor" strokeWidth="1" />
+    <line x1="110" y1="38" x2="110" y2="56" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="110" y1="44" x2="98" y2="50" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="110" y1="44" x2="118" y2="52" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="110" y1="56" x2="104" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="110" y1="56" x2="116" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    {/* Bridge/connection between them — speech path */}
+    <path d="M62,50 Q80,38 98,50" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" strokeDasharray="3 2" />
+    {/* Clasped hands in center */}
+    <path d="M75,52 Q80,48 85,52" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+    {/* Small dialogue bubbles */}
+    <ellipse cx="38" cy="20" rx="10" ry="7" stroke="currentColor" strokeWidth="0.8" />
+    <path d="M40,27 L38,32" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <ellipse cx="122" cy="20" rx="10" ry="7" stroke="currentColor" strokeWidth="0.8" />
+    <path d="M120,27 L122,32" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    {/* Dots inside bubbles */}
+    <circle cx="33" cy="20" r="1" fill="currentColor" />
+    <circle cx="38" cy="20" r="1" fill="currentColor" />
+    <circle cx="43" cy="20" r="1" fill="currentColor" />
+    <circle cx="117" cy="20" r="1" fill="currentColor" />
+    <circle cx="122" cy="20" r="1" fill="currentColor" />
+    <circle cx="127" cy="20" r="1" fill="currentColor" />
+  </svg>
+);
+
+const IllustrationChildren = () => (
+  <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    {/* Tree trunk */}
+    <line x1="80" y1="75" x2="80" y2="50" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    {/* Branches */}
+    <line x1="80" y1="65" x2="60" y2="55" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="80" y1="60" x2="100" y2="50" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <line x1="80" y1="55" x2="65" y2="42" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="80" y1="55" x2="95" y2="42" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="80" y1="50" x2="72" y2="35" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <line x1="80" y1="50" x2="88" y2="35" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    {/* Language flags / leaves as speech bubbles with letters */}
+    <ellipse cx="58" cy="50" rx="9" ry="6" stroke="currentColor" strokeWidth="0.8" />
+    <text x="58" y="53" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic"}}>ES</text>
+    <ellipse cx="102" cy="46" rx="9" ry="6" stroke="currentColor" strokeWidth="0.8" />
+    <text x="102" y="49" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic"}}>EN</text>
+    <ellipse cx="68" cy="38" rx="9" ry="6" stroke="currentColor" strokeWidth="0.8" />
+    <text x="68" y="41" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic"}}>PT</text>
+    {/* Child figure left */}
+    <circle cx="35" cy="58" r="5" stroke="currentColor" strokeWidth="0.9" />
+    <line x1="35" y1="63" x2="35" y2="75" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="35" y1="67" x2="29" y2="73" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="35" y1="67" x2="41" y2="71" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="35" y1="75" x2="30" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="35" y1="75" x2="40" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    {/* Child figure right */}
+    <circle cx="125" cy="58" r="5" stroke="currentColor" strokeWidth="0.9" />
+    <line x1="125" y1="63" x2="125" y2="75" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="125" y1="67" x2="119" y2="71" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="125" y1="67" x2="131" y2="73" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="125" y1="75" x2="120" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <line x1="125" y1="75" x2="130" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    {/* Ground line */}
+    <line x1="20" y1="83" x2="140" y2="83" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" strokeDasharray="2 3" />
+  </svg>
+);
+
+const illustrations = [IllustrationFamily, IllustrationCouple, IllustrationChildren];
+
 const testimonials = [
   {
     quoteEs:
@@ -47,6 +159,36 @@ const testimonials = [
   },
 ];
 
+const TrustpilotStars = () => (
+  <div className="flex flex-col items-center gap-3 mt-14 pt-10 border-t border-primary-foreground/10">
+    {/* Stars row */}
+    <div className="flex items-center gap-1">
+      {[...Array(5)].map((_, i) => (
+        <svg key={i} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" fill="#00b67a" />
+          <path
+            d="M12 2l2.09 6.26H20.18l-5.14 3.74 1.96 6.26L12 14.51l-5 3.75 1.96-6.26L3.82 8.26H9.91L12 2z"
+            fill="white"
+          />
+        </svg>
+      ))}
+    </div>
+    {/* Trustpilot label */}
+    <div className="flex items-center gap-2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" fill="#00b67a" />
+        <path d="M12 2l2.09 6.26H20.18l-5.14 3.74 1.96 6.26L12 14.51l-5 3.75 1.96-6.26L3.82 8.26H9.91L12 2z" fill="white" />
+      </svg>
+      <span
+        className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em]"
+        style={{ color: "hsl(var(--primary-foreground))", opacity: 0.45 }}
+      >
+        Trustpilot · 5.0
+      </span>
+    </div>
+  </div>
+);
+
 const TestimonialsSection = () => {
   const { t, lang } = useLanguage();
   const [active, setActive] = useState(0);
@@ -90,10 +232,11 @@ const TestimonialsSection = () => {
   const quote = lang === "es" ? item.quoteEs : lang === "pt" ? item.quotePt : item.quoteEn;
   const author = lang === "es" ? item.authorEs : lang === "pt" ? item.authorPt : item.authorEn;
   const years = lang === "es" ? item.yearsEs : lang === "pt" ? item.yearsPt : item.yearsEn;
+  const Illustration = illustrations[active];
 
   return (
     <section className="bg-primary py-28 lg:py-36 overflow-hidden">
-      <div className="mx-auto max-w-2xl px-8">
+      <div className="mx-auto max-w-4xl px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -108,8 +251,8 @@ const TestimonialsSection = () => {
           <div className="gold-line mx-auto w-14" />
         </motion.div>
 
-        {/* Testimonial card */}
-        <div className="relative min-h-[280px] flex items-center">
+        {/* Testimonial card — illustration left, text right */}
+        <div className="relative min-h-[320px] flex items-center">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={active}
@@ -119,38 +262,49 @@ const TestimonialsSection = () => {
               animate="center"
               exit="exit"
               transition={{ duration: 0.55, ease: "easeInOut" }}
-              className="w-full"
+              className="w-full grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-center"
             >
-              {/* Opening quote mark */}
+              {/* Illustration */}
               <div
-                className="font-serif-display mb-6 text-center leading-none select-none"
-                style={{
-                  fontSize: "5rem",
-                  lineHeight: 1,
-                  color: "hsl(var(--gold-light))",
-                  opacity: 0.45,
-                }}
+                className="hidden md:flex items-center justify-center h-48"
+                style={{ color: "hsl(var(--gold-light))", opacity: 0.55 }}
               >
-                "
+                <Illustration />
               </div>
 
-              <blockquote className="mb-10 text-center">
-                <p className="font-serif-display mx-auto max-w-2xl text-xl font-light leading-[1.75] text-primary-foreground md:text-2xl lg:text-[1.6rem]">
-                  {quote}
-                </p>
-              </blockquote>
-
-              <div className="flex flex-col items-center gap-2">
-                <div className="gold-line w-10 opacity-60" />
-                <p className="font-sans-body mt-3 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/60">
-                  {author}
-                </p>
-                <p
-                  className="font-sans-body text-[10px] font-light uppercase tracking-[0.18em]"
-                  style={{ color: "hsl(var(--gold-light))", opacity: 0.75 }}
+              {/* Quote content */}
+              <div>
+                {/* Opening quote mark */}
+                <div
+                  className="font-serif-display mb-4 leading-none select-none"
+                  style={{
+                    fontSize: "4rem",
+                    lineHeight: 1,
+                    color: "hsl(var(--gold-light))",
+                    opacity: 0.45,
+                  }}
                 >
-                  {years}
-                </p>
+                  "
+                </div>
+
+                <blockquote className="mb-8">
+                  <p className="font-serif-display text-xl font-light leading-[1.75] text-primary-foreground md:text-[1.35rem] lg:text-[1.5rem]">
+                    {quote}
+                  </p>
+                </blockquote>
+
+                <div className="flex flex-col gap-2">
+                  <div className="gold-line w-10 opacity-60" />
+                  <p className="font-sans-body mt-2 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/60">
+                    {author}
+                  </p>
+                  <p
+                    className="font-sans-body text-[10px] font-light uppercase tracking-[0.18em]"
+                    style={{ color: "hsl(var(--gold-light))", opacity: 0.75 }}
+                  >
+                    {years}
+                  </p>
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -179,6 +333,9 @@ const TestimonialsSection = () => {
             </button>
           ))}
         </div>
+
+        {/* Trustpilot 5-star rating */}
+        <TrustpilotStars />
       </div>
     </section>
   );
