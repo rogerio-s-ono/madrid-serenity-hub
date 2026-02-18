@@ -65,9 +65,9 @@ const TestimonialsSection = () => {
     goTo(nextIndex, 1);
   }, [active, goTo]);
 
-  // Auto-rotate every 5 seconds
+  // Auto-rotate every 10 seconds
   useEffect(() => {
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(next, 10000);
     return () => clearInterval(timer);
   }, [next]);
 
