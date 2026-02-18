@@ -78,10 +78,7 @@ const ApproachSection = () => {
         </motion.div>
 
         {/* Pillars */}
-        <div
-          className="grid gap-0 md:grid-cols-3 border-t border-border"
-          style={{ perspective: "1200px" }}
-        >
+        <div className="grid gap-0 md:grid-cols-3 border-t border-border">
           {pillars.map((p, i) => (
             <motion.div
               key={i}
@@ -90,17 +87,12 @@ const ApproachSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.15 }}
               whileHover={{
-                y: -6,
-                scale: 1.025,
-                rotateX: 2,
-                rotateY: -1,
-                boxShadow: "0 20px 50px rgba(0,0,0,0.10), 0 0 0 1px hsl(var(--gold)/0.25)",
-                zIndex: 10,
-                transition: { duration: 0.25, ease: "easeOut" },
+                y: -4,
+                boxShadow: "0 16px 40px rgba(0,0,0,0.08), 0 0 0 1px hsl(var(--gold)/0.20)",
+                transition: { duration: 0.3, ease: "easeOut" },
               }}
               onClick={() => navigate(`/enfoque/${p.slug}`)}
-              className={`py-12 pr-10 cursor-pointer ${i > 0 ? "md:border-l md:border-border md:pl-10 md:pr-0" : ""}`}
-              style={{ transformStyle: "preserve-3d" }}
+              className={`py-12 pr-10 cursor-pointer bg-background transition-colors hover:bg-accent/[0.03] ${i > 0 ? "md:border-l md:border-border md:pl-10 md:pr-0" : ""}`}
             >
               {/* Icon */}
               <div className="mb-6 flex h-12 w-12 items-center justify-center border border-accent/30 bg-accent/5">
