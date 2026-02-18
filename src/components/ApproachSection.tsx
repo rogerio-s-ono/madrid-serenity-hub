@@ -7,9 +7,9 @@ const pillars = [
     titleEs: "Rigor Clínico",
     titleEn: "Clinical Rigour",
     titlePt: "Rigor Clínico",
-    descEs: "Métodos basados en evidencia — TCC, EMDR, terapia sistémica — adaptados con precisión a contextos interculturales y de alta exigencia profesional.",
-    descEn: "Evidence-based methods — CBT, EMDR, systemic therapy — adapted with precision to intercultural and high-performance professional contexts.",
-    descPt: "Métodos baseados em evidências — TCC, EMDR, terapia sistêmica — adaptados com precisão a contextos interculturais e de alta exigência profissional.",
+    descEs: "Métodos basados en evidencia — TCC, EMDR, terapia sistémica — adaptados con precisión a las realidades interculturales y a la complejidad emocional de las familias internacionales.",
+    descEn: "Evidence-based methods — CBT, EMDR, systemic therapy — adapted with precision to intercultural realities and the emotional complexity of international families.",
+    descPt: "Métodos baseados em evidências — TCC, EMDR, terapia sistêmica — adaptados com precisão às realidades interculturais e à complexidade emocional das famílias internacionais.",
   },
   {
     numeral: "02",
@@ -36,11 +36,11 @@ const ApproachSection = () => {
 
   const heading =
     lang === "es" ? (
-      <>Psicoterapia de alta exigencia,<br /><em>para vidas de alta exigencia</em></>
+      <>Psicoterapia que sostiene<br /><em>a toda la familia</em></>
     ) : lang === "pt" ? (
-      <>Psicoterapia de alta exigência,<br /><em>para vidas de alta exigência</em></>
+      <>Psicoterapia que sustenta<br /><em>toda a família</em></>
     ) : (
-      <>High-calibre psychotherapy<br /><em>for high-calibre lives</em></>
+      <>Psychotherapy that holds<br /><em>the whole family</em></>
     );
 
   return (
@@ -64,9 +64,9 @@ const ApproachSection = () => {
           </div>
           <p className="font-sans-body text-[15px] font-light leading-[1.9] text-muted-foreground lg:pb-1">
             {t(
-              "No existe un protocolo universal. Cada persona, cada familia, llega con una historia única formada por culturas, expectativas y transiciones distintas. Mi trabajo es comprender esa complejidad con precisión — y acompañarte a través de ella.",
-              "There is no universal protocol. Each person, each family, arrives with a unique story shaped by different cultures, expectations, and transitions. My work is to understand that complexity with precision — and accompany you through it.",
-              "Não existe um protocolo universal. Cada pessoa, cada família, chega com uma história única. Meu trabalho é compreender essa complexidade com precisão — e acompanhá-lo através dela."
+              "No existe un protocolo universal para las familias. Cada una llega con una historia única formada por culturas, lenguas y transiciones distintas. Mi trabajo es comprender esa complejidad con precisión — y acompañarles a través de ella.",
+              "There is no universal protocol for families. Each one arrives with a unique story shaped by different cultures, languages, and transitions. My work is to understand that complexity with precision — and accompany them through it.",
+              "Não existe um protocolo universal para as famílias. Cada uma chega com uma história única moldada por culturas, línguas e transições distintas. Meu trabalho é compreender essa complexidade com precisão — e acompanhá-las através dela."
             )}
           </p>
         </motion.div>

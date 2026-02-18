@@ -22,12 +22,12 @@ const specialties = [
   },
   {
     num: "03",
-    titleEs: "Presión Ejecutiva y Liderazgo",
-    titleEn: "Executive Pressure & Leadership",
-    titlePt: "Pressão Executiva e Liderança",
-    descEs: "El éxito en un entorno nuevo es exigente. Trabajamos la regulación emocional, la toma de decisiones bajo presión y el liderazgo auténtico en contextos internacionales.",
-    descEn: "Success in a new environment is demanding. We work on emotional regulation, decision-making under pressure, and authentic leadership in international contexts.",
-    descPt: "O sucesso em um novo ambiente é exigente. Trabalhamos a regulação emocional e a liderança autêntica.",
+    titleEs: "Bienestar Familiar en la Distancia",
+    titleEn: "Family Wellbeing in the Distance",
+    titlePt: "Bem-Estar Familiar na Distância",
+    descEs: "Cuando la familia extendida queda lejos y las redes de apoyo se reconstruyen desde cero, la familia nuclear lleva un peso invisible. Creamos recursos internos para que ese peso no los divida.",
+    descEn: "When extended family is far and support networks must be rebuilt from scratch, the nuclear family carries an invisible weight. We build internal resources so that weight doesn't divide them.",
+    descPt: "Quando a família extensa fica longe e as redes de apoio precisam ser reconstruídas do zero, a família nuclear carrega um peso invisível. Construímos recursos internos para que esse peso não os divida.",
   },
   {
     num: "04",
@@ -63,11 +63,11 @@ const SpecialtiesSection = () => {
 
   const heading =
     lang === "es" ? (
-      <>Diseñado para quien ya ha alcanzado mucho<br />— y quiere <em>sostenerse bien en ello</em></>
+      <>Diseñado para familias que han elegido<br /><em>construir su vida en Madrid</em></>
     ) : lang === "pt" ? (
-      <>Desenhado para quem já alcançou muito<br />— e quer <em>se sustentar bem nisso</em></>
+      <>Desenhado para famílias que escolheram<br /><em>construir sua vida em Madrid</em></>
     ) : (
-      <>Designed for those who have achieved much<br />— and want to <em>sustain it well</em></>
+      <>Designed for families who have chosen<br /><em>to build their life in Madrid</em></>
     );
 
   return (
