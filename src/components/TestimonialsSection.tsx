@@ -235,24 +235,59 @@ const TestimonialsSection = () => {
   const Illustration = illustrations[active];
 
   return (
-    <section className="bg-primary py-28 lg:py-36 overflow-hidden">
-      <div className="mx-auto max-w-4xl px-8">
-        {/* Header */}
+    <section className="bg-primary py-16 lg:py-20 overflow-hidden">
+      <div className="mx-auto max-w-5xl px-8">
+
+        {/* Header row: icon + label LEFT — Trustpilot RIGHT */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className="mb-16 text-center"
+          className="mb-10 flex items-center justify-between"
         >
-          <p className="section-label mb-5" style={{ color: "hsl(var(--gold-light))" }}>
-            {t("Experiencias", "Experiences", "Experiências")}
-          </p>
-          <div className="gold-line mx-auto w-14" />
+          {/* Left: icon + label */}
+          <div className="flex items-center gap-3">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: "hsl(var(--gold))" }}>
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <p
+              className="font-serif-display text-2xl font-light italic"
+              style={{ color: "hsl(var(--gold-light))" }}
+            >
+              {t("Experiencias", "Experiences", "Experiências")}
+            </p>
+            <div className="gold-line w-10 ml-2" style={{ opacity: 0.5 }} />
+          </div>
+
+          {/* Right: Trustpilot */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" fill="#00b67a" />
+                  <path d="M12 2l2.09 6.26H20.18l-5.14 3.74 1.96 6.26L12 14.51l-5 3.75 1.96-6.26L3.82 8.26H9.91L12 2z" fill="white" />
+                </svg>
+              ))}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" fill="#00b67a" />
+                <path d="M12 2l2.09 6.26H20.18l-5.14 3.74 1.96 6.26L12 14.51l-5 3.75 1.96-6.26L3.82 8.26H9.91L12 2z" fill="white" />
+              </svg>
+              <span
+                className="font-sans-body text-[9px] font-light uppercase tracking-[0.2em]"
+                style={{ color: "hsl(var(--primary-foreground))", opacity: 0.4 }}
+              >
+                Trustpilot · 5.0
+              </span>
+            </div>
+          </div>
         </motion.div>
 
         {/* Testimonial card — illustration left, text right */}
-        <div className="relative min-h-[320px] flex items-center">
+        <div className="relative min-h-[260px] flex items-center">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={active}
@@ -262,11 +297,11 @@ const TestimonialsSection = () => {
               animate="center"
               exit="exit"
               transition={{ duration: 0.55, ease: "easeInOut" }}
-              className="w-full grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-center"
+              className="w-full grid md:grid-cols-[1fr_2.5fr] gap-8 md:gap-14 items-center"
             >
               {/* Illustration */}
               <div
-                className="hidden md:flex items-center justify-center h-48"
+                className="hidden md:flex items-center justify-center h-40"
                 style={{ color: "hsl(var(--gold-light))", opacity: 0.55 }}
               >
                 <Illustration />
@@ -276,24 +311,19 @@ const TestimonialsSection = () => {
               <div>
                 {/* Opening quote mark */}
                 <div
-                  className="font-serif-display mb-4 leading-none select-none"
-                  style={{
-                    fontSize: "4rem",
-                    lineHeight: 1,
-                    color: "hsl(var(--gold-light))",
-                    opacity: 0.45,
-                  }}
+                  className="font-serif-display mb-3 leading-none select-none"
+                  style={{ fontSize: "3rem", lineHeight: 1, color: "hsl(var(--gold-light))", opacity: 0.45 }}
                 >
                   "
                 </div>
 
-                <blockquote className="mb-8">
-                  <p className="font-serif-display text-xl font-light leading-[1.75] text-primary-foreground md:text-[1.35rem] lg:text-[1.5rem]">
+                <blockquote className="mb-6">
+                  <p className="font-serif-display text-lg font-light leading-[1.75] text-primary-foreground md:text-xl lg:text-[1.35rem]">
                     {quote}
                   </p>
                 </blockquote>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1.5">
                   <div className="gold-line w-10 opacity-60" />
                   <p className="font-sans-body mt-2 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/60">
                     {author}
@@ -311,7 +341,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Dot navigation */}
-        <div className="mt-12 flex justify-center gap-3">
+        <div className="mt-8 flex justify-center gap-3">
           {testimonials.map((_, i) => (
             <button
               key={i}
@@ -334,8 +364,6 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Trustpilot 5-star rating */}
-        <TrustpilotStars />
       </div>
     </section>
   );

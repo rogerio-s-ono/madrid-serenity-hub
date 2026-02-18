@@ -77,8 +77,8 @@ const ApproachSection = () => {
           </p>
         </motion.div>
 
-        {/* Pillars */}
-        <div className="grid gap-0 md:grid-cols-3 border-t border-border">
+        {/* Pillars — uniform px-10 on all cards so content is equidistant from every border */}
+        <div className="grid gap-0 md:grid-cols-3 border-t border-border -mx-10">
           {pillars.map((p, i) => (
             <motion.div
               key={i}
@@ -93,8 +93,8 @@ const ApproachSection = () => {
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
               onClick={() => navigate(`/enfoque/${p.slug}`)}
-              className={`relative py-12 cursor-pointer bg-background transition-colors hover:bg-accent/[0.03] ${
-                i === 0 ? "pl-0 pr-10" : i === 1 ? "px-10 md:border-l md:border-border" : "pl-10 pr-0 md:border-l md:border-border"
+              className={`relative px-10 py-12 cursor-pointer bg-background transition-colors hover:bg-accent/[0.03] ${
+                i > 0 ? "md:border-l md:border-border" : ""
               }`}
             >
               {/* Icon */}
