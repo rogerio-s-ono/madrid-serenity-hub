@@ -15,9 +15,6 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-3">
           <img src={logo} alt="Therapy for your Heart and Soul" className="h-20 w-auto" />
-          <span className="hidden font-serif-display text-lg font-semibold tracking-wide text-foreground md:block">
-            Heart &amp; Soul
-          </span>
         </a>
         <div className="hidden items-center gap-8 md:flex">
           <a href="#about" className="text-sm font-light uppercase tracking-widest text-foreground/70 transition-colors hover:text-accent">
