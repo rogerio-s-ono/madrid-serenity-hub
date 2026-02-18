@@ -87,13 +87,14 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
       `Tipo de terapia / Therapy type: ${selectedTherapy?.label ?? ""}\n\n` +
       `${form.message}`
     );
-    window.location.href = `mailto:consulta@taniaono.es?subject=${subject}&body=${body}`;
+    // Open mail client without affecting the SPA URL / hash
+    window.open(`mailto:consulta@taniaono.es?subject=${subject}&body=${body}`, "_blank");
     setSubmitted(true);
   };
 
   const reset = () => {
     setForm({ name: "", email: "", phone: "", message: "" });
-    setTherapy("");
+    // ✅ Do NOT reset therapy — preserve the last selection across opens
     setDialCode("+34");
     setSubmitted(false);
   };
