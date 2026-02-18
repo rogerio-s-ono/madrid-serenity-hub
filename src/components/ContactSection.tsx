@@ -59,7 +59,7 @@ const ContactSection = () => {
               {heading}
             </h2>
             <div className="gold-line mb-8 w-14 opacity-60" />
-            <p className="font-sans-body mb-12 text-[15px] font-light leading-[1.9] text-primary-foreground/60">
+            <p className="font-sans-body mb-12 text-[15px] font-light leading-[1.9] text-primary-foreground/80">
               {t(
                 "Si estás considerando iniciar un proceso terapéutico — para ti, tu pareja o tu familia — te invito a una primera consulta privada sin compromiso. Toda comunicación es estrictamente confidencial.",
                 "If you are considering beginning a therapeutic process — for yourself, your partner, or your family — I invite you to a private initial consultation with no commitment required. All communication is strictly confidential.",
@@ -71,8 +71,8 @@ const ContactSection = () => {
             <div className="flex flex-col gap-6 mb-12">
               {contactDetails.map((item, i) => (
                 <div key={i} className="flex items-center gap-4">
-                  <item.icon className="h-4 w-4 shrink-0 text-accent/60" strokeWidth={1.5} />
-                  <p className="font-sans-body text-sm font-light tracking-wide text-primary-foreground/55">
+                  <item.icon className="h-4 w-4 shrink-0 text-accent/80" strokeWidth={1.5} />
+                  <p className="font-sans-body text-sm font-light tracking-wide text-primary-foreground/80">
                     {t(item.labelEs, item.labelEn, item.labelPt)}
                   </p>
                 </div>
@@ -100,7 +100,7 @@ const ContactSection = () => {
               <h3 className="font-serif-display mb-3 text-2xl font-light text-primary-foreground">
                 {t("Reserve su consulta", "Book your consultation", "Reserve sua consulta")}
               </h3>
-              <p className="font-sans-body mb-10 text-sm font-light leading-[1.8] text-primary-foreground/50">
+              <p className="font-sans-body mb-10 text-sm font-light leading-[1.8] text-primary-foreground/75">
                 {t(
                   "Una conversación privada para conocer su situación y determinar cómo puedo acompañarle de manera más efectiva.",
                   "A private conversation to understand your situation and determine how I can most effectively accompany you.",
