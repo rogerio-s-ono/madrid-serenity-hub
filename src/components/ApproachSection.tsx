@@ -14,22 +14,24 @@ const ApproachSection = () => {
           transition={{ duration: 0.8 }}
         >
           <p className="mb-2 text-sm font-light uppercase tracking-[0.25em] text-accent">
-            {t("Mi Enfoque", "My Approach")}
+            {t("Mi Enfoque", "My Approach", "Minha Abordagem")}
           </p>
           <h2 className="mb-6 font-serif-display text-4xl font-medium text-foreground">
-            {t("Terapia centrada en ti", "Therapy centered on you")}
+            {t("Terapia centrada en ti", "Therapy centered on you", "Terapia centrada em você")}
           </h2>
           <div className="gold-line mx-auto mb-8 w-16" />
           <p className="mb-6 font-light leading-relaxed text-muted-foreground">
             {t(
               "Creo firmemente que cada persona es única y merece un tratamiento a medida. Mi enfoque integra la terapia cognitivo-conductual, EMDR, terapia sistémica y técnicas de mindfulness para crear un plan terapéutico que se adapte a tus necesidades específicas.",
-              "I firmly believe that every person is unique and deserves tailored treatment. My approach integrates cognitive-behavioral therapy, EMDR, systemic therapy, and mindfulness techniques to create a therapeutic plan that adapts to your specific needs."
+              "I firmly believe that every person is unique and deserves tailored treatment. My approach integrates cognitive-behavioral therapy, EMDR, systemic therapy, and mindfulness techniques to create a therapeutic plan that adapts to your specific needs.",
+              "Acredito firmemente que cada pessoa é única e merece um tratamento personalizado. Minha abordagem integra terapia cognitivo-comportamental, EMDR, terapia sistêmica e técnicas de mindfulness para criar um plano terapêutico adaptado às suas necessidades específicas."
             )}
           </p>
           <p className="font-light leading-relaxed text-muted-foreground">
             {t(
               "En un ambiente de absoluta confidencialidad y respeto, trabajaremos juntos para superar obstáculos, sanar heridas emocionales y construir una vida más plena y significativa.",
-              "In an atmosphere of absolute confidentiality and respect, we will work together to overcome obstacles, heal emotional wounds, and build a more fulfilling and meaningful life."
+              "In an atmosphere of absolute confidentiality and respect, we will work together to overcome obstacles, heal emotional wounds, and build a more fulfilling and meaningful life.",
+              "Em um ambiente de absoluta confidencialidade e respeito, trabalharemos juntos para superar obstáculos, curar feridas emocionais e construir uma vida mais plena e significativa."
             )}
           </p>
         </motion.div>

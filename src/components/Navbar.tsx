@@ -17,22 +17,22 @@ const Navbar = () => {
         </a>
         <div className="hidden items-center gap-8 md:flex">
           <a href="#about" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
-            {t("Sobre mí", "About")}
+            {t("Sobre mí", "About", "Sobre mim")}
           </a>
           <a href="#specialties" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
-            {t("Especialidades", "Specialties")}
+            {t("Especialidades", "Specialties", "Especialidades")}
           </a>
           <a href="#approach" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
-            {t("Enfoque", "Approach")}
+            {t("Enfoque", "Approach", "Abordagem")}
           </a>
           <a href="#contact" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
-            {t("Contacto", "Contact")}
+            {t("Contacto", "Contact", "Contato")}
           </a>
           <button
             onClick={toggle}
             className="ml-4 rounded border border-accent/40 px-3 py-1 text-xs font-light uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground"
           >
-            {lang === "es" ? "EN" : "ES"}
+            {lang === "es" ? "EN" : lang === "en" ? "PT" : "ES"}
           </button>
         </div>
       </div>

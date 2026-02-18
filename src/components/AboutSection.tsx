@@ -25,22 +25,24 @@ const AboutSection = () => {
           </div>
           <div>
             <p className="mb-2 text-sm font-light uppercase tracking-[0.25em] text-accent">
-              {t("Sobre Mí", "About Me")}
+              {t("Sobre Mí", "About Me", "Sobre Mim")}
             </p>
             <h2 className="mb-6 font-serif-display text-4xl font-medium text-foreground">
-              {t("Dedicación al bienestar emocional", "Dedicated to emotional wellbeing")}
+              {t("Dedicación al bienestar emocional", "Dedicated to emotional wellbeing", "Dedicada ao bem-estar emocional")}
             </h2>
             <div className="gold-line mb-6 w-16" />
             <p className="mb-4 font-light leading-relaxed text-muted-foreground">
               {t(
                 "Con más de 15 años de experiencia, ofrezco un enfoque terapéutico personalizado que combina las técnicas más avanzadas con una profunda empatía y comprensión.",
-                "With over 15 years of experience, I offer a personalized therapeutic approach that combines the most advanced techniques with deep empathy and understanding."
+                "With over 15 years of experience, I offer a personalized therapeutic approach that combines the most advanced techniques with deep empathy and understanding.",
+                "Com mais de 15 anos de experiência, ofereço uma abordagem terapêutica personalizada que combina as técnicas mais avançadas com profunda empatia e compreensão."
               )}
             </p>
             <p className="font-light leading-relaxed text-muted-foreground">
               {t(
                 "Mi consulta en el corazón de Madrid es un espacio diseñado para que te sientas seguro/a y acompañado/a en tu proceso de crecimiento personal.",
-                "My practice in the heart of Madrid is a space designed for you to feel safe and supported in your personal growth journey."
+                "My practice in the heart of Madrid is a space designed for you to feel safe and supported in your personal growth journey.",
+                "Meu consultório no coração de Madrid é um espaço projetado para que você se sinta seguro/a e acompanhado/a em sua jornada de crescimento pessoal."
               )}
             </p>
           </div>

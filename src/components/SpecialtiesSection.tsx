@@ -7,29 +7,37 @@ const specialties = [
     icon: Heart,
     titleEs: "Ansiedad y Depresión",
     titleEn: "Anxiety & Depression",
+    titlePt: "Ansiedade e Depressão",
     descEs: "Tratamiento especializado para gestionar el estrés, la ansiedad y los trastornos del estado de ánimo con técnicas basadas en evidencia.",
     descEn: "Specialized treatment for managing stress, anxiety, and mood disorders with evidence-based techniques.",
+    descPt: "Tratamento especializado para gerenciar estresse, ansiedade e transtornos de humor com técnicas baseadas em evidências.",
   },
   {
     icon: Users,
     titleEs: "Parejas y Relaciones",
     titleEn: "Couples & Relationships",
+    titlePt: "Casais e Relacionamentos",
     descEs: "Terapia de pareja para fortalecer la comunicación, resolver conflictos y recuperar la conexión emocional.",
     descEn: "Couples therapy to strengthen communication, resolve conflicts, and restore emotional connection.",
+    descPt: "Terapia de casal para fortalecer a comunicação, resolver conflitos e restaurar a conexão emocional.",
   },
   {
     icon: Brain,
     titleEs: "Trauma y EMDR",
     titleEn: "Trauma & EMDR",
+    titlePt: "Trauma e EMDR",
     descEs: "Procesamiento de experiencias traumáticas mediante EMDR y otras técnicas terapéuticas de vanguardia.",
     descEn: "Processing traumatic experiences through EMDR and other cutting-edge therapeutic techniques.",
+    descPt: "Processamento de experiências traumáticas por meio de EMDR e outras técnicas terapêuticas de vanguarda.",
   },
   {
     icon: Baby,
     titleEs: "Infancia y Educación Parental",
     titleEn: "Children & Parental Education",
+    titlePt: "Infância e Educação Parental",
     descEs: "Apoyo terapéutico para niños y orientación para padres que buscan herramientas para una crianza consciente.",
     descEn: "Therapeutic support for children and guidance for parents seeking tools for conscious parenting.",
+    descPt: "Suporte terapêutico para crianças e orientação para pais que buscam ferramentas para uma parentalidade consciente.",
   },
 ];
 
@@ -47,10 +55,10 @@ const SpecialtiesSection = () => {
           className="mb-16 text-center"
         >
           <p className="mb-2 text-sm font-light uppercase tracking-[0.25em] text-accent">
-            {t("Áreas de Especialización", "Areas of Expertise")}
+            {t("Áreas de Especialización", "Areas of Expertise", "Áreas de Especialização")}
           </p>
           <h2 className="font-serif-display text-4xl font-medium text-primary-foreground">
-            {t("Especialidades", "Specialties")}
+            {t("Especialidades", "Specialties", "Especialidades")}
           </h2>
           <div className="gold-line mx-auto mt-6 w-16" />
         </motion.div>
@@ -67,10 +75,10 @@ const SpecialtiesSection = () => {
             >
               <s.icon className="mb-4 h-8 w-8 text-accent" strokeWidth={1.2} />
               <h3 className="mb-3 font-serif-display text-xl font-medium text-primary-foreground">
-                {t(s.titleEs, s.titleEn)}
+                {t(s.titleEs, s.titleEn, s.titlePt)}
               </h3>
               <p className="text-sm font-light leading-relaxed text-primary-foreground/70">
-                {t(s.descEs, s.descEn)}
+                {t(s.descEs, s.descEn, s.descPt)}
               </p>
             </motion.div>
           ))}

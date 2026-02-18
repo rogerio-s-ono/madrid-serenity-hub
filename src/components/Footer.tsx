@@ -11,7 +11,7 @@ const Footer = () => {
         </p>
         <div className="gold-line mx-auto my-4 w-12" />
         <p className="text-xs font-light tracking-wider text-primary-foreground/50">
-          © {new Date().getFullYear()} — {t("Todos los derechos reservados", "All rights reserved")}
+          © {new Date().getFullYear()} — {t("Todos los derechos reservados", "All rights reserved", "Todos os direitos reservados")}
         </p>
       </div>
     </footer>
