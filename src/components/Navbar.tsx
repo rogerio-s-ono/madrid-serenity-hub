@@ -10,26 +10,26 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm"
+      className="fixed top-0 left-0 right-0 z-50 bg-ivory/95 backdrop-blur-sm shadow-sm border-b border-border"
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-3">
           <img src={logo} alt="Therapy for your Heart and Soul" className="h-12 w-auto" />
-          <span className="hidden font-serif-display text-lg font-semibold tracking-wide text-primary-foreground md:block">
+          <span className="hidden font-serif-display text-lg font-semibold tracking-wide text-foreground md:block">
             Heart &amp; Soul
           </span>
         </a>
         <div className="hidden items-center gap-8 md:flex">
-          <a href="#about" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
+          <a href="#about" className="text-sm font-light uppercase tracking-widest text-foreground/70 transition-colors hover:text-accent">
             {t("Sobre mí", "About", "Sobre mim")}
           </a>
-          <a href="#specialties" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
+          <a href="#specialties" className="text-sm font-light uppercase tracking-widest text-foreground/70 transition-colors hover:text-accent">
             {t("Especialidades", "Specialties", "Especialidades")}
           </a>
-          <a href="#approach" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
+          <a href="#approach" className="text-sm font-light uppercase tracking-widest text-foreground/70 transition-colors hover:text-accent">
             {t("Enfoque", "Approach", "Abordagem")}
           </a>
-          <a href="#contact" className="text-sm font-light uppercase tracking-widest text-primary-foreground/80 transition-colors hover:text-accent">
+          <a href="#contact" className="text-sm font-light uppercase tracking-widest text-foreground/70 transition-colors hover:text-accent">
             {t("Contacto", "Contact", "Contato")}
           </a>
           <div className="ml-4 flex gap-2">
@@ -39,7 +39,7 @@ const Navbar = () => {
                 <button
                   key={l}
                   onClick={() => setLang(l)}
-                  className="rounded border border-accent/40 px-3 py-1 text-xs font-light uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground"
+                  className="rounded border border-accent/60 px-3 py-1 text-xs font-light uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground"
                 >
                   {l === "es" ? "ES" : l === "en" ? "EN" : "PT"}
                 </button>
