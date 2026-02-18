@@ -9,7 +9,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -23,79 +23,79 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      transition={{ duration: 1, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled
-          ? "bg-ivory/98 backdrop-blur-md shadow-[0_1px_20px_rgba(0,0,0,0.07)] border-b border-border"
-          : "bg-ivory/90 backdrop-blur-sm"
+          ? "bg-ivory shadow-[0_2px_30px_rgba(0,0,0,0.06)] border-b border-border/60"
+          : "bg-ivory/96 backdrop-blur-sm"
       }`}
     >
-      {/* Top accent line */}
-      <div className="h-[2px] gold-gradient w-full" />
+      {/* Gold top bar */}
+      <div className="h-[1px] w-full gold-gradient opacity-80" />
 
-      <div className="container mx-auto flex items-center justify-between px-8 py-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-10 py-4">
         {/* Logo */}
-        <a href="#" className="flex items-center">
+        <a href="#" className="block shrink-0">
           <img
             src={logo}
             alt="Heart & Soul Therapy"
-            className="h-16 w-auto object-contain"
+            className="h-14 w-auto object-contain"
           />
         </a>
 
-        {/* Desktop Nav */}
+        {/* Desktop nav */}
         <div className="hidden items-center gap-10 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="relative text-[11px] font-light uppercase tracking-[0.18em] text-foreground/60 transition-colors duration-300 hover:text-accent group"
+              className="group relative font-sans-body text-[10.5px] font-light uppercase tracking-[0.22em] text-foreground/55 transition-colors duration-300 hover:text-foreground"
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-accent/70 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
+        </div>
 
-          {/* Divider */}
-          <div className="h-4 w-px bg-border/60" />
-
-          {/* Language switcher */}
-          <div className="flex gap-1.5">
-            {(["es", "en", "pt"] as const).map((l) => (
-              <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={`px-2.5 py-1 text-[10px] font-light uppercase tracking-widest transition-all duration-200 ${
-                  lang === l
-                    ? "text-accent border-b border-accent"
-                    : "text-foreground/40 hover:text-accent"
-                }`}
-              >
-                {l === "es" ? "ES" : l === "en" ? "EN" : "PT"}
-              </button>
+        {/* Right: language + CTA */}
+        <div className="hidden items-center gap-6 md:flex">
+          <div className="flex items-center gap-1">
+            {(["es", "en", "pt"] as const).map((l, i) => (
+              <span key={l} className="flex items-center">
+                <button
+                  onClick={() => setLang(l)}
+                  className={`font-sans-body text-[10px] font-light uppercase tracking-widest transition-all duration-200 ${
+                    lang === l
+                      ? "text-accent"
+                      : "text-foreground/35 hover:text-foreground/70"
+                  }`}
+                >
+                  {l === "es" ? "ES" : l === "en" ? "EN" : "PT"}
+                </button>
+                {i < 2 && <span className="mx-1.5 text-foreground/20 text-[10px]">·</span>}
+              </span>
             ))}
           </div>
 
-          {/* CTA */}
           <a
             href="#contact"
-            className="ml-2 px-5 py-2 text-[10px] font-light uppercase tracking-[0.18em] border border-accent text-accent transition-all duration-300 hover:bg-accent hover:text-accent-foreground"
+            className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em] border border-accent/60 px-6 py-2.5 text-accent transition-all duration-300 hover:bg-accent hover:text-accent-foreground"
           >
-            {t("Reservar consulta", "Book Consultation", "Reservar consulta")}
+            {t("Reservar", "Book a Session", "Reservar")}
           </a>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile toggle */}
         <button
-          className="flex md:hidden flex-col gap-[5px] p-2"
+          className="flex flex-col items-end gap-[5px] p-2 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          <span className={`block h-px w-6 bg-foreground/60 transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
-          <span className={`block h-px w-6 bg-foreground/60 transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-          <span className={`block h-px w-6 bg-foreground/60 transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+          <span className={`block h-px bg-foreground/50 transition-all duration-300 ${mobileOpen ? "w-5 rotate-45 translate-y-[7px]" : "w-5"}`} />
+          <span className={`block h-px bg-foreground/50 transition-all duration-300 ${mobileOpen ? "w-0 opacity-0" : "w-3.5"}`} />
+          <span className={`block h-px bg-foreground/50 transition-all duration-300 ${mobileOpen ? "w-5 -rotate-45 -translate-y-[7px]" : "w-5"}`} />
         </button>
       </div>
 
@@ -103,27 +103,27 @@ const Navbar = () => {
       <motion.div
         initial={false}
         animate={{ height: mobileOpen ? "auto" : 0, opacity: mobileOpen ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="overflow-hidden md:hidden bg-ivory/98 border-t border-border"
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="overflow-hidden border-t border-border/40 bg-ivory md:hidden"
       >
-        <div className="flex flex-col px-8 py-6 gap-5">
+        <div className="flex flex-col gap-6 px-10 py-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="text-[11px] font-light uppercase tracking-[0.18em] text-foreground/60 hover:text-accent transition-colors"
+              className="font-sans-body text-[10.5px] font-light uppercase tracking-[0.22em] text-foreground/55 hover:text-foreground transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <div className="flex gap-2 pt-1">
+          <div className="flex items-center gap-3 pt-1">
             {(["es", "en", "pt"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`px-2.5 py-1 text-[10px] uppercase tracking-widest transition-all ${
-                  lang === l ? "text-accent border-b border-accent" : "text-foreground/40 hover:text-accent"
+                className={`font-sans-body text-[10px] uppercase tracking-widest transition-all ${
+                  lang === l ? "text-accent" : "text-foreground/35 hover:text-foreground/70"
                 }`}
               >
                 {l === "es" ? "ES" : l === "en" ? "EN" : "PT"}
@@ -133,9 +133,9 @@ const Navbar = () => {
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
-            className="mt-1 w-fit px-5 py-2 text-[10px] font-light uppercase tracking-[0.18em] border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+            className="w-fit font-sans-body text-[10px] font-light uppercase tracking-[0.22em] border border-accent/60 px-6 py-2.5 text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
           >
-            {t("Reservar consulta", "Book Consultation", "Reservar consulta")}
+            {t("Reservar", "Book a Session", "Reservar")}
           </a>
         </div>
       </motion.div>

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import React from "react";
 
 type Language = "es" | "en" | "pt";
 
@@ -6,7 +7,7 @@ interface LanguageContextType {
   lang: Language;
   toggle: () => void;
   setLang: (l: Language) => void;
-  t: (es: string, en: string, pt?: string) => string;
+  t: (es: React.ReactNode, en: React.ReactNode, pt?: React.ReactNode) => React.ReactNode;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

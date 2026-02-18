@@ -1,18 +1,39 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-primary py-12">
-      <div className="container mx-auto max-w-5xl px-6 text-center">
-        <p className="font-serif-display text-lg font-medium text-primary-foreground">
-          Tania Ono
-        </p>
-        <div className="gold-line mx-auto my-4 w-12" />
-        <p className="text-xs font-light tracking-wider text-primary-foreground/50">
-          © {new Date().getFullYear()} — {t("Todos los derechos reservados", "All rights reserved", "Todos os direitos reservados")}
-        </p>
+    <footer className="bg-background border-t border-border py-14">
+      <div className="mx-auto max-w-6xl px-8">
+        <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
+          <img
+            src={logo}
+            alt="Heart & Soul Therapy"
+            className="h-10 w-auto object-contain opacity-70"
+          />
+          <p className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em] text-muted-foreground/50 text-center">
+            © {new Date().getFullYear()} Heart & Soul Therapy · Madrid ·{" "}
+            {t("Todos los derechos reservados", "All rights reserved", "Todos os direitos reservados")}
+          </p>
+          <div className="flex gap-6">
+            {["#about", "#specialties", "#approach", "#contact"].map((href, i) => (
+              <a
+                key={href}
+                href={href}
+                className="font-sans-body text-[10px] font-light uppercase tracking-[0.18em] text-muted-foreground/40 hover:text-muted-foreground/80 transition-colors"
+              >
+                {[
+                  t("Sobre mí", "About", "Sobre mim"),
+                  t("Especialidades", "Specialties", "Especialidades"),
+                  t("Enfoque", "Approach", "Abordagem"),
+                  t("Contacto", "Contact", "Contato"),
+                ][i]}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );

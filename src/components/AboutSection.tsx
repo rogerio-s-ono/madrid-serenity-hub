@@ -2,65 +2,79 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import taniaPhoto from "@/assets/tania-photo.jpg";
 
+const credentials = [
+  { es: "EMDR Certificada", en: "EMDR Certified", pt: "EMDR Certificada" },
+  { es: "Terapia Sistémica", en: "Systemic Therapy", pt: "Terapia Sistêmica" },
+  { es: "TCC", en: "CBT", pt: "TCC" },
+  { es: "Mindfulness Clínico", en: "Clinical Mindfulness", pt: "Mindfulness Clínico" },
+];
+
 const AboutSection = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  const heading = lang === "es"
+    ? <>Comprendo lo que significa<br />construir una vida<br /><em>entre dos mundos</em></>
+    : lang === "pt"
+    ? <>Compreendo o que significa<br />construir uma vida<br /><em>entre dois mundos</em></>
+    : <>I understand what it means<br />to build a life<br /><em>between two worlds</em></>;
 
   return (
-    <section id="about" className="bg-background py-24">
-      <div className="container mx-auto max-w-5xl px-6">
+    <section id="about" className="bg-background py-28 lg:py-36">
+      <div className="mx-auto max-w-6xl px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid items-center gap-16 md:grid-cols-2"
+          transition={{ duration: 0.9 }}
+          className="grid items-center gap-20 lg:grid-cols-2"
         >
-          <div className="flex justify-center">
+          {/* Image */}
+          <div className="flex justify-center lg:justify-start">
             <div className="relative">
-              <div className="h-[420px] w-[320px] overflow-hidden rounded-sm bg-muted">
-                <img src={taniaPhoto} alt="Tania Ono" className="h-full w-full object-cover object-top" />
+              <div className="absolute -bottom-5 -right-5 h-full w-full border border-accent/20" />
+              <div className="relative h-[500px] w-[380px] overflow-hidden bg-muted">
+                <img
+                  src={taniaPhoto}
+                  alt="Tania Ono — Heart & Soul Therapy"
+                  className="h-full w-full object-cover object-top"
+                />
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-navy/30 to-transparent" />
               </div>
-              <div className="absolute -bottom-4 -right-4 h-[420px] w-[320px] rounded-sm border-2 border-accent/30" />
             </div>
           </div>
+
+          {/* Content */}
           <div>
-            <p className="mb-2 text-sm font-light uppercase tracking-[0.25em] text-accent">
-              {t("Tania Ono", "Tania Ono", "Tania Ono")}
-            </p>
-            <h2 className="mb-6 font-serif-display text-4xl font-medium text-foreground">
-              {t(
-                "Comprendo lo que implica construir una vida entre dos mundos",
-                "I understand what it means to build a life between two worlds",
-                "Compreendo o que significa construir uma vida entre dois mundos"
-              )}
+            <p className="section-label mb-5">Tania Ono</p>
+
+            <h2 className="font-serif-display mb-6 text-4xl font-light leading-[1.2] text-foreground lg:text-5xl">
+              {heading}
             </h2>
-            <div className="gold-line mb-6 w-16" />
-            <p className="mb-4 font-light leading-relaxed text-muted-foreground">
+
+            <div className="gold-line mb-8 w-14" />
+
+            <p className="mb-5 font-sans-body text-[15px] font-light leading-[1.9] text-muted-foreground">
               {t(
-                "Con más de 15 años de experiencia clínica y una formación internacional en psicoterapia, trabajo con familias y profesionales de alto nivel que enfrentan los desafíos únicos de la vida expatriada en Madrid — la presión ejecutiva, la adaptación familiar, la transición cultural y la búsqueda de identidad.",
-                "With over 15 years of clinical experience and international training in psychotherapy, I work with high-calibre families and professionals facing the unique challenges of expat life in Madrid — executive pressure, family adaptation, cultural transition, and the search for identity.",
-                "Com mais de 15 anos de experiência clínica e formação internacional em psicoterapia, trabalho com famílias e profissionais de alto nível que enfrentam os desafios únicos da vida expatriada em Madrid — pressão executiva, adaptação familiar, transição cultural e a busca de identidade."
+                "Con más de 15 años de experiencia clínica internacional, trabajo con familias y profesionales de alto nivel que enfrentan los desafíos únicos de la vida expatriada en Madrid — la presión ejecutiva, la adaptación familiar, la transición cultural y la búsqueda de identidad.",
+                "With over 15 years of international clinical experience, I work with high-calibre families and professionals facing the unique challenges of expat life in Madrid — executive pressure, family adaptation, cultural transition, and the search for identity.",
+                "Com mais de 15 anos de experiência clínica internacional, trabalho com famílias e profissionais de alto nível que enfrentam os desafios únicos da vida expatriada em Madrid."
               )}
             </p>
-            <p className="mb-6 font-light leading-relaxed text-muted-foreground">
+            <p className="mb-10 font-sans-body text-[15px] font-light leading-[1.9] text-muted-foreground">
               {t(
-                "Mi consulta en el corazón de Madrid ofrece un espacio completamente confidencial, pensado para quienes valoran la discreción tanto como los resultados.",
+                "Mi consulta en el corazón de Madrid ofrece un espacio completamente confidencial, diseñado para quienes valoran la discreción tanto como los resultados.",
                 "My practice in the heart of Madrid offers a fully confidential space, designed for those who value discretion as much as outcomes.",
-                "Meu consultório no coração de Madrid oferece um espaço completamente confidencial, pensado para quem valoriza a discrição tanto quanto os resultados."
+                "Meu consultório no coração de Madrid oferece um espaço completamente confidencial, projetado para quem valoriza a discrição tanto quanto os resultados."
               )}
             </p>
+
             <div className="flex flex-wrap gap-3">
-              {[
-                t("EMDR Certificada", "EMDR Certified", "EMDR Certificada"),
-                t("Terapia Sistémica", "Systemic Therapy", "Terapia Sistêmica"),
-                t("TCC", "CBT", "TCC"),
-                t("Mindfulness Clínico", "Clinical Mindfulness", "Mindfulness Clínico"),
-              ].map((badge) => (
+              {credentials.map((c) => (
                 <span
-                  key={badge}
-                  className="rounded-sm border border-accent/30 px-3 py-1 text-xs font-light uppercase tracking-widest text-accent"
+                  key={c.en}
+                  className="font-sans-body border border-border px-4 py-1.5 text-[10px] font-light uppercase tracking-[0.18em] text-muted-foreground/80"
                 >
-                  {badge}
+                  {t(c.es, c.en, c.pt)}
                 </span>
               ))}
             </div>
