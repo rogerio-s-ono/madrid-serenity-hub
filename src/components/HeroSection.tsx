@@ -25,9 +25,9 @@ const HeroSection = () => {
           {/* Eyebrow */}
           <p className="section-label mb-8" style={{ color: "hsl(var(--gold-light))" }}>
             {t(
-              "Psicoterapia & Coaching Ejecutivo · Madrid",
-              "Psychotherapy & Executive Coaching · Madrid",
-              "Psicoterapia & Coaching Executivo · Madrid"
+              "Psicoterapia para Familias Internacionales · Madrid",
+              "Psychotherapy for International Families · Madrid",
+              "Psicoterapia para Famílias Internacionais · Madrid"
             )}
           </p>
 
@@ -44,9 +44,9 @@ const HeroSection = () => {
           {/* Body */}
           <p className="mx-auto mb-12 max-w-2xl font-sans-body text-base font-light leading-[1.9] tracking-wide text-primary-foreground/75">
             {t(
-              "Para familias internacionales y profesionales de alto rendimiento que viven en Madrid. Un espacio confidencial donde la complejidad de vivir entre culturas se sostiene con rigor clínico y discreción absoluta.",
-              "For international families and high-performing professionals living in Madrid. A confidential space where the complexity of life between cultures is held with clinical rigour and absolute discretion.",
-              "Para famílias internacionais e profissionais de alto desempenho que vivem em Madrid. Um espaço confidencial onde a complexidade de viver entre culturas é sustentada com rigor clínico e discrição absoluta."
+              "Para familias internacionales que viven en Madrid. Un espacio confidencial donde la complejidad de criar, amar y crecer entre culturas se sostiene con rigor clínico y discreción absoluta.",
+              "For international families living in Madrid. A confidential space where the complexity of raising children, loving, and growing between cultures is held with clinical rigour and absolute discretion.",
+              "Para famílias internacionais que vivem em Madrid. Um espaço confidencial onde a complexidade de criar, amar e crescer entre culturas é sustentada com rigor clínico e discrição absoluta."
             )}
           </p>
 

@@ -55,9 +55,9 @@ const AboutSection = () => {
 
             <p className="mb-5 font-sans-body text-[15px] font-light leading-[1.9] text-muted-foreground">
               {t(
-                "Con más de 15 años de experiencia clínica internacional, trabajo con familias y profesionales de alto nivel que enfrentan los desafíos únicos de la vida expatriada en Madrid — la presión ejecutiva, la adaptación familiar, la transición cultural y la búsqueda de identidad.",
-                "With over 15 years of international clinical experience, I work with high-calibre families and professionals facing the unique challenges of expat life in Madrid — executive pressure, family adaptation, cultural transition, and the search for identity.",
-                "Com mais de 15 anos de experiência clínica internacional, trabalho com famílias e profissionais de alto nível que enfrentam os desafios únicos da vida expatriada em Madrid."
+                "Con más de 15 años de experiencia clínica internacional, acompaño a familias que han elegido Madrid como hogar y se enfrentan a los desafíos únicos de vivir entre culturas — la adaptación familiar, la identidad de los hijos, la pareja bajo presión, la soledad que nadie ve.",
+                "With over 15 years of international clinical experience, I accompany families who have chosen Madrid as home and face the unique challenges of living between cultures — family adaptation, children's identity, the couple under pressure, the loneliness no one sees.",
+                "Com mais de 15 anos de experiência clínica internacional, acompanho famílias que escolheram Madrid como lar e enfrentam os desafios únicos de viver entre culturas — adaptação familiar, identidade dos filhos, o casal sob pressão, a solidão que ninguém vê."
               )}
             </p>
             <p className="mb-10 font-sans-body text-[15px] font-light leading-[1.9] text-muted-foreground">
