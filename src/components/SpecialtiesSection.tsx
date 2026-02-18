@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const specialties = [
   {
@@ -27,7 +28,7 @@ const specialties = [
     titlePt: "Bem-Estar Familiar na Distância",
     descEs: "Cuando la familia extendida queda lejos y las redes de apoyo se reconstruyen desde cero, la familia nuclear lleva un peso invisible. Creamos recursos internos para que ese peso no los divida.",
     descEn: "When extended family is far and support networks must be rebuilt from scratch, the nuclear family carries an invisible weight. We build internal resources so that weight doesn't divide them.",
-    descPt: "Quando a família extensa fica longe e as redes de apoio precisam ser reconstruídas do zero, a família nuclear carrega um peso invisível. Construímos recursos internos para que esse peso não os divida.",
+    descPt: "Quando a família extensa fica longe e as redes de apoio precisam ser reconstruídas do zero, a família nuclear carrega um peso invisível.",
   },
   {
     num: "04",
@@ -60,6 +61,7 @@ const specialties = [
 
 const SpecialtiesSection = () => {
   const { t, lang } = useLanguage();
+  const [selected, setSelected] = useState<number | null>(null);
 
   const heading =
     lang === "es" ? (
@@ -90,26 +92,68 @@ const SpecialtiesSection = () => {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid border border-primary-foreground/8 md:grid-cols-2 lg:grid-cols-3">
-          {specialties.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="group border border-primary-foreground/8 bg-primary p-10 transition-colors duration-300 hover:bg-primary-foreground/[0.04] cursor-default"
-            >
-              <p className="font-serif-display mb-5 text-2xl font-light text-accent/40">{s.num}</p>
-              <h3 className="font-serif-display mb-4 text-xl font-light leading-snug text-primary-foreground">
-                {t(s.titleEs, s.titleEn, s.titlePt)}
-              </h3>
-              <div className="mb-4 h-px w-8 bg-accent/30 transition-all duration-300 group-hover:w-14 group-hover:bg-accent/60" />
-              <p className="font-sans-body text-sm font-light leading-[1.85] text-primary-foreground/55">
-                {t(s.descEs, s.descEn, s.descPt)}
-              </p>
-            </motion.div>
-          ))}
+        <div className="grid border border-primary-foreground/10 md:grid-cols-2 lg:grid-cols-3"
+          style={{ perspective: "1200px" }}
+        >
+          {specialties.map((s, i) => {
+            const isSelected = selected === i;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                whileHover={{
+                  y: -6,
+                  scale: 1.025,
+                  rotateX: 2,
+                  rotateY: -1,
+                  boxShadow: "0 20px 50px rgba(0,0,0,0.45), 0 0 0 1px hsl(var(--gold)/0.25)",
+                  zIndex: 10,
+                  transition: { duration: 0.25, ease: "easeOut" },
+                }}
+                animate={
+                  isSelected
+                    ? {
+                        y: -10,
+                        scale: 1.04,
+                        boxShadow: "0 28px 60px rgba(0,0,0,0.55), 0 0 0 1.5px hsl(var(--gold)/0.5)",
+                        zIndex: 20,
+                      }
+                    : {
+                        y: 0,
+                        scale: 1,
+                        boxShadow: "none",
+                        zIndex: 1,
+                      }
+                }
+                onClick={() => setSelected(isSelected ? null : i)}
+                className="relative border border-primary-foreground/10 bg-primary p-10 cursor-pointer"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Gold accent line on selected */}
+                {isSelected && (
+                  <motion.div
+                    layoutId="selected-accent"
+                    className="absolute top-0 left-0 right-0 h-[2px] gold-gradient"
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
+
+                <p className="font-serif-display mb-5 text-3xl font-medium" style={{ color: "hsl(var(--gold-light))" }}>
+                  {s.num}
+                </p>
+                <h3 className="font-serif-display mb-4 text-xl font-light leading-snug text-primary-foreground">
+                  {t(s.titleEs, s.titleEn, s.titlePt)}
+                </h3>
+                <div className={`mb-4 h-px bg-accent/50 transition-all duration-300 ${isSelected ? "w-14" : "w-8 group-hover:w-14"}`} />
+                <p className="font-sans-body text-sm font-light leading-[1.85]" style={{ color: "hsl(var(--primary-foreground)/0.75)" }}>
+                  {t(s.descEs, s.descEn, s.descPt)}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
