@@ -1,9 +1,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import { FlaskConical, ShieldCheck, Globe2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const pillars = [
   {
-    numeral: "01",
+    slug: "rigor-clinico",
+    Icon: FlaskConical,
     titleEs: "Rigor Clínico",
     titleEn: "Clinical Rigour",
     titlePt: "Rigor Clínico",
@@ -12,7 +15,8 @@ const pillars = [
     descPt: "Métodos baseados em evidências — TCC, EMDR, terapia sistêmica — adaptados com precisão às realidades interculturais e à complexidade emocional das famílias internacionais.",
   },
   {
-    numeral: "02",
+    slug: "discrecion-absoluta",
+    Icon: ShieldCheck,
     titleEs: "Discreción Absoluta",
     titleEn: "Absolute Discretion",
     titlePt: "Discrição Absoluta",
@@ -21,7 +25,8 @@ const pillars = [
     descPt: "A confidencialidade não é um protocolo — é o fundamento da nossa relação. Cada sessão é um espaço protegido.",
   },
   {
-    numeral: "03",
+    slug: "perspectiva-internacional",
+    Icon: Globe2,
     titleEs: "Perspectiva Internacional",
     titleEn: "International Perspective",
     titlePt: "Perspectiva Internacional",
@@ -33,6 +38,7 @@ const pillars = [
 
 const ApproachSection = () => {
   const { t, lang } = useLanguage();
+  const navigate = useNavigate();
 
   const heading =
     lang === "es" ? (
@@ -72,7 +78,10 @@ const ApproachSection = () => {
         </motion.div>
 
         {/* Pillars */}
-        <div className="grid gap-0 md:grid-cols-3 border-t border-border">
+        <div
+          className="grid gap-0 md:grid-cols-3 border-t border-border"
+          style={{ perspective: "1200px" }}
+        >
           {pillars.map((p, i) => (
             <motion.div
               key={i}
@@ -80,15 +89,41 @@ const ApproachSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.15 }}
-              className={`py-12 pr-10 ${i > 0 ? "md:border-l md:border-border md:pl-10 md:pr-0" : ""}`}
+              whileHover={{
+                y: -6,
+                scale: 1.025,
+                rotateX: 2,
+                rotateY: -1,
+                boxShadow: "0 20px 50px rgba(0,0,0,0.10), 0 0 0 1px hsl(var(--gold)/0.25)",
+                zIndex: 10,
+                transition: { duration: 0.25, ease: "easeOut" },
+              }}
+              onClick={() => navigate(`/enfoque/${p.slug}`)}
+              className={`py-12 pr-10 cursor-pointer ${i > 0 ? "md:border-l md:border-border md:pl-10 md:pr-0" : ""}`}
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <p className="font-serif-display mb-6 text-5xl font-light text-accent/25">{p.numeral}</p>
+              {/* Icon */}
+              <div className="mb-6 flex h-12 w-12 items-center justify-center border border-accent/30 bg-accent/5">
+                <p.Icon
+                  className="h-5 w-5"
+                  style={{ color: "hsl(var(--gold))", strokeWidth: 1.25 }}
+                />
+              </div>
+
               <h3 className="font-serif-display mb-4 text-2xl font-light text-foreground">
                 {t(p.titleEs, p.titleEn, p.titlePt)}
               </h3>
               <div className="mb-5 h-px w-10 bg-accent/40" />
               <p className="font-sans-body text-[14px] font-light leading-[1.85] text-muted-foreground">
                 {t(p.descEs, p.descEn, p.descPt)}
+              </p>
+
+              {/* Hint */}
+              <p
+                className="font-sans-body mt-6 text-[10px] font-light uppercase tracking-[0.18em]"
+                style={{ color: "hsl(var(--gold-light))", opacity: 0.5 }}
+              >
+                {t("Ver más →", "Learn more →", "Ver mais →")}
               </p>
             </motion.div>
           ))}
