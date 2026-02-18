@@ -88,11 +88,14 @@ const ApproachSection = () => {
               transition={{ duration: 0.7, delay: i * 0.15 }}
               whileHover={{
                 y: -4,
-                boxShadow: "0 16px 40px rgba(0,0,0,0.08), 0 0 0 1px hsl(var(--gold)/0.20)",
+                zIndex: 10,
+                boxShadow: "0 16px 40px rgba(0,0,0,0.08)",
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
               onClick={() => navigate(`/enfoque/${p.slug}`)}
-              className={`py-12 pr-10 cursor-pointer bg-background transition-colors hover:bg-accent/[0.03] ${i > 0 ? "md:border-l md:border-border md:pl-10 md:pr-0" : ""}`}
+              className={`relative py-12 cursor-pointer bg-background transition-colors hover:bg-accent/[0.03] ${
+                i === 0 ? "pl-0 pr-10" : i === 1 ? "px-10 md:border-l md:border-border" : "pl-10 pr-0 md:border-l md:border-border"
+              }`}
             >
               {/* Icon */}
               <div className="mb-6 flex h-12 w-12 items-center justify-center border border-accent/30 bg-accent/5">
