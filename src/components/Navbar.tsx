@@ -33,7 +33,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled || hovered
           ? "bg-ivory shadow-[0_2px_30px_rgba(0,0,0,0.06)] border-b border-border/60"
-          : "bg-ivory/60 backdrop-blur-sm"
+          : "bg-ivory/96 backdrop-blur-sm"
       }`}
     >
       {/* Gold top bar */}
