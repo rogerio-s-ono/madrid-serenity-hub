@@ -1,0 +1,231 @@
+import sp01 from "@/assets/specialty-01.jpg";
+import sp02 from "@/assets/specialty-02.jpg";
+import sp03 from "@/assets/specialty-03.jpg";
+import sp04 from "@/assets/specialty-04.jpg";
+import sp05 from "@/assets/specialty-05.jpg";
+import sp06 from "@/assets/specialty-06.jpg";
+
+export interface Specialty {
+  slug: string;
+  num: string;
+  image: string;
+  titleEs: string; titleEn: string; titlePt: string;
+  tagEs: string; tagEn: string; tagPt: string;
+  summaryEs: string; summaryEn: string; summaryPt: string;
+  descEs: string; descEn: string; descPt: string;
+  bodyEs: string[]; bodyEn: string[]; bodyPt: string[];
+  methodsEs: string[]; methodsEn: string[]; methodsPt: string[];
+}
+
+export const specialties: Specialty[] = [
+  {
+    slug: "transicion-cultural",
+    num: "01",
+    image: sp01,
+    titleEs: "Transición Cultural e Identidad",
+    titleEn: "Cultural Transition & Identity",
+    titlePt: "Transição Cultural e Identidade",
+    tagEs: "Identidad Cultural",
+    tagEn: "Cultural Identity",
+    tagPt: "Identidade Cultural",
+    summaryEs: "Para profesionales y familias que sienten la tensión entre quiénes eran y quiénes están llegando a ser. Integramos identidades sin perder lo que te hace tú.",
+    summaryEn: "For professionals and families feeling the tension between who they were and who they are becoming. We integrate identities without losing what makes you, you.",
+    summaryPt: "Para profissionais e famílias que sentem a tensão entre quem eram e quem estão se tornando. Integramos identidades sem perder o que te faz ser você.",
+    descEs: "Vivir entre culturas es un privilegio y también un reto psicológico profundo. Cada mudanza internacional exige una renegociación de la identidad: ¿quién eras allí, quién eres aquí, y quién quieres ser?",
+    descEn: "Living between cultures is a privilege and also a profound psychological challenge. Every international move demands a renegotiation of identity: who were you there, who are you here, and who do you want to be?",
+    descPt: "Viver entre culturas é um privilégio e também um profundo desafio psicológico. Cada mudança internacional exige uma renegociação da identidade: quem você era lá, quem você é aqui e quem você quer ser?",
+    bodyEs: [
+      "El choque cultural no siempre se manifiesta como crisis evidente. A menudo aparece como una sensación difusa de no encajar del todo — ni aquí ni allá. Como si una parte de ti hubiera quedado anclada en el país anterior, mientras otra lucha por adaptarse sin perder su esencia.",
+      "En consulta, trabajamos para nombrar esas tensiones internas y construir una narrativa de identidad coherente que integre todos tus mundos. No se trata de elegir entre culturas, sino de aprender a habitar varias al mismo tiempo con solidez interior.",
+      "A través de técnicas sistémicas, narrativas y basadas en la mentalización, te acompañamos en el proceso de convertir la fragmentación en riqueza — y la confusión en un anclaje claro de quién eres.",
+    ],
+    bodyEn: [
+      "Culture shock does not always manifest as an obvious crisis. Often it appears as a diffuse sense of not quite fitting in — neither here nor there. As if part of you remained anchored in the previous country, while another part struggles to adapt without losing its essence.",
+      "In session, we work to name those internal tensions and build a coherent identity narrative that integrates all your worlds. It is not about choosing between cultures, but learning to inhabit several simultaneously with inner solidity.",
+      "Through systemic, narrative, and mentalisation-based techniques, we accompany you in the process of transforming fragmentation into richness — and confusion into a clear anchor of who you are.",
+    ],
+    bodyPt: [
+      "O choque cultural nem sempre se manifesta como uma crise evidente. Muitas vezes aparece como uma sensação difusa de não se encaixar completamente — nem aqui nem lá. Como se uma parte de você tivesse ficado ancorada no país anterior, enquanto outra luta para se adaptar sem perder sua essência.",
+      "Em sessão, trabalhamos para nomear essas tensões internas e construir uma narrativa de identidade coerente que integre todos os seus mundos. Não se trata de escolher entre culturas, mas de aprender a habitar várias ao mesmo tempo com solidez interior.",
+      "Por meio de técnicas sistêmicas, narrativas e baseadas na mentalização, acompanhamos você no processo de transformar a fragmentação em riqueza — e a confusão em uma âncora clara de quem você é.",
+    ],
+    methodsEs: ["Terapia Narrativa", "Terapia Sistémica", "Mentalización", "TCC"],
+    methodsEn: ["Narrative Therapy", "Systemic Therapy", "Mentalisation", "CBT"],
+    methodsPt: ["Terapia Narrativa", "Terapia Sistêmica", "Mentalização", "TCC"],
+  },
+  {
+    slug: "familias-entre-culturas",
+    num: "02",
+    image: sp02,
+    titleEs: "Familias Criando entre Culturas",
+    titleEn: "Raising Children Between Cultures",
+    titlePt: "Criando Filhos entre Culturas",
+    tagEs: "Familias Multiculturales",
+    tagEn: "Multicultural Families",
+    tagPt: "Famílias Multiculturais",
+    summaryEs: "Criar hijos entre dos o más culturas plantea preguntas únicas sobre pertenencia, valores y lengua. Acompañamos a familias a construir un hogar cohesionado.",
+    summaryEn: "Raising children across cultures raises unique questions about belonging, values, and language. We help families build a cohesive home without surrendering any roots.",
+    summaryPt: "Criar filhos entre culturas levanta questões únicas sobre pertencimento, valores e língua. Ajudamos famílias a construir um lar coeso sem abandonar nenhuma raiz.",
+    descEs: "Los hijos de familias internacionales crecen con una riqueza cultural extraordinaria — y también con preguntas que sus padres no siempre saben cómo responder.",
+    descEn: "Children of international families grow up with extraordinary cultural richness — and also with questions their parents don't always know how to answer.",
+    descPt: "Filhos de famílias internacionais crescem com uma riqueza cultural extraordinária — e também com perguntas que seus pais nem sempre sabem responder.",
+    bodyEs: [
+      "\"¿De dónde soy yo?\" es una pregunta que muchos niños de familias internacionales se hacen con más angustia de lo que sus padres imaginan. La identidad de los hijos se construye en el espacio entre dos o más culturas — y ese espacio puede ser un lugar de privilegio o de confusión, según cómo lo sostengamos.",
+      "Trabajamos con la familia en su conjunto: ayudamos a los padres a articular valores compartidos que trasciendan las diferencias culturales, a manejar la culpa asociada a alejar a los hijos de sus raíces, y a construir rituales familiares que generen sentido de pertenencia.",
+      "También trabajamos directamente con los niños y adolescentes cuando necesitan un espacio propio para procesar su experiencia multicultural — sin tener que elegir un lado.",
+    ],
+    bodyEn: [
+      "\"Where am I from?\" is a question many children of international families ask with more anguish than their parents imagine. The identity of children is built in the space between two or more cultures — and that space can be a place of privilege or confusion, depending on how we hold it.",
+      "We work with the family as a whole: helping parents articulate shared values that transcend cultural differences, manage the guilt associated with distancing children from their roots, and build family rituals that generate a sense of belonging.",
+      "We also work directly with children and adolescents when they need their own space to process their multicultural experience — without having to choose a side.",
+    ],
+    bodyPt: [
+      "\"De onde eu sou?\" é uma pergunta que muitas crianças de famílias internacionais fazem com mais angústia do que os pais imaginam. A identidade dos filhos se constrói no espaço entre duas ou mais culturas — e esse espaço pode ser um lugar de privilégio ou de confusão, dependendo de como o sustentamos.",
+      "Trabalhamos com a família como um todo: ajudamos os pais a articular valores compartilhados que transcendem as diferenças culturais, a gerenciar a culpa associada a afastar os filhos de suas raízes e a construir rituais familiares que gerem senso de pertencimento.",
+      "Também trabalhamos diretamente com crianças e adolescentes quando precisam de um espaço próprio para processar sua experiência multicultural — sem ter que escolher um lado.",
+    ],
+    methodsEs: ["Terapia Familiar Sistémica", "Terapia Infantil", "Terapia Narrativa", "Mindfulness Familiar"],
+    methodsEn: ["Systemic Family Therapy", "Child Therapy", "Narrative Therapy", "Family Mindfulness"],
+    methodsPt: ["Terapia Familiar Sistêmica", "Terapia Infantil", "Terapia Narrativa", "Mindfulness Familiar"],
+  },
+  {
+    slug: "bienestar-en-la-distancia",
+    num: "03",
+    image: sp03,
+    titleEs: "Bienestar Familiar en la Distancia",
+    titleEn: "Family Wellbeing in the Distance",
+    titlePt: "Bem-Estar Familiar na Distância",
+    tagEs: "Apoyo en el Extranjero",
+    tagEn: "Support Abroad",
+    tagPt: "Apoio no Exterior",
+    summaryEs: "Cuando la familia extendida queda lejos y las redes de apoyo se reconstruyen desde cero, la familia nuclear lleva un peso invisible.",
+    summaryEn: "When extended family is far and support networks must be rebuilt from scratch, the nuclear family carries an invisible weight.",
+    summaryPt: "Quando a família extensa fica longe e as redes de apoio precisam ser reconstruídas do zero, a família nuclear carrega um peso invisível.",
+    descEs: "La distancia de los seres queridos es uno de los factores de estrés más subestimados en la experiencia de las familias internacionales.",
+    descEn: "The distance from loved ones is one of the most underestimated stress factors in the experience of international families.",
+    descPt: "A distância dos entes queridos é um dos fatores de estresse mais subestimados na experiência das famílias internacionais.",
+    bodyEs: [
+      "Cuando te mudas a otro país, no solo dejas atrás una dirección. Dejas una red de apoyo emocional construida durante años: la abuela que cuida a los niños, las amigas de toda la vida, el hermano al que llamas en los momentos difíciles. Reconstruir esa red desde cero, en un idioma nuevo, con una agenda saturada, es agotador.",
+      "Las familias que viven lejos de su entorno de origen a menudo experimentan una carga emocional invisible: todo recae sobre la pareja, el cansancio se acumula, y la sensación de \"no poder con todo\" se instala sin que nadie desde fuera lo vea.",
+      "En consulta, trabajamos para construir recursos internos sólidos, mejorar la comunicación intrafamiliar bajo presión, y procesar el duelo migratorio — ese luto complejo que pocas veces se nombra pero que todos los expatriados sienten.",
+    ],
+    bodyEn: [
+      "When you move to another country, you don't just leave behind an address. You leave behind an emotional support network built over years: the grandmother who looks after the children, the lifelong friends, the sibling you call in difficult moments. Rebuilding that network from scratch, in a new language, with a saturated schedule, is exhausting.",
+      "Families living far from their home environment often experience an invisible emotional burden: everything falls on the couple, fatigue accumulates, and the feeling of \"not being able to cope\" settles in without anyone from outside noticing.",
+      "In session, we work to build solid internal resources, improve intrafamily communication under pressure, and process migratory grief — that complex mourning that is rarely named but which all expatriates feel.",
+    ],
+    bodyPt: [
+      "Quando você se muda para outro país, não deixa apenas um endereço para trás. Você deixa uma rede de apoio emocional construída ao longo de anos: a avó que cuida das crianças, as amigas de longa data, o irmão para quem você liga nos momentos difíceis. Reconstruir essa rede do zero, em um novo idioma, com uma agenda saturada, é exaustivo.",
+      "As famílias que vivem longe de seu ambiente de origem frequentemente experimentam uma carga emocional invisível: tudo recai sobre o casal, o cansaço se acumula e a sensação de \"não dar conta\" se instala sem que ninguém de fora perceba.",
+      "Em sessão, trabalhamos para construir recursos internos sólidos, melhorar a comunicação intrafamiliar sob pressão e processar o luto migratório — esse luto complexo que raramente é nomeado, mas que todos os expatriados sentem.",
+    ],
+    methodsEs: ["Terapia Sistémica", "Trabajo con el Duelo", "Terapia de Resiliencia", "Mindfulness Clínico"],
+    methodsEn: ["Systemic Therapy", "Grief Work", "Resilience Therapy", "Clinical Mindfulness"],
+    methodsPt: ["Terapia Sistêmica", "Trabalho com o Luto", "Terapia de Resiliência", "Mindfulness Clínico"],
+  },
+  {
+    slug: "tension-conyugal",
+    num: "04",
+    image: sp04,
+    titleEs: "Tensión Conyugal tras la Reubicación",
+    titleEn: "Marital Strain After Relocation",
+    titlePt: "Tensão Conjugal após Realocação",
+    tagEs: "Terapia de Pareja",
+    tagEn: "Couples Therapy",
+    tagPt: "Terapia de Casal",
+    summaryEs: "La reubicación expone fragilidades en la pareja antes latentes. Terapia de pareja para reconectar, renegociar y reforzar la alianza que sostiene todo lo demás.",
+    summaryEn: "Relocation exposes vulnerabilities previously dormant. Couples therapy to reconnect, renegotiate, and reinforce the alliance that holds everything else together.",
+    summaryPt: "A realocação expõe fragilidades antes latentes. Terapia de casal para reconectar e reforçar a aliança que sustenta tudo o mais.",
+    descEs: "La reubicación internacional es uno de los eventos vitales que más presión ejerce sobre la estructura de una pareja.",
+    descEn: "International relocation is one of the life events that exerts the most pressure on the structure of a couple.",
+    descPt: "A realocação internacional é um dos eventos vitais que mais pressão exerce sobre a estrutura de um casal.",
+    bodyEs: [
+      "Antes de mudarse, la pareja solía funcionar con un ecosistema de apoyos externos: amigos en común, familias cercanas, rutinas compartidas que sostenían el vínculo sin que fuera necesario nombrarlo. Al llegar a Madrid, ese ecosistema desaparece. De repente, la pareja es todo para el otro — y eso es demasiado para cualquier vínculo.",
+      "La frustración, el desequilibrio de roles cuando uno de los dos deja su carrera para seguir al otro, los resentimientos no dichos, la intimidad que se pierde entre el cansancio y la logística: todo esto son señales de un sistema bajo estrés, no de una pareja rota.",
+      "La terapia de pareja que ofrezco parte de un enfoque sistémico y emocionalmente centrado. No busco árbitros ni culpables: busco restaurar la conexión emocional y dotaros de un lenguaje común para navegar la complejidad que habéis elegido juntos.",
+    ],
+    bodyEn: [
+      "Before moving, the couple usually functioned with an ecosystem of external supports: mutual friends, nearby families, shared routines that sustained the bond without needing to be named. Upon arriving in Madrid, that ecosystem disappears. Suddenly, the couple is everything to the other — and that is too much for any bond.",
+      "The frustration, the role imbalance when one of the two leaves their career to follow the other, unspoken resentments, the intimacy lost between exhaustion and logistics: all of this is signals of a system under stress, not a broken couple.",
+      "The couples therapy I offer starts from a systemic and emotionally-focused approach. I am not looking for referees or culprits: I seek to restore the emotional connection and equip you with a common language to navigate the complexity you have chosen together.",
+    ],
+    bodyPt: [
+      "Antes de se mudar, o casal geralmente funcionava com um ecossistema de apoios externos: amigos em comum, famílias próximas, rotinas compartilhadas que sustentavam o vínculo sem que fosse necessário nomeá-lo. Ao chegar a Madrid, esse ecossistema desaparece. De repente, o casal é tudo para o outro — e isso é demais para qualquer vínculo.",
+      "A frustração, o desequilíbrio de papéis quando um dos dois abandona a carreira para seguir o outro, os ressentimentos não ditos, a intimidade que se perde entre o cansaço e a logística: tudo isso são sinais de um sistema sob estresse, não de um casal quebrado.",
+      "A terapia de casal que ofereço parte de uma abordagem sistêmica e emocionalmente centrada. Não busco árbitros nem culpados: busco restaurar a conexão emocional e dotá-los de uma linguagem comum para navegar a complexidade que escolheram juntos.",
+    ],
+    methodsEs: ["Terapia Focalizada en Emociones (EFT)", "Terapia Sistémica", "Comunicación No Violenta", "TCC"],
+    methodsEn: ["Emotionally Focused Therapy (EFT)", "Systemic Therapy", "Nonviolent Communication", "CBT"],
+    methodsPt: ["Terapia Focada em Emoções (EFT)", "Terapia Sistêmica", "Comunicação Não-Violenta", "TCC"],
+  },
+  {
+    slug: "soledad-en-el-exito",
+    num: "05",
+    image: sp05,
+    titleEs: "Soledad en el Éxito",
+    titleEn: "Loneliness Within Success",
+    titlePt: "Solidão no Sucesso",
+    tagEs: "Bienestar Ejecutivo",
+    tagEn: "Executive Wellbeing",
+    tagPt: "Bem-Estar Executivo",
+    summaryEs: "Muchos de mis clientes tienen todo desde fuera — y un silencio interior que nadie ve. Abordamos el aislamiento y la búsqueda de sentido sin juicio ni clichés.",
+    summaryEn: "Many of my clients have everything on the outside — and an interior silence nobody sees. We address isolation and the search for meaning without judgment or clichés.",
+    summaryPt: "Muitos clientes têm tudo por fora — e um silêncio interior que ninguém vê. Abordamos o isolamento e a busca de sentido sem julgamento nem clichês.",
+    descEs: "Existe un tipo de soledad que no aparece en ninguna estadística porque ocurre exactamente donde se supone que no debería: en el éxito.",
+    descEn: "There is a type of loneliness that appears in no statistics because it occurs exactly where it supposedly shouldn't: in success.",
+    descPt: "Existe um tipo de solidão que não aparece em nenhuma estatística porque ocorre exatamente onde não deveria: no sucesso.",
+    bodyEs: [
+      "Quien ha alcanzado niveles altos de rendimiento profesional, quien vive en ciudades distintas a las de su origen, quien ha elegido una vida de complejidad y exigencia — con frecuencia desarrolla un tipo de soledad sofisticada que es difícil de admitir, incluso ante uno mismo.",
+      "No es la soledad de quien no tiene nada. Es la soledad de quien tiene mucho y aun así siente que algo fundamental falta: conexión auténtica, propósito más allá del logro, la sensación de ser conocido más allá del rol.",
+      "En consulta, trabajo con ejecutivos, profesionales de alta exigencia y personas que viven vidas externamente admirables pero internamente fragmentadas. No busco simplificar lo que es complejo ni juzgar lo que ha costado mucho construir. Busco ayudarte a encontrar el sentido dentro del sistema que has elegido — o a rediseñarlo si ya no te sirve.",
+    ],
+    bodyEn: [
+      "Those who have reached high levels of professional performance, who live in cities different from their origin, who have chosen a life of complexity and demand — frequently develop a sophisticated type of loneliness that is difficult to admit, even to oneself.",
+      "It is not the loneliness of those who have nothing. It is the loneliness of those who have much and yet feel something fundamental is missing: authentic connection, purpose beyond achievement, the feeling of being known beyond the role.",
+      "In session, I work with executives, high-demand professionals and people who live externally admirable but internally fragmented lives. I don't seek to simplify what is complex or judge what has taken much to build. I seek to help you find meaning within the system you have chosen — or to redesign it if it no longer serves you.",
+    ],
+    bodyPt: [
+      "Quem alcançou altos níveis de desempenho profissional, quem vive em cidades diferentes das de sua origem, quem escolheu uma vida de complexidade e exigência — frequentemente desenvolve um tipo sofisticado de solidão que é difícil de admitir, mesmo para si mesmo.",
+      "Não é a solidão de quem não tem nada. É a solidão de quem tem muito e ainda assim sente que algo fundamental está faltando: conexão autêntica, propósito além da conquista, a sensação de ser conhecido além do papel.",
+      "Em sessão, trabalho com executivos, profissionais de alta exigência e pessoas que vivem vidas externamente admiráveis, mas internamente fragmentadas. Não busco simplificar o que é complexo nem julgar o que custou muito construir. Busco ajudá-lo a encontrar sentido dentro do sistema que escolheu — ou a redesenhá-lo se ele não lhe serve mais.",
+    ],
+    methodsEs: ["Psicología Existencial", "TCC de Alta Exigencia", "Mindfulness Clínico", "Terapia Narrativa"],
+    methodsEn: ["Existential Psychology", "High-Performance CBT", "Clinical Mindfulness", "Narrative Therapy"],
+    methodsPt: ["Psicologia Existencial", "TCC de Alta Exigência", "Mindfulness Clínico", "Terapia Narrativa"],
+  },
+  {
+    slug: "trauma-emdr",
+    num: "06",
+    image: sp06,
+    titleEs: "Trauma, EMDR y Resiliencia",
+    titleEn: "Trauma, EMDR & Resilience",
+    titlePt: "Trauma, EMDR e Resiliência",
+    tagEs: "Trauma & EMDR",
+    tagEn: "Trauma & EMDR",
+    tagPt: "Trauma & EMDR",
+    summaryEs: "Experiencias pasadas que actúan en el presente — en el cuerpo, en las relaciones, en el rendimiento. Con EMDR y métodos basados en evidencia, procesamos y liberamos su influencia.",
+    summaryEn: "Past experiences acting in the present — in the body, relationships, and performance. With EMDR and evidence-based methods, we process and release their influence.",
+    summaryPt: "Experiências passadas atuando no presente. Com EMDR e métodos baseados em evidências, processamos e liberamos sua influência.",
+    descEs: "El trauma no siempre tiene el aspecto que imaginamos. Puede ser el accidente, sí — pero también puede ser la infancia en un hogar impredecible, la pérdida de una identidad por la emigración, o el peso acumulado de años de alta exigencia sin espacio para fallar.",
+    descEn: "Trauma does not always look the way we imagine. It can be the accident, yes — but it can also be a childhood in an unpredictable home, the loss of an identity through emigration, or the accumulated weight of years of high demands with no space to fail.",
+    descPt: "O trauma nem sempre tem a aparência que imaginamos. Pode ser o acidente, sim — mas também pode ser a infância em um lar imprevisível, a perda de uma identidade pela emigração, ou o peso acumulado de anos de alta exigência sem espaço para falhar.",
+    bodyEs: [
+      "El EMDR (Eye Movement Desensitization and Reprocessing) es uno de los tratamientos para el trauma con mayor evidencia científica disponible. Fue desarrollado por Francine Shapiro y está avalado por la OMS, la APA y múltiples organismos internacionales de salud mental como tratamiento de primera línea para el TEPT y el trauma complejo.",
+      "En mi consulta, el EMDR no es una técnica aislada: forma parte de un proceso terapéutico más amplio que incluye preparación, estabilización y trabajo profundo. Antes de abordar el material traumático, trabajamos para construir los recursos internos necesarios para que el proceso sea seguro y sostenible.",
+      "El objetivo del tratamiento no es olvidar lo que ocurrió, sino transformar la forma en que esa experiencia vive en ti — liberándote de su influencia involuntaria sobre tu cuerpo, tus relaciones y tu rendimiento.",
+    ],
+    bodyEn: [
+      "EMDR (Eye Movement Desensitization and Reprocessing) is one of the best-evidenced treatments for trauma available. It was developed by Francine Shapiro and is endorsed by the WHO, APA, and multiple international mental health bodies as a first-line treatment for PTSD and complex trauma.",
+      "In my practice, EMDR is not an isolated technique: it forms part of a broader therapeutic process that includes preparation, stabilisation, and deep work. Before addressing traumatic material, we work to build the internal resources necessary for the process to be safe and sustainable.",
+      "The goal of treatment is not to forget what happened, but to transform the way that experience lives inside you — freeing you from its involuntary influence over your body, your relationships, and your performance.",
+    ],
+    bodyPt: [
+      "O EMDR (Dessensibilização e Reprocessamento por Movimentos Oculares) é um dos tratamentos para trauma com maior evidência científica disponível. Foi desenvolvido por Francine Shapiro e é respaldado pela OMS, pela APA e por múltiplos organismos internacionais de saúde mental como tratamento de primeira linha para PTSD e trauma complexo.",
+      "Em meu consultório, o EMDR não é uma técnica isolada: faz parte de um processo terapêutico mais amplo que inclui preparação, estabilização e trabalho profundo. Antes de abordar o material traumático, trabalhamos para construir os recursos internos necessários para que o processo seja seguro e sustentável.",
+      "O objetivo do tratamento não é esquecer o que aconteceu, mas transformar a forma como essa experiência vive em você — libertando-o de sua influência involuntária sobre seu corpo, seus relacionamentos e seu desempenho.",
+    ],
+    methodsEs: ["EMDR Certificada", "Somática", "Estabilización", "TCC Basada en Trauma"],
+    methodsEn: ["Certified EMDR", "Somatic Work", "Stabilisation", "Trauma-Focused CBT"],
+    methodsPt: ["EMDR Certificada", "Somática", "Estabilização", "TCC Focada em Trauma"],
+  },
+];
