@@ -25,26 +25,45 @@ const AboutSection = () => {
           </div>
           <div>
             <p className="mb-2 text-sm font-light uppercase tracking-[0.25em] text-accent">
-              {t("Sobre Mí", "About Me", "Sobre Mim")}
+              {t("Tania Ono", "Tania Ono", "Tania Ono")}
             </p>
             <h2 className="mb-6 font-serif-display text-4xl font-medium text-foreground">
-              {t("Claridad emocional, desde adentro", "Emotional clarity, from within", "Clareza emocional, de dentro para fora")}
+              {t(
+                "Comprendo lo que implica construir una vida entre dos mundos",
+                "I understand what it means to build a life between two worlds",
+                "Compreendo o que significa construir uma vida entre dois mundos"
+              )}
             </h2>
             <div className="gold-line mb-6 w-16" />
             <p className="mb-4 font-light leading-relaxed text-muted-foreground">
               {t(
-                "Con más de 15 años acompañando procesos de transformación personal, guío a cada persona hacia una mayor claridad emocional y fortaleza interior — con técnicas avanzadas y una profunda empatía.",
-                "With over 15 years guiding personal transformation, I help each person find emotional clarity and inner strength — through advanced techniques and deep empathy.",
-                "Com mais de 15 anos acompanhando processos de transformação pessoal, guio cada pessoa em direção à clareza emocional e à força interior — com técnicas avançadas e profunda empatia."
+                "Con más de 15 años de experiencia clínica y una formación internacional en psicoterapia, trabajo con familias y profesionales de alto nivel que enfrentan los desafíos únicos de la vida expatriada en Madrid — la presión ejecutiva, la adaptación familiar, la transición cultural y la búsqueda de identidad.",
+                "With over 15 years of clinical experience and international training in psychotherapy, I work with high-calibre families and professionals facing the unique challenges of expat life in Madrid — executive pressure, family adaptation, cultural transition, and the search for identity.",
+                "Com mais de 15 anos de experiência clínica e formação internacional em psicoterapia, trabalho com famílias e profissionais de alto nível que enfrentam os desafios únicos da vida expatriada em Madrid — pressão executiva, adaptação familiar, transição cultural e a busca de identidade."
               )}
             </p>
-            <p className="font-light leading-relaxed text-muted-foreground">
+            <p className="mb-6 font-light leading-relaxed text-muted-foreground">
               {t(
-                "Mi consulta en el corazón de Madrid es un lugar donde ocurre la transformación duradera: un espacio seguro, confidencial y dedicado a ti.",
-                "My practice in the heart of Madrid is where lasting transformation happens — a safe, confidential space dedicated entirely to you.",
-                "Meu consultório no coração de Madrid é onde acontece a transformação duradoura — um espaço seguro, confidencial e dedicado a você."
+                "Mi consulta en el corazón de Madrid ofrece un espacio completamente confidencial, pensado para quienes valoran la discreción tanto como los resultados.",
+                "My practice in the heart of Madrid offers a fully confidential space, designed for those who value discretion as much as outcomes.",
+                "Meu consultório no coração de Madrid oferece um espaço completamente confidencial, pensado para quem valoriza a discrição tanto quanto os resultados."
               )}
             </p>
+            <div className="flex flex-wrap gap-3">
+              {[
+                t("EMDR Certificada", "EMDR Certified", "EMDR Certificada"),
+                t("Terapia Sistémica", "Systemic Therapy", "Terapia Sistêmica"),
+                t("TCC", "CBT", "TCC"),
+                t("Mindfulness Clínico", "Clinical Mindfulness", "Mindfulness Clínico"),
+              ].map((badge) => (
+                <span
+                  key={badge}
+                  className="rounded-sm border border-accent/30 px-3 py-1 text-xs font-light uppercase tracking-widest text-accent"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

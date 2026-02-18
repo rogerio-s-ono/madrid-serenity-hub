@@ -1,43 +1,61 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Heart, Users, Brain, Baby } from "lucide-react";
+import { Globe, Users, Briefcase, Baby, Heart, ShieldCheck } from "lucide-react";
 
 const specialties = [
   {
-    icon: Heart,
-    titleEs: "Ansiedad y Depresión",
-    titleEn: "Anxiety & Depression",
-    titlePt: "Ansiedade e Depressão",
-    descEs: "Tratamiento especializado para gestionar el estrés, la ansiedad y los trastornos del estado de ánimo con técnicas basadas en evidencia.",
-    descEn: "Specialized treatment for managing stress, anxiety, and mood disorders with evidence-based techniques.",
-    descPt: "Tratamento especializado para gerenciar estresse, ansiedade e transtornos de humor com técnicas baseadas em evidências.",
-  },
-  {
-    icon: Users,
-    titleEs: "Parejas y Relaciones",
-    titleEn: "Couples & Relationships",
-    titlePt: "Casais e Relacionamentos",
-    descEs: "Terapia de pareja para fortalecer la comunicación, resolver conflictos y recuperar la conexión emocional.",
-    descEn: "Couples therapy to strengthen communication, resolve conflicts, and restore emotional connection.",
-    descPt: "Terapia de casal para fortalecer a comunicação, resolver conflitos e restaurar a conexão emocional.",
-  },
-  {
-    icon: Brain,
-    titleEs: "Trauma y EMDR",
-    titleEn: "Trauma & EMDR",
-    titlePt: "Trauma e EMDR",
-    descEs: "Procesamiento de experiencias traumáticas mediante EMDR y otras técnicas terapéuticas de vanguardia.",
-    descEn: "Processing traumatic experiences through EMDR and other cutting-edge therapeutic techniques.",
-    descPt: "Processamento de experiências traumáticas por meio de EMDR e outras técnicas terapêuticas de vanguarda.",
+    icon: Globe,
+    titleEs: "Transición Cultural e Identidad",
+    titleEn: "Cultural Transition & Identity",
+    titlePt: "Transição Cultural e Identidade",
+    descEs: "Para profesionales e familias que han cambiado de país y sienten la tensión entre quiénes eran y quiénes están llegando a ser. Trabajo para integrar identidades sin perder lo que te hace tú.",
+    descEn: "For professionals and families who have changed countries and feel the tension between who they were and who they are becoming. We work to integrate identities without losing what makes you, you.",
+    descPt: "Para profissionais e famílias que mudaram de país e sentem a tensão entre quem eram e quem estão se tornando. Trabalhamos para integrar identidades sem perder o que te faz único.",
   },
   {
     icon: Baby,
-    titleEs: "Infancia y Educación Parental",
-    titleEn: "Children & Parental Education",
-    titlePt: "Infância e Educação Parental",
-    descEs: "Apoyo terapéutico para niños y orientación para padres que buscan herramientas para una crianza consciente.",
-    descEn: "Therapeutic support for children and guidance for parents seeking tools for conscious parenting.",
-    descPt: "Suporte terapêutico para crianças e orientação para pais que buscam ferramentas para uma parentalidade consciente.",
+    titleEs: "Familias Criando entre Culturas",
+    titleEn: "Families Raising Children Between Cultures",
+    titlePt: "Famílias Criando Filhos entre Culturas",
+    descEs: "Criar hijos entre dos o más culturas plantea preguntas únicas sobre pertenencia, valores y lengua. Acompañamos a familias a construir un hogar cohesionado sin renunciar a ninguna raíz.",
+    descEn: "Raising children between two or more cultures raises unique questions about belonging, values, and language. We help families build a cohesive home without surrendering any roots.",
+    descPt: "Criar filhos entre duas ou mais culturas levanta questões únicas sobre pertencimento, valores e língua. Ajudamos famílias a construir um lar coeso sem renunciar a nenhuma raiz.",
+  },
+  {
+    icon: Briefcase,
+    titleEs: "Presión Ejecutiva y Liderazgo",
+    titleEn: "Executive Pressure & Leadership",
+    titlePt: "Pressão Executiva e Liderança",
+    descEs: "El éxito profesional en un entorno nuevo es exigente. Trabajamos la gestión emocional, la toma de decisiones bajo presión y el liderazgo auténtico en contextos internacionales.",
+    descEn: "Professional success in a new environment is demanding. We work on emotional regulation, high-pressure decision-making, and authentic leadership in international contexts.",
+    descPt: "O sucesso profissional em um novo ambiente é exigente. Trabalhamos a regulação emocional, a tomada de decisões sob pressão e a liderança autêntica em contextos internacionais.",
+  },
+  {
+    icon: Users,
+    titleEs: "Tensión Conyugal tras la Reubicación",
+    titleEn: "Marital Strain After Relocation",
+    titlePt: "Tensão Conjugal após a Realocação",
+    descEs: "La reubicación expone fragilidades en la pareja que antes permanecían latentes. Terapia de pareja para reconectar, renegociar y reforzar la alianza que sustenta todo lo demás.",
+    descEn: "Relocation exposes vulnerabilities in a relationship that were previously dormant. Couples therapy to reconnect, renegotiate, and reinforce the alliance that holds everything else together.",
+    descPt: "A realocação expõe fragilidades no casal que antes permaneciam latentes. Terapia de casal para reconectar, renegociar e reforçar a aliança que sustenta todo o resto.",
+  },
+  {
+    icon: Heart,
+    titleEs: "Soledad en el Éxito",
+    titleEn: "Loneliness Within Success",
+    titlePt: "Solidão no Sucesso",
+    descEs: "Muchos de mis clientes tienen todo desde fuera — y un silencio interior que nadie ve. Abordamos el aislamiento, la desconexión y la búsqueda de sentido sin juicio ni clichés.",
+    descEn: "Many of my clients have everything on the outside — and an interior silence nobody sees. We address isolation, disconnection, and the search for meaning without judgment or clichés.",
+    descPt: "Muitos dos meus clientes têm tudo por fora — e um silêncio interior que ninguém vê. Abordamos o isolamento, a desconexão e a busca de sentido sem julgamento nem clichês.",
+  },
+  {
+    icon: ShieldCheck,
+    titleEs: "Trauma, EMDR y Resiliencia",
+    titleEn: "Trauma, EMDR & Resilience",
+    titlePt: "Trauma, EMDR e Resiliência",
+    descEs: "Experiencias pasadas que siguen actuando en el presente — en el cuerpo, en las relaciones, en el rendimiento. Con EMDR y métodos basados en evidencia, procesamos y liberamos su influencia.",
+    descEn: "Past experiences that continue to act in the present — in the body, in relationships, in performance. With EMDR and evidence-based methods, we process and release their influence.",
+    descPt: "Experiências passadas que continuam atuando no presente — no corpo, nas relações, no desempenho. Com EMDR e métodos baseados em evidências, processamos e liberamos sua influência.",
   },
 ];
 
@@ -58,26 +76,30 @@ const SpecialtiesSection = () => {
             {t("Áreas de Especialización", "Areas of Expertise", "Áreas de Especialização")}
           </p>
           <h2 className="font-serif-display text-4xl font-medium text-primary-foreground">
-            {t("Especialidades", "Specialties", "Especialidades")}
+            {t(
+              "Diseñado para quien ya ha alcanzado mucho — y quiere sostenerse bien en ello",
+              "Designed for those who have achieved much — and want to sustain it well",
+              "Desenhado para quem já alcançou muito — e quer se sustentar bem nisso"
+            )}
           </h2>
           <div className="gold-line mx-auto mt-6 w-16" />
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {specialties.map((s, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
               className="group rounded-sm border border-primary-foreground/10 p-8 transition-all hover:border-accent/40 hover:bg-primary-foreground/5"
             >
-              <s.icon className="mb-4 h-8 w-8 text-accent" strokeWidth={1.2} />
-              <h3 className="mb-3 font-serif-display text-xl font-medium text-primary-foreground">
+              <s.icon className="mb-4 h-7 w-7 text-accent" strokeWidth={1.2} />
+              <h3 className="mb-3 font-serif-display text-lg font-medium text-primary-foreground">
                 {t(s.titleEs, s.titleEn, s.titlePt)}
               </h3>
-              <p className="text-sm font-light leading-relaxed text-primary-foreground/70">
+              <p className="text-sm font-light leading-relaxed text-primary-foreground/65">
                 {t(s.descEs, s.descEn, s.descPt)}
               </p>
             </motion.div>
