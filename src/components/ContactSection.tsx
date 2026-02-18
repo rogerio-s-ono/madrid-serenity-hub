@@ -112,7 +112,7 @@ const ContactSection = () => {
 
               <div className="flex flex-col gap-4">
                 <button
-                  onClick={openModal}
+                  onClick={() => openModal()}
                   className="gold-gradient font-sans-body block text-center px-8 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-accent-foreground transition-all duration-300 hover:opacity-90 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   {t("Consulta Privada por Email", "Private Email Consultation", "Consulta Privada por Email")}

@@ -64,7 +64,7 @@ const HeroSection = () => {
           {/* CTAs */}
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <button
-              onClick={openModal}
+              onClick={() => openModal()}
               className="gold-gradient font-sans-body inline-block px-12 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-accent-foreground transition-all duration-300 hover:opacity-90 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
             >
               {t("Consulta Privada", "Private Consultation", "Consulta Privada")}

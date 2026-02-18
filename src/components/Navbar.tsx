@@ -1,10 +1,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useConsultation } from "@/contexts/ConsultationContext";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
+  const { openModal } = useConsultation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -83,12 +85,12 @@ const Navbar = () => {
             ))}
           </div>
 
-          <a
-            href="#contact"
+          <button
+            onClick={() => openModal()}
             className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em] border border-accent/60 px-6 py-2.5 text-accent transition-all duration-300 hover:bg-accent hover:text-accent-foreground"
           >
             {t("Reservar", "Book a Session", "Reservar")}
-          </a>
+          </button>
         </div>
 
         {/* Mobile toggle */}
@@ -134,13 +136,12 @@ const Navbar = () => {
               </button>
             ))}
           </div>
-          <a
-            href="#contact"
-            onClick={() => setMobileOpen(false)}
+          <button
+            onClick={() => { openModal(); setMobileOpen(false); }}
             className="w-fit font-sans-body text-[10px] font-light uppercase tracking-[0.22em] border border-accent/60 px-6 py-2.5 text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
           >
             {t("Reservar", "Book a Session", "Reservar")}
-          </a>
+          </button>
         </div>
       </motion.div>
     </motion.nav>
