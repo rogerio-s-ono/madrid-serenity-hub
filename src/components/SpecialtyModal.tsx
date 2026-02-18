@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
+import { useConsultation } from "@/contexts/ConsultationContext";
 import type { Specialty } from "@/data/specialties";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 const SpecialtyModal = ({ specialty, onClose }: Props) => {
   const { lang, t } = useLanguage();
   const navigate = useNavigate();
+  const { openModal } = useConsultation();
 
   const title = specialty ? (lang === "es" ? specialty.titleEs : lang === "pt" ? specialty.titlePt : specialty.titleEn) : "";
   const tag = specialty ? (lang === "es" ? specialty.tagEs : lang === "pt" ? specialty.tagPt : specialty.tagEn) : "";
@@ -103,13 +105,15 @@ const SpecialtyModal = ({ specialty, onClose }: Props) => {
                   >
                     {t("Más detalles", "More Details", "Mais detalhes")}
                   </button>
-                  <a
-                    href="/#contact"
-                    onClick={onClose}
+                  <button
+                    onClick={() => {
+                      onClose();
+                      openModal(specialty.slug);
+                    }}
                     className="gold-gradient font-sans-body flex-1 text-center px-6 py-3.5 text-[11px] font-light uppercase tracking-[0.22em] text-accent-foreground transition-all duration-300 hover:opacity-90"
                   >
                     {t("Consulta Privada", "Private Consultation", "Consulta Privada")}
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
