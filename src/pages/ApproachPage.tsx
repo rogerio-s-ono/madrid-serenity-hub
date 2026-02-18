@@ -41,6 +41,15 @@ const ApproachPage = () => {
       {/* Hero */}
       <div className="bg-primary pt-36 pb-24">
         <div className="mx-auto max-w-4xl px-8">
+          {/* Back button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="font-sans-body mb-10 inline-flex items-center gap-2 text-[10px] font-light uppercase tracking-[0.2em] text-primary-foreground/50 transition-colors hover:text-primary-foreground"
+          >
+            <ArrowLeft className="h-3 w-3" strokeWidth={1.5} />
+            {t("Volver", "Back", "Voltar")}
+          </button>
+
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
