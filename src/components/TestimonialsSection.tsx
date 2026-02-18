@@ -92,8 +92,8 @@ const TestimonialsSection = () => {
   const years = lang === "es" ? item.yearsEs : lang === "pt" ? item.yearsPt : item.yearsEn;
 
   return (
-    <section className="bg-background py-28 lg:py-36 overflow-hidden">
-      <div className="mx-auto max-w-4xl px-8">
+    <section className="bg-primary py-28 lg:py-36 overflow-hidden">
+      <div className="mx-auto max-w-2xl px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -102,7 +102,7 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.9 }}
           className="mb-16 text-center"
         >
-          <p className="section-label mb-5">
+          <p className="section-label mb-5" style={{ color: "hsl(var(--gold-light))" }}>
             {t("Experiencias", "Experiences", "Experiências")}
           </p>
           <div className="gold-line mx-auto w-14" />
@@ -135,14 +135,14 @@ const TestimonialsSection = () => {
               </div>
 
               <blockquote className="mb-10 text-center">
-                <p className="font-serif-display mx-auto max-w-2xl text-xl font-light leading-[1.75] text-foreground md:text-2xl lg:text-[1.6rem]">
+                <p className="font-serif-display mx-auto max-w-2xl text-xl font-light leading-[1.75] text-primary-foreground md:text-2xl lg:text-[1.6rem]">
                   {quote}
                 </p>
               </blockquote>
 
               <div className="flex flex-col items-center gap-2">
                 <div className="gold-line w-10 opacity-60" />
-                <p className="font-sans-body mt-3 text-[11px] font-light uppercase tracking-[0.22em] text-muted-foreground">
+                <p className="font-sans-body mt-3 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/60">
                   {author}
                 </p>
                 <p
