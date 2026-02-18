@@ -1,9 +1,11 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useConsultation } from "@/contexts/ConsultationContext";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   const { t, lang } = useLanguage();
+  const { openModal } = useConsultation();
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
@@ -61,12 +63,12 @@ const HeroSection = () => {
 
           {/* CTAs */}
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <a
-              href="#contact"
+            <button
+              onClick={openModal}
               className="gold-gradient font-sans-body inline-block px-12 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-accent-foreground transition-all duration-300 hover:opacity-90 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
             >
               {t("Consulta Privada", "Private Consultation", "Consulta Privada")}
-            </a>
+            </button>
             <a
               href="#about"
               className="font-sans-body inline-block border border-primary-foreground/30 px-12 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/70 transition-all duration-300 hover:border-gold/60 hover:text-primary-foreground"
