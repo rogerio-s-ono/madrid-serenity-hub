@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useConsultation } from "@/contexts/ConsultationContext";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Globe } from "lucide-react";
 
@@ -31,6 +32,7 @@ const contactDetails = [
 
 const ContactSection = () => {
   const { t, lang } = useLanguage();
+  const { openModal } = useConsultation();
 
   const heading =
     lang === "es" ? (
@@ -109,12 +111,12 @@ const ContactSection = () => {
               </p>
 
               <div className="flex flex-col gap-4">
-                <a
-                  href="mailto:consulta@taniaono.es"
+                <button
+                  onClick={openModal}
                   className="gold-gradient font-sans-body block text-center px-8 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-accent-foreground transition-all duration-300 hover:opacity-90 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   {t("Consulta Privada por Email", "Private Email Consultation", "Consulta Privada por Email")}
-                </a>
+                </button>
                 <a
                   href="tel:+34699192750"
                   className="font-sans-body block text-center border border-primary-foreground/20 px-8 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/60 transition-all duration-300 hover:border-accent/50 hover:text-primary-foreground/90"
