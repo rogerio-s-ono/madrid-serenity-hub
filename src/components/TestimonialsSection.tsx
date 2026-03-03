@@ -4,111 +4,155 @@ import { useEffect, useState, useCallback } from "react";
 
 // Minimalistic SVG illustrations — one per testimonial
 const IllustrationFamily = () => (
-  <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-    {/* House */}
-    <polyline points="30,65 30,40 55,22 80,40 80,65" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-    <line x1="30" y1="65" x2="80" y2="65" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    {/* Door */}
-    <rect x="48" y="50" width="14" height="15" rx="0.5" stroke="currentColor" strokeWidth="0.9" />
-    {/* Window */}
-    <rect x="35" y="45" width="9" height="9" rx="0.5" stroke="currentColor" strokeWidth="0.9" />
-    <line x1="39.5" y1="45" x2="39.5" y2="54" stroke="currentColor" strokeWidth="0.7" />
-    <line x1="35" y1="49.5" x2="44" y2="49.5" stroke="currentColor" strokeWidth="0.7" />
+  <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    {/* Elegant house with pitched roof and chimney */}
+    <path d="M40,90 L40,55 L70,32 L100,55 L100,90" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
+    <line x1="38" y1="90" x2="102" y2="90" stroke="currentColor" strokeWidth="0.7" />
+    <path d="M92,38 L92,32 L98,32 L98,45" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Arched doorway */}
+    <path d="M62,90 L62,72 Q62,65 70,65 Q78,65 78,72 L78,90" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <circle cx="75" cy="78" r="0.8" fill="currentColor" />
+    {/* Mullioned windows */}
+    <rect x="44" y="62" width="12" height="10" rx="1" stroke="currentColor" strokeWidth="0.7" />
+    <line x1="50" y1="62" x2="50" y2="72" stroke="currentColor" strokeWidth="0.5" />
+    <line x1="44" y1="67" x2="56" y2="67" stroke="currentColor" strokeWidth="0.5" />
+    <rect x="84" y="62" width="12" height="10" rx="1" stroke="currentColor" strokeWidth="0.7" />
+    <line x1="90" y1="62" x2="90" y2="72" stroke="currentColor" strokeWidth="0.5" />
+    <line x1="84" y1="67" x2="96" y2="67" stroke="currentColor" strokeWidth="0.5" />
+    {/* Garden path */}
+    <path d="M66,90 Q68,98 70,105" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeDasharray="1.5 2" />
+    <path d="M74,90 Q72,98 70,105" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeDasharray="1.5 2" />
     {/* Adult figure left */}
-    <circle cx="100" cy="38" r="5" stroke="currentColor" strokeWidth="0.9" />
-    <line x1="100" y1="43" x2="100" y2="58" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="100" y1="48" x2="93" y2="54" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="100" y1="48" x2="107" y2="52" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="100" y1="58" x2="94" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="100" y1="58" x2="106" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+    <ellipse cx="130" cy="44" rx="4.5" ry="5.5" stroke="currentColor" strokeWidth="0.7" />
+    <path d="M130,49.5 Q130,58 130,68" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M130,54 Q124,58 121,62" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M130,54 Q136,56 140,58" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M130,68 Q126,76 123,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M130,68 Q134,76 137,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
     {/* Adult figure right */}
-    <circle cx="118" cy="38" r="5" stroke="currentColor" strokeWidth="0.9" />
-    <line x1="118" y1="43" x2="118" y2="58" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="118" y1="48" x2="111" y2="54" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="118" y1="48" x2="125" y2="52" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="118" y1="58" x2="112" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="118" y1="58" x2="124" y2="66" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    {/* Child figure small */}
-    <circle cx="109" cy="45" r="3.5" stroke="currentColor" strokeWidth="0.8" />
-    <line x1="109" y1="48.5" x2="109" y2="59" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    <line x1="109" y1="52" x2="104" y2="56" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    <line x1="109" y1="52" x2="114" y2="56" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    <line x1="109" y1="59" x2="105" y2="65" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    <line x1="109" y1="59" x2="113" y2="65" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    {/* Heart above */}
-    <path d="M109,31 C109,31 106,27 103.5,29 C101,31 103,34 109,37 C115,34 117,31 114.5,29 C112,27 109,31 109,31Z" stroke="currentColor" strokeWidth="0.8" fill="none" />
+    <ellipse cx="152" cy="44" rx="4.5" ry="5.5" stroke="currentColor" strokeWidth="0.7" />
+    <path d="M152,49.5 Q152,58 152,68" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M152,54 Q146,56 142,58" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M152,54 Q158,58 161,62" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M152,68 Q148,76 145,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M152,68 Q156,76 159,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    {/* Child between parents */}
+    <ellipse cx="141" cy="53" rx="3.2" ry="4" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M141,57 Q141,63 141,70" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M141,61 Q137,64 135,66" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M141,61 Q145,64 147,66" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M141,70 Q138,76 136,80" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M141,70 Q144,76 146,80" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    {/* Held hands arcs */}
+    <path d="M140,58 Q138,56 136,57" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" opacity="0.7" />
+    <path d="M142,58 Q144,56 146,57" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" opacity="0.7" />
+    {/* Refined heart */}
+    <path d="M141,34 C141,34 138,30 135.5,31.5 C133,33 135,36 141,40 C147,36 149,33 146.5,31.5 C144,30 141,34 141,34Z" stroke="currentColor" strokeWidth="0.6" fill="none" opacity="0.6" />
+    {/* Ground flourish */}
+    <path d="M115,83 Q141,86 167,83" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.4" />
+    {/* Shrub beside house */}
+    <path d="M105,90 Q108,84 106,80 Q110,82 112,78 Q114,83 116,80 Q115,86 118,90" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" opacity="0.5" />
   </svg>
 );
 
 const IllustrationCouple = () => (
-  <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+  <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
     {/* Figure left */}
-    <circle cx="50" cy="32" r="6" stroke="currentColor" strokeWidth="1" />
-    <line x1="50" y1="38" x2="50" y2="56" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="50" y1="44" x2="42" y2="52" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="50" y1="44" x2="62" y2="50" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="50" y1="56" x2="44" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="50" y1="56" x2="56" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <ellipse cx="58" cy="36" rx="5" ry="6" stroke="currentColor" strokeWidth="0.8" />
+    <path d="M53,34 Q54,28 58,27 Q62,28 63,34" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" opacity="0.5" />
+    <path d="M58,42 Q58,52 58,64" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <path d="M58,48 Q51,53 47,58" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M58,48 Q65,52 72,54" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M58,64 Q53,74 49,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M58,64 Q63,74 67,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
     {/* Figure right */}
-    <circle cx="110" cy="32" r="6" stroke="currentColor" strokeWidth="1" />
-    <line x1="110" y1="38" x2="110" y2="56" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="110" y1="44" x2="98" y2="50" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="110" y1="44" x2="118" y2="52" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="110" y1="56" x2="104" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="110" y1="56" x2="116" y2="66" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    {/* Bridge/connection between them — speech path */}
-    <path d="M62,50 Q80,38 98,50" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" strokeDasharray="3 2" />
-    {/* Clasped hands in center */}
-    <path d="M75,52 Q80,48 85,52" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
-    {/* Small dialogue bubbles */}
-    <ellipse cx="38" cy="20" rx="10" ry="7" stroke="currentColor" strokeWidth="0.8" />
-    <path d="M40,27 L38,32" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    <ellipse cx="122" cy="20" rx="10" ry="7" stroke="currentColor" strokeWidth="0.8" />
-    <path d="M120,27 L122,32" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    {/* Dots inside bubbles */}
-    <circle cx="33" cy="20" r="1" fill="currentColor" />
-    <circle cx="38" cy="20" r="1" fill="currentColor" />
-    <circle cx="43" cy="20" r="1" fill="currentColor" />
-    <circle cx="117" cy="20" r="1" fill="currentColor" />
-    <circle cx="122" cy="20" r="1" fill="currentColor" />
-    <circle cx="127" cy="20" r="1" fill="currentColor" />
+    <ellipse cx="142" cy="36" rx="5" ry="6" stroke="currentColor" strokeWidth="0.8" />
+    <path d="M137,34 Q138,28 142,27 Q146,28 147,34" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" opacity="0.5" />
+    <path d="M142,42 Q142,52 142,64" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+    <path d="M142,48 Q135,52 128,54" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M142,48 Q149,53 153,58" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M142,64 Q137,74 133,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M142,64 Q147,74 151,82" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    {/* Flowing connection arcs */}
+    <path d="M72,54 Q100,38 128,54" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" opacity="0.5" />
+    <path d="M72,56 Q100,42 128,56" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.3" />
+    {/* Intertwined hands */}
+    <path d="M94,48 Q97,44 100,46 Q103,44 106,48" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M96,48 Q100,50 104,48" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" opacity="0.6" />
+    {/* Ornate speech bubbles */}
+    <ellipse cx="40" cy="20" rx="12" ry="8" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M46,27 Q44,32 47,34" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    <circle cx="34" cy="19" r="0.8" fill="currentColor" opacity="0.5" />
+    <circle cx="38" cy="21" r="0.8" fill="currentColor" opacity="0.5" />
+    <circle cx="42" cy="19" r="0.8" fill="currentColor" opacity="0.5" />
+    <circle cx="46" cy="21" r="0.8" fill="currentColor" opacity="0.5" />
+    <ellipse cx="160" cy="20" rx="12" ry="8" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M154,27 Q156,32 153,34" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    <circle cx="154" cy="19" r="0.8" fill="currentColor" opacity="0.5" />
+    <circle cx="158" cy="21" r="0.8" fill="currentColor" opacity="0.5" />
+    <circle cx="162" cy="19" r="0.8" fill="currentColor" opacity="0.5" />
+    <circle cx="166" cy="21" r="0.8" fill="currentColor" opacity="0.5" />
+    {/* Decorative flourish */}
+    <path d="M70,88 Q85,92 100,88 Q115,84 130,88" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.35" />
+    <path d="M80,92 Q100,96 120,92" stroke="currentColor" strokeWidth="0.3" strokeLinecap="round" opacity="0.25" />
   </svg>
 );
 
 const IllustrationChildren = () => (
-  <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-    {/* Tree trunk */}
-    <line x1="80" y1="75" x2="80" y2="50" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    {/* Branches */}
-    <line x1="80" y1="65" x2="60" y2="55" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="80" y1="60" x2="100" y2="50" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-    <line x1="80" y1="55" x2="65" y2="42" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="80" y1="55" x2="95" y2="42" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="80" y1="50" x2="72" y2="35" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    <line x1="80" y1="50" x2="88" y2="35" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-    {/* Language flags / leaves as speech bubbles with letters */}
-    <ellipse cx="58" cy="50" rx="9" ry="6" stroke="currentColor" strokeWidth="0.8" />
-    <text x="58" y="53" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic"}}>ES</text>
-    <ellipse cx="102" cy="46" rx="9" ry="6" stroke="currentColor" strokeWidth="0.8" />
-    <text x="102" y="49" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic"}}>EN</text>
-    <ellipse cx="68" cy="38" rx="9" ry="6" stroke="currentColor" strokeWidth="0.8" />
-    <text x="68" y="41" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic"}}>PT</text>
-    {/* Child figure left */}
-    <circle cx="35" cy="58" r="5" stroke="currentColor" strokeWidth="0.9" />
-    <line x1="35" y1="63" x2="35" y2="75" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="35" y1="67" x2="29" y2="73" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="35" y1="67" x2="41" y2="71" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="35" y1="75" x2="30" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="35" y1="75" x2="40" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    {/* Child figure right */}
-    <circle cx="125" cy="58" r="5" stroke="currentColor" strokeWidth="0.9" />
-    <line x1="125" y1="63" x2="125" y2="75" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="125" y1="67" x2="119" y2="71" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="125" y1="67" x2="131" y2="73" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="125" y1="75" x2="120" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    <line x1="125" y1="75" x2="130" y2="82" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
-    {/* Ground line */}
-    <line x1="20" y1="83" x2="140" y2="83" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" strokeDasharray="2 3" />
+  <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    {/* Organic tree */}
+    <path d="M100,100 Q100,85 98,70 Q97,60 100,50" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    <path d="M99,80 Q98,75 99,70" stroke="currentColor" strokeWidth="0.3" strokeLinecap="round" opacity="0.4" />
+    <path d="M101,85 Q102,78 101,72" stroke="currentColor" strokeWidth="0.3" strokeLinecap="round" opacity="0.4" />
+    {/* Flowing branches */}
+    <path d="M100,70 Q88,62 75,58" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M100,65 Q112,57 125,54" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+    <path d="M100,58 Q85,48 78,40" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M100,55 Q115,45 122,38" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M100,50 Q92,38 88,30" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    <path d="M100,50 Q108,38 112,30" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" />
+    {/* Ornamental language labels */}
+    <ellipse cx="72" cy="54" rx="12" ry="7" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M60,54 L58,54" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.5" />
+    <path d="M84,54 L86,54" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.5" />
+    <text x="72" y="57" textAnchor="middle" fontSize="6.5" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic", letterSpacing:"0.05em"}}>ES</text>
+    <ellipse cx="128" cy="50" rx="12" ry="7" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M116,50 L114,50" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.5" />
+    <path d="M140,50 L142,50" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.5" />
+    <text x="128" y="53" textAnchor="middle" fontSize="6.5" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic", letterSpacing:"0.05em"}}>EN</text>
+    <ellipse cx="85" cy="36" rx="11" ry="7" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M74,36 L72,36" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.5" />
+    <path d="M96,36 L98,36" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.5" />
+    <text x="85" y="39" textAnchor="middle" fontSize="6.5" fill="currentColor" fontFamily="serif" style={{fontStyle:"italic", letterSpacing:"0.05em"}}>PT</text>
+    {/* Child left */}
+    <ellipse cx="40" cy="62" rx="4" ry="5" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M40,67 Q40,74 40,80" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M40,71 Q35,75 33,78" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M40,71 Q45,74 47,76" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M40,80 Q37,87 35,92" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M40,80 Q43,87 45,92" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M47,76 Q55,72 60,68" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" strokeDasharray="2 2" opacity="0.4" />
+    {/* Child right */}
+    <ellipse cx="160" cy="62" rx="4" ry="5" stroke="currentColor" strokeWidth="0.6" />
+    <path d="M160,67 Q160,74 160,80" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M160,71 Q155,74 153,76" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M160,71 Q165,75 167,78" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M160,80 Q157,87 155,92" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M160,80 Q163,87 165,92" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" />
+    <path d="M153,76 Q145,72 140,68" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" strokeDasharray="2 2" opacity="0.4" />
+    {/* Roots */}
+    <path d="M100,100 Q92,104 85,102" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" opacity="0.4" />
+    <path d="M100,100 Q108,104 115,102" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" opacity="0.4" />
+    {/* Decorative ground */}
+    <path d="M25,93 Q60,97 100,93 Q140,89 175,93" stroke="currentColor" strokeWidth="0.4" strokeLinecap="round" opacity="0.3" />
+    <path d="M35,96 Q70,99 100,96 Q130,93 165,96" stroke="currentColor" strokeWidth="0.3" strokeLinecap="round" opacity="0.2" />
+    {/* Leaf accents */}
+    <circle cx="75" cy="58" r="1.2" stroke="currentColor" strokeWidth="0.4" opacity="0.4" />
+    <circle cx="125" cy="54" r="1.2" stroke="currentColor" strokeWidth="0.4" opacity="0.4" />
+    <circle cx="78" cy="40" r="1" stroke="currentColor" strokeWidth="0.4" opacity="0.4" />
+    <circle cx="122" cy="38" r="1" stroke="currentColor" strokeWidth="0.4" opacity="0.4" />
+    <circle cx="88" cy="30" r="0.8" stroke="currentColor" strokeWidth="0.4" opacity="0.4" />
+    <circle cx="112" cy="30" r="0.8" stroke="currentColor" strokeWidth="0.4" opacity="0.4" />
   </svg>
 );
 
