@@ -64,10 +64,26 @@ regulatory risk. Stay hidden until launch-ready.
     + orphan deps), dedupe ApproachSection↔approaches.ts, **TypeScript strict
     mode on (0 errors)**, ESLint no-unused-vars + jsx-a11y (0 errors), 3 lint
     errors fixed, **13 real tests** (was 1 placeholder).
+- **#8** — P3 performance: all images → WebP (hero 1.28 MB → 50 KB; total
+  assets 1.8 MB → ~812 KB), route code-splitting (React.lazy), pruned 44 unused
+  shadcn/ui components + ~37 unused deps, font preconnect (no blocking @import).
+  CSS 71 KB → 28 KB.
+- **#9** — Marked P3 #27 (card hover animation) ON HOLD per user (keep as-is).
+- **#10** — P4 nice-to-have: clickable contact email/phone/address
+  (mailto/tel/maps), explicit favicon + apple-touch-icon + theme-color,
+  global `prefers-reduced-motion`, removed unused dark mode, `<noscript>`
+  fallback, README cleanup, CI Node 20 → 22.
+- **#11** — Build version marker: Vite injects git short hash + build date
+  (`__COMMIT_HASH__`/`__BUILD_DATE__`), shown in footer + logged to console.
+- **#12** — Contact-section language row is now an interactive selector
+  (mirrors the header switcher; clicking switches site language).
 
 **Health:** build OK · 13/13 tests pass · lint 0 errors · tsc strict 0 errors.
 
 Also done earlier: Tania's profile photo updated; lockfile fix.
+
+**Only P3 item not done:** #27 card hover animation (ON HOLD, user likes it).
+**All P4 nice-to-have items are DONE.**
 
 ---
 
@@ -86,20 +102,19 @@ Also done earlier: Tania's profile photo updated; lockfile fix.
   Currently the client only sees the on-screen success message.
 
 ### SEO (P2) — deferred until launch (conflicts with noindex)
-- Per-page titles/meta/canonical (#12), crawlable `<a>` links (#13),
-  sitemap.xml (#14), JSON-LD LocalBusiness (#15), enrich OG image/url (#16), canonical (#17)
+- Per-page titles/meta (#12), crawlable `<a>` links to detail pages (#13),
+  sitemap.xml (#14), JSON-LD LocalBusiness (#15), enrich OG image/url (#16),
+  canonical link (#17). (These item numbers are backlog IDs, not PR numbers.)
 
-### Performance (P3) — safe to do during testing, good quick wins
-- Optimize hero image 1.28 MB → WebP/responsive/preload (#21)  ← highest impact
-- Logo PNG → SVG/WebP (#22), code-split bundle (#23),
-  remove unused shadcn ui components (#24) + remaining unused deps (#25),
-  preconnect/preload fonts (#26), lighten card hover animations (#27)
+### Performance (P3) — DONE except #27
+- #21–#26 all shipped in PR #8. Only **#27 (lighten card hover animations)**
+  remains, and it's **ON HOLD** per user decision (likes the current animation;
+  revisit only if real-device testing shows jank).
 
-### Nice-to-have (P4)
-- Clickable email/phone (#39), favicon/manifest (#40), global reduced-motion (#41),
-  dark mode wire-or-remove (#42), `<noscript>` (#43), README cleanup (#44),
-  CI Node 20→22 (#45)
-- (New idea) visible version marker in footer/HTML
+### Nice-to-have (P4) — ALL DONE (PRs #10–#12)
+- Clickable contacts, favicon/icons, reduced-motion, dark-mode removal,
+  noscript, README, CI Node 22, and the version marker are all shipped.
+- Nothing open here.
 
 ---
 
