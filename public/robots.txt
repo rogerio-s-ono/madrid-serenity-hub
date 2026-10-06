@@ -1,14 +1,7 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# PRE-LAUNCH / STEALTH MODE
+# The site is being tested and is not ready for public indexing.
+# Block all crawlers from indexing any page.
+# At public launch, replace this with an Allow policy and add a Sitemap directive.
 
 User-agent: *
-Allow: /
+Disallow: /
