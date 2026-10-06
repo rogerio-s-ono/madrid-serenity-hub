@@ -12,15 +12,15 @@ interface Props {
 }
 
 const SpecialtyModal = ({ specialty, onClose }: Props) => {
-  const { lang, t } = useLanguage();
+  const { t, pick } = useLanguage();
   const navigate = useNavigate();
   const { openModal } = useConsultation();
   const panelRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  const title = specialty ? (lang === "es" ? specialty.titleEs : lang === "pt" ? specialty.titlePt : specialty.titleEn) : "";
-  const tag = specialty ? (lang === "es" ? specialty.tagEs : lang === "pt" ? specialty.tagPt : specialty.tagEn) : "";
-  const summary = specialty ? (lang === "es" ? specialty.summaryEs : lang === "pt" ? specialty.summaryPt : specialty.summaryEn) : "";
+  const title = specialty ? pick(specialty, "title") : "";
+  const tag = specialty ? pick(specialty, "tag") : "";
+  const summary = specialty ? pick(specialty, "summary") : "";
 
   // Escape key
   useEffect(() => {
@@ -87,6 +87,9 @@ const SpecialtyModal = ({ specialty, onClose }: Props) => {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
+            {/* onKeyDown implements the focus trap for this dialog — a standard
+                ARIA pattern, so the non-interactive-element rule is a false positive here. */}
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
             <div
               ref={panelRef}
               role="dialog"

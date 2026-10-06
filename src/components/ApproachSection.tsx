@@ -1,43 +1,19 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { FlaskConical, ShieldCheck, Globe2 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { approaches } from "@/data/approaches";
 
-const pillars = [
-  {
-    slug: "rigor-clinico",
-    Icon: FlaskConical,
-    titleEs: "Rigor Clínico",
-    titleEn: "Clinical Rigour",
-    titlePt: "Rigor Clínico",
-    descEs: "Métodos basados en evidencia — TCC, EMDR, terapia sistémica — adaptados con precisión a las realidades interculturales y a la complejidad emocional de las familias internacionales.",
-    descEn: "Evidence-based methods — CBT, EMDR, systemic therapy — adapted with precision to intercultural realities and the emotional complexity of international families.",
-    descPt: "Métodos baseados em evidências — TCC, EMDR, terapia sistêmica — adaptados com precisão às realidades interculturais e à complexidade emocional das famílias internacionais.",
-  },
-  {
-    slug: "discrecion-absoluta",
-    Icon: ShieldCheck,
-    titleEs: "Discreción Absoluta",
-    titleEn: "Absolute Discretion",
-    titlePt: "Discrição Absoluta",
-    descEs: "La confidencialidad no es un protocolo — es el fundamento de nuestra relación. Cada sesión es un espacio protegido, sin filtros ni condicionantes externos.",
-    descEn: "Confidentiality is not a protocol — it is the foundation of our relationship. Each session is a protected space, without filters or external conditions.",
-    descPt: "A confidencialidade não é um protocolo — é o fundamento da nossa relação. Cada sessão é um espaço protegido.",
-  },
-  {
-    slug: "perspectiva-internacional",
-    Icon: Globe2,
-    titleEs: "Perspectiva Internacional",
-    titleEn: "International Perspective",
-    titlePt: "Perspectiva Internacional",
-    descEs: "Trabajo en español, inglés y portugués con familias de múltiples orígenes. Entiendo desde adentro la complejidad de vivir entre culturas en Madrid.",
-    descEn: "I work in Spanish, English, and Portuguese with families of multiple backgrounds. I understand from within the complexity of living between cultures in Madrid.",
-    descPt: "Trabalho em espanhol, inglês e português com famílias de múltiplas origens. Entendo por dentro a complexidade de viver entre culturas em Madrid.",
-  },
-];
+// Maps the icon name stored in approaches.ts to the actual lucide component.
+const iconMap: Record<string, LucideIcon> = {
+  FlaskConical,
+  ShieldCheck,
+  Globe2,
+};
 
 const ApproachSection = () => {
-  const { t, lang } = useLanguage();
+  const { t, lang, pick } = useLanguage();
   const navigate = useNavigate();
 
   const heading =
@@ -79,12 +55,15 @@ const ApproachSection = () => {
 
         {/* Pillars — uniform px-10 on all cards so content is equidistant from every border */}
         <div className="grid gap-0 md:grid-cols-3 border-t border-border -mx-10">
-          {pillars.map((p, i) => (
+          {approaches.map((p, i) => {
+            const Icon = iconMap[p.icon] ?? FlaskConical;
+            const title = pick(p, "title");
+            return (
             <motion.div
               key={p.slug}
               role="button"
               tabIndex={0}
-              aria-label={`${t(p.titleEs, p.titleEn, p.titlePt)} — ${t("Ver más", "Learn more", "Ver mais")}`}
+              aria-label={`${title} — ${t("Ver más", "Learn more", "Ver mais")}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -108,18 +87,18 @@ const ApproachSection = () => {
             >
               {/* Icon */}
               <div className="mb-6 flex h-12 w-12 items-center justify-center border border-accent/30 bg-accent/5">
-                <p.Icon
+                <Icon
                   className="h-5 w-5"
                   style={{ color: "hsl(var(--gold))", strokeWidth: 1.25 }}
                 />
               </div>
 
               <h3 className="font-serif-display mb-4 text-2xl font-light text-foreground">
-                {t(p.titleEs, p.titleEn, p.titlePt)}
+                {title}
               </h3>
               <div className="mb-5 h-px w-10 bg-accent/40" />
               <p className="font-sans-body text-[14px] font-light leading-[1.85] text-muted-foreground">
-                {t(p.descEs, p.descEn, p.descPt)}
+                {pick(p, "summary")}
               </p>
 
               {/* Hint */}
@@ -130,7 +109,8 @@ const ApproachSection = () => {
                 {t("Ver más →", "Learn more →", "Ver mais →")}
               </p>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

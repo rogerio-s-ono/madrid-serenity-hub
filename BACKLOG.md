@@ -23,6 +23,19 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 - ✅ **Contact form backend — Web3Forms integration** (PR #5)
   - Real submission, loading/success/error states, honeypot spam protection
   - Delivers to `consulta@taniaono.com` + archived in Web3Forms dashboard
+- ✅ **P2 #11 — Dynamic `<html lang>`** — syncs to active language (PR #7)
+- ✅ **P2 #16 — Remove Lovable placeholder metadata** (PR #7)
+- ✅ **P2 #18 — Persist language selection** (localStorage) (PR #7)
+- ✅ **P2 #20 — Deduplicate language-picking logic** (`pick()` helper) (PR #7)
+- ✅ **P3 #28 — Delete dead App.css** (PR #7)
+- ✅ **P3 #29 — Remove unused NavLink.tsx** (PR #7)
+- ✅ **P3 #30 — Remove dual toast systems** (+ orphaned deps) (PR #7)
+- ✅ **P3 #31 — Delete placeholder.svg** (PR #7)
+- ✅ **P3 #32 — Deduplicate ApproachSection vs approaches.ts** (PR #7)
+- ✅ **P3 #33 — Enable TypeScript strict mode** (PR #7)
+- ✅ **P3 #34 — ESLint: no-unused-vars + jsx-a11y plugin** (PR #7)
+- ✅ **P3 #35 — Fix the 3 lint errors** (PR #7)
+- ✅ **P3 #36 — Add meaningful test coverage** (13 tests) (PR #7)
 
 ---
 
@@ -67,10 +80,8 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
   meta tags from `index.html` + `404.html`, restore an Allow policy in
   `robots.txt`, and add a `Sitemap:` directive. Do this ONLY at public launch.
 
-### SEO & discoverability (P2)
+### SEO & discoverability (P2) — *deferred until launch (conflict with noindex)*
 
-- ⬜ 🟠 **`<html lang>` hardcoded to "en"** (P2 #11) — should reflect the active
-  language (default es); update at runtime on language change.
 - ⬜ 🟠 **Per-page titles/meta/canonical** (P2 #12) — all routes share one static
   title; SpecialtyPage/ApproachPage need unique SEO tags (e.g. react-helmet).
 - ⬜ 🟠 **Cards are not crawlable `<a>` links** (P2 #13) — detail pages only
@@ -78,16 +89,9 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 - ⬜ 🟡 **sitemap.xml** (P2 #14) — none exists; add + reference in robots.txt.
 - ⬜ 🟡 **Structured data (JSON-LD)** (P2 #15) — add LocalBusiness/MedicalBusiness
   schema for local SEO.
-- ⬜ 🟡 **Lovable placeholder metadata** (P2 #16) — remove `author=Lovable`,
-  `twitter:site=@Lovable`, TODO comments, throwaway OG image; add og:url etc.
+- ⬜ 🟡 **Enrich OG/Twitter metadata** (part of P2 #16) — add a branded og:image,
+  og:url, og:site_name at launch (placeholder removal already done in PR #7).
 - ⬜ 🟢 **Canonical link** (P2 #17).
-
-### i18n
-
-- ⬜ 🟡 **Persist language selection** (P2 #18) — resets to Spanish on reload;
-  save to localStorage and/or reflect in URL.
-- ⬜ 🟡 **Deduplicate language-picking logic** (P2 #20) — shared `pick()` helper
-  instead of repeated ternaries across pages/modal.
 
 ### Performance (P3)
 
@@ -101,19 +105,7 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 - ⬜ 🟡 **Preconnect/preload fonts** (P3 #26) — currently render-blocking @import.
 - ⬜ 🟡 **Lighten specialty card hover animations** (P3 #27).
 
-### Code quality (P3)
-
-- ⬜ 🟡 **Delete dead App.css** (P3 #28) — Vite starter css, unused.
-- ⬜ 🟡 **Remove unused NavLink.tsx** (P3 #29).
-- ⬜ 🟡 **Remove dual toast systems** (P3 #30) — Toaster + Sonner mounted, never
-  used.
-- ⬜ 🟡 **Delete placeholder.svg** (P3 #31).
-- ⬜ 🟡 **Deduplicate ApproachSection vs approaches.ts** (P3 #32).
-- ⬜ 🟡 **Enable TypeScript strict mode** (P3 #33).
-- ⬜ 🟡 **ESLint: enable no-unused-vars + add jsx-a11y plugin** (P3 #34).
-- ⬜ 🟡 **Fix 3 lint errors** (P3 #35) — empty interface in textarea.tsx,
-  require() in tailwind.config.ts.
-- ⬜ 🟡 **Add meaningful test coverage** (P3 #36) — only a placeholder test today.
+### Code quality (P3) — *all done in PR #7 ✅ (see Done section)*
 
 ### Nice-to-have (P4)
 

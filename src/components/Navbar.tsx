@@ -69,9 +69,10 @@ const Navbar = () => {
 
       <div className="mx-auto flex max-w-7xl items-center justify-between px-10 py-4">
         {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => { e.preventDefault(); goHome(); }}
+        <button
+          type="button"
+          onClick={goHome}
+          aria-label={t("Ir al inicio", "Go to home", "Ir para o início") as string}
           className="block shrink-0"
         >
           <img
@@ -79,7 +80,7 @@ const Navbar = () => {
             alt="Heart & Soul Therapy"
             className="h-16 w-auto object-contain"
           />
-        </a>
+        </button>
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-10 md:flex">

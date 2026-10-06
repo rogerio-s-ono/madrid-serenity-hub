@@ -38,7 +38,7 @@ const labelClass =
   "font-sans-body text-[9px] font-light uppercase tracking-[0.25em] text-primary-foreground/55 mb-2 block";
 
 const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
-  const { t, lang } = useLanguage();
+  const { t, lang, pick } = useLanguage();
   const { preselectedSpecialty } = useConsultation();
   const [dialCode, setDialCode] = useState("+34");
   const [showDial, setShowDial] = useState(false);
@@ -108,7 +108,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
   const therapyOptions = [
     ...specialties.map((s) => ({
       value: s.slug,
-      label: lang === "es" ? s.titleEs : lang === "pt" ? s.titlePt : s.titleEn,
+      label: pick(s, "title"),
     })),
     {
       value: "not-sure",
