@@ -46,9 +46,13 @@ const SpecialtiesSection = () => {
           >
             {specialties.map((s, i) => {
               const isSelected = selected === i;
+              const title = t(s.titleEs, s.titleEn, s.titlePt);
               return (
                 <motion.div
-                  key={i}
+                  key={s.slug}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${title} — ${t("Ver más", "View more", "Ver mais")}`}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -81,7 +85,14 @@ const SpecialtiesSection = () => {
                     setSelected(isSelected ? null : i);
                     setModalItem(s);
                   }}
-                  className="relative border border-primary-foreground/10 bg-primary p-10 cursor-pointer"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelected(isSelected ? null : i);
+                      setModalItem(s);
+                    }
+                  }}
+                  className="relative border border-primary-foreground/10 bg-primary p-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-primary"
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   {/* Gold accent line on selected */}

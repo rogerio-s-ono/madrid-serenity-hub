@@ -1,3 +1,4 @@
+import { useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -14,10 +15,53 @@ const SpecialtyModal = ({ specialty, onClose }: Props) => {
   const { lang, t } = useLanguage();
   const navigate = useNavigate();
   const { openModal } = useConsultation();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const title = specialty ? (lang === "es" ? specialty.titleEs : lang === "pt" ? specialty.titlePt : specialty.titleEn) : "";
   const tag = specialty ? (lang === "es" ? specialty.tagEs : lang === "pt" ? specialty.tagPt : specialty.tagEn) : "";
   const summary = specialty ? (lang === "es" ? specialty.summaryEs : lang === "pt" ? specialty.summaryPt : specialty.summaryEn) : "";
+
+  // Escape key
+  useEffect(() => {
+    if (!specialty) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [specialty, onClose]);
+
+  // Body scroll lock + focus management
+  useEffect(() => {
+    if (specialty) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => panelRef.current?.focus());
+    } else {
+      document.body.style.overflow = "";
+      previousFocusRef.current?.focus();
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [specialty]);
+
+  // Focus trap
+  const handleTrapKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== "Tab" || !panelRef.current) return;
+    const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }, []);
 
   return (
     <AnimatePresence>
@@ -44,7 +88,13 @@ const SpecialtyModal = ({ specialty, onClose }: Props) => {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto pointer-events-auto bg-background"
+              ref={panelRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="specialty-modal-title"
+              tabIndex={-1}
+              onKeyDown={handleTrapKeyDown}
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto pointer-events-auto bg-background focus:outline-none"
               style={{ boxShadow: "0 40px 80px rgba(0,0,0,0.35)" }}
             >
               {/* Gold top accent */}
@@ -84,7 +134,7 @@ const SpecialtyModal = ({ specialty, onClose }: Props) => {
                   </span>
                 </div>
 
-                <h2 className="font-serif-display mb-4 text-3xl font-light leading-snug text-foreground">
+                <h2 id="specialty-modal-title" className="font-serif-display mb-4 text-3xl font-light leading-snug text-foreground">
                   {title}
                 </h2>
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -34,7 +34,7 @@ const inputClass =
   "w-full bg-transparent border-b border-primary-foreground/20 py-3 font-sans-body text-sm font-light text-primary-foreground placeholder:text-primary-foreground/35 focus:outline-none focus:border-accent/70 transition-colors duration-300";
 
 const labelClass =
-  "font-sans-body text-[9px] font-light uppercase tracking-[0.25em] text-primary-foreground/40 mb-2 block";
+  "font-sans-body text-[9px] font-light uppercase tracking-[0.25em] text-primary-foreground/55 mb-2 block";
 
 const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
   const { t, lang } = useLanguage();
@@ -45,6 +45,8 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
   const [showTherapy, setShowTherapy] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const panelRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   // Sync preselection whenever the modal opens or the preselectedSpecialty changes
   useEffect(() => {
@@ -52,6 +54,51 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
       setTherapy(preselectedSpecialty);
     }
   }, [open, preselectedSpecialty]);
+
+  // Escape key closes the modal
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, onClose]);
+
+  // Body scroll lock + focus management
+  useEffect(() => {
+    if (open) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      document.body.style.overflow = "hidden";
+      // Focus the panel after animation
+      requestAnimationFrame(() => {
+        panelRef.current?.focus();
+      });
+    } else {
+      document.body.style.overflow = "";
+      // Restore focus to the element that opened the modal
+      previousFocusRef.current?.focus();
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  // Focus trap — Tab/Shift+Tab cycles within the modal
+  const handleTrapKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== "Tab" || !panelRef.current) return;
+    const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }, []);
 
   const therapyOptions = [
     ...specialties.map((s) => ({
@@ -121,11 +168,17 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
 
           {/* Panel */}
           <motion.div
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="consultation-modal-title"
+            tabIndex={-1}
+            onKeyDown={handleTrapKeyDown}
             initial={{ opacity: 0, y: 32, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-primary"
+            className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-primary focus:outline-none"
             onClick={(e) => e.stopPropagation()}
             style={{ boxShadow: "0 40px 100px rgba(0,0,0,0.55)" }}
           >
@@ -148,7 +201,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                   <p className="section-label mb-4" style={{ color: "hsl(var(--gold-light))" }}>
                     {t("Consulta Privada", "Private Consultation", "Consulta Privada")}
                   </p>
-                  <h2 className="font-serif-display mb-2 text-3xl font-light leading-[1.2] text-primary-foreground md:text-4xl">
+                  <h2 id="consultation-modal-title" className="font-serif-display mb-2 text-3xl font-light leading-[1.2] text-primary-foreground md:text-4xl">
                     {lang === "es" ? (
                       <>El primer paso<br /><em>es confidencial</em></>
                     ) : lang === "pt" ? (
@@ -169,10 +222,11 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                   <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                     {/* Name */}
                     <div>
-                      <label className={labelClass}>
+                      <label htmlFor="consult-name" className={labelClass}>
                         {t("Nombre completo", "Full Name", "Nome completo")}
                       </label>
                       <input
+                        id="consult-name"
                         required
                         maxLength={100}
                         className={inputClass}
@@ -184,10 +238,11 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
 
                     {/* Email */}
                     <div>
-                      <label className={labelClass}>
+                      <label htmlFor="consult-email" className={labelClass}>
                         {t("Correo electrónico", "Email Address", "Endereço de email")}
                       </label>
                       <input
+                        id="consult-email"
                         required
                         type="email"
                         maxLength={255}
@@ -200,7 +255,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
 
                     {/* Phone with DDI */}
                     <div>
-                      <label className={labelClass}>
+                      <label htmlFor="consult-phone" className={labelClass}>
                         {t("Teléfono", "Phone Number", "Telefone")}
                       </label>
                       <div className="flex items-end gap-3">
@@ -208,6 +263,8 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                         <div className="relative">
                           <button
                             type="button"
+                            aria-expanded={showDial}
+                            aria-haspopup="listbox"
                             onClick={() => setShowDial(!showDial)}
                             className="flex items-center gap-1.5 border-b border-primary-foreground/20 py-3 font-sans-body text-sm font-light text-primary-foreground/70 hover:text-primary-foreground transition-colors focus:outline-none focus:border-accent/70"
                           >
@@ -243,6 +300,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                           </AnimatePresence>
                         </div>
                         <input
+                          id="consult-phone"
                           required
                           type="tel"
                           maxLength={20}
@@ -256,12 +314,15 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
 
                     {/* Therapy type */}
                     <div>
-                      <label className={labelClass}>
+                      <label htmlFor="consult-therapy" className={labelClass}>
                         {t("Área de interés", "Area of Interest", "Área de interesse")}
                       </label>
                       <div className="relative">
                         <button
+                          id="consult-therapy"
                           type="button"
+                          aria-expanded={showTherapy}
+                          aria-haspopup="listbox"
                           onClick={() => setShowTherapy(!showTherapy)}
                           className="flex w-full items-center justify-between border-b border-primary-foreground/20 py-3 font-sans-body text-sm font-light text-left transition-colors focus:outline-none focus:border-accent/70"
                           style={{ color: therapy ? "hsl(var(--primary-foreground))" : "hsl(var(--primary-foreground) / 0.35)" }}
@@ -318,7 +379,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
 
                     {/* Free text */}
                     <div>
-                      <label className={labelClass}>
+                      <label htmlFor="consult-message" className={labelClass}>
                         {t(
                           "¿Por qué necesita mi ayuda?",
                           "Why do you need my help?",
@@ -339,6 +400,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                         </p>
                       </div>
                       <textarea
+                        id="consult-message"
                         required
                         maxLength={1000}
                         rows={5}
@@ -351,7 +413,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                         value={form.message}
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
                       />
-                      <p className="mt-1 text-right font-sans-body text-[9px] text-primary-foreground/25">
+                      <p className="mt-1 text-right font-sans-body text-[9px] text-primary-foreground/50">
                         {form.message.length}/1000
                       </p>
                     </div>
@@ -364,7 +426,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                       >
                         {t("Enviar consulta privada", "Send private consultation", "Enviar consulta privada")}
                       </button>
-                      <p className="mt-4 text-center font-sans-body text-[9px] font-light uppercase tracking-[0.18em] text-primary-foreground/25">
+                      <p className="mt-4 text-center font-sans-body text-[9px] font-light uppercase tracking-[0.18em] text-primary-foreground/50">
                         {t(
                           "Respuesta en 24 h · Confidencialidad garantizada",
                           "Response within 24h · Confidentiality guaranteed",
@@ -418,7 +480,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                   </p>
                   <button
                     onClick={handleClose}
-                    className="mt-10 font-sans-body text-[10px] font-light uppercase tracking-[0.2em] text-primary-foreground/30 hover:text-primary-foreground/60 transition-colors"
+                    className="mt-10 font-sans-body text-[10px] font-light uppercase tracking-[0.2em] text-primary-foreground/50 hover:text-primary-foreground/70 transition-colors"
                   >
                     {t("Cerrar", "Close", "Fechar")}
                   </button>
