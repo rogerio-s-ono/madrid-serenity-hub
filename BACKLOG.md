@@ -50,6 +50,8 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 - ✅ **P4 #43 — `<noscript>` fallback** (trilingual, with contact info) (PR #10)
 - ✅ **P4 #44 — Clean up README** (removed Lovable boilerplate) (PR #10)
 - ✅ **P4 #45 — CI Node 20 → 22** (PR #10)
+- ✅ **P4 — Visible version marker** — git hash + build date injected by Vite,
+  shown discreetly in the footer + logged to console (PR #11)
 
 ---
 
@@ -121,7 +123,4 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 
 ### Nice-to-have (P4)
 
-- ⬜ 🟢 **Visible version marker** (new idea) — small build/version tag in footer
-  or an HTML comment, to know which build is live. Not yet done.
-
-*(All other P4 items done in PR #10 — see Done section.)*
+*(All P4 items done — see Done section.)*

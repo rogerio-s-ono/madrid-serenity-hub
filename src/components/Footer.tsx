@@ -29,10 +29,18 @@ const Footer = () => {
             alt="Heart & Soul Therapy"
             className="h-10 w-auto object-contain opacity-70"
           />
-          <p className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em] text-muted-foreground/60 text-center">
-            © {new Date().getFullYear()} Heart & Soul Therapy · Madrid ·{" "}
-            {t("Todos los derechos reservados", "All rights reserved", "Todos os direitos reservados")}
-          </p>
+          <div className="text-center">
+            <p className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em] text-muted-foreground/60">
+              © {new Date().getFullYear()} Heart & Soul Therapy · Madrid ·{" "}
+              {t("Todos los derechos reservados", "All rights reserved", "Todos os direitos reservados")}
+            </p>
+            <p
+              className="mt-1 font-sans-body text-[8px] font-light tracking-[0.15em] text-muted-foreground/30"
+              title={`Build ${__BUILD_DATE__} · ${__COMMIT_HASH__}`}
+            >
+              v{__BUILD_DATE__}·{__COMMIT_HASH__}
+            </p>
+          </div>
           <div className="flex gap-6">
             {["#about", "#specialties", "#approach", "#contact"].map((href, i) => (
               <a
