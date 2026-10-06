@@ -8,6 +8,12 @@
          once legal pages and real testimonials are in place. -->
     <meta name="robots" content="noindex, nofollow" />
 
+    <!-- Icons (%BASE_URL% is replaced by Vite with the configured base path) -->
+    <link rel="icon" href="%BASE_URL%favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="%BASE_URL%icon-512.png" />
+    <link rel="apple-touch-icon" href="%BASE_URL%icon-180.png" />
+    <meta name="theme-color" content="#1b2a4a" />
+
     <!-- Fonts: preconnect for faster handshake, then load the stylesheet.
          'display=swap' is in the URL so text renders immediately with a fallback. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,6 +37,21 @@
 
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width:640px;margin:4rem auto;padding:0 1.5rem;font-family:Georgia,'Times New Roman',serif;color:#1b2a4a;text-align:center;line-height:1.6">
+        <h1 style="font-weight:400">Tania Ono — Psychotherapy · Madrid</h1>
+        <p>
+          Psicoterapia para familias internacionales en Madrid ·
+          Psychotherapy for international families in Madrid ·
+          Psicoterapia para famílias internacionais em Madrid.
+        </p>
+        <p>
+          This website requires JavaScript. To get in touch, email
+          <a href="mailto:consulta@taniaono.com">consulta@taniaono.com</a>
+          or call <a href="tel:+34699192750">+34 699 19 27 50</a>.
+        </p>
+      </div>
+    </noscript>
     <!-- SPA GitHub Pages redirect: restores the original path encoded by 404.html.
          Must run before the app script so React Router sees the correct URL.
          Technique: https://github.com/rafgraph/spa-github-pages -->

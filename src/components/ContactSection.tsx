@@ -9,24 +9,29 @@ const contactDetails = [
     labelEs: "Barrio de Retiro, Madrid",
     labelEn: "Retiro District, Madrid",
     labelPt: "Bairro de Retiro, Madrid",
+    href: "https://www.google.com/maps/search/?api=1&query=Barrio+de+Retiro+Madrid",
+    external: true,
   },
   {
     icon: Phone,
     labelEs: "+34 699 19 27 50",
     labelEn: "+34 699 19 27 50",
     labelPt: "+34 699 19 27 50",
+    href: "tel:+34699192750",
   },
   {
     icon: Mail,
     labelEs: "consulta@taniaono.com",
     labelEn: "consulta@taniaono.com",
     labelPt: "consulta@taniaono.com",
+    href: "mailto:consulta@taniaono.com",
   },
   {
     icon: Globe,
     labelEs: "Español · English · Português",
     labelEn: "Español · English · Português",
     labelPt: "Español · English · Português",
+    href: null,
   },
 ];
 
@@ -71,14 +76,31 @@ const ContactSection = () => {
 
             {/* Contact details */}
             <div className="flex flex-col gap-6 mb-12">
-              {contactDetails.map((item, i) => (
-                <div key={i} className="flex items-center gap-4">
-                  <item.icon className="h-4 w-4 shrink-0 text-accent/80" strokeWidth={1.5} />
-                  <p className="font-sans-body text-sm font-light tracking-wide text-primary-foreground/80">
-                    {t(item.labelEs, item.labelEn, item.labelPt)}
-                  </p>
-                </div>
-              ))}
+              {contactDetails.map((item, i) => {
+                const label = t(item.labelEs, item.labelEn, item.labelPt);
+                const content = (
+                  <>
+                    <item.icon className="h-4 w-4 shrink-0 text-accent/80" strokeWidth={1.5} aria-hidden="true" />
+                    <span className="font-sans-body text-sm font-light tracking-wide text-primary-foreground/80">
+                      {label}
+                    </span>
+                  </>
+                );
+                return item.href ? (
+                  <a
+                    key={i}
+                    href={item.href}
+                    {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="flex items-center gap-4 transition-colors hover:text-primary-foreground [&>span]:hover:text-primary-foreground"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div key={i} className="flex items-center gap-4">
+                    {content}
+                  </div>
+                );
+              })}
             </div>
 
             <p className="font-sans-body text-[10px] font-light uppercase tracking-[0.2em] text-primary-foreground/30">

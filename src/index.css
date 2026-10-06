@@ -43,45 +43,6 @@
     --ivory: 40 30% 97%;
     --navy: 220 38% 16%;
     --navy-light: 220 28% 24%;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 220 35% 7%;
-    --foreground: 40 25% 92%;
-    --card: 220 32% 11%;
-    --card-foreground: 40 25% 92%;
-    --popover: 220 32% 11%;
-    --popover-foreground: 40 25% 92%;
-    --primary: 40 55% 48%;
-    --primary-foreground: 220 35% 7%;
-    --secondary: 220 22% 16%;
-    --secondary-foreground: 40 25% 92%;
-    --muted: 220 22% 16%;
-    --muted-foreground: 40 12% 58%;
-    --accent: 40 55% 48%;
-    --accent-foreground: 220 35% 7%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 22% 18%;
-    --input: 220 22% 18%;
-    --ring: 40 55% 48%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -99,6 +60,19 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Respect users who prefer reduced motion: near-instant transitions and no
+     looping/scrolling animations. Covers CSS transitions and framer-motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 

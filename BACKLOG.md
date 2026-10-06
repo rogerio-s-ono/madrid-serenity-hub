@@ -43,6 +43,13 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 - ✅ **P3 #25 — Remove unused dependencies** (~37 packages pruned) (PR #8)
 - ✅ **P3 #26 — Preconnect/preload fonts** (no more blocking @import) (PR #8)
 - *(also: all specialty + profile photos converted to WebP; CSS 71 KB → 28 KB)*
+- ✅ **P4 #39 — Clickable contact email/phone/address** (mailto/tel/maps) (PR #10)
+- ✅ **P4 #40 — Explicit favicon + apple-touch-icon + theme-color** (PR #10)
+- ✅ **P4 #41 — Global prefers-reduced-motion** (PR #10)
+- ✅ **P4 #42 — Remove unused dark mode** (.dark palette + darkMode config) (PR #10)
+- ✅ **P4 #43 — `<noscript>` fallback** (trilingual, with contact info) (PR #10)
+- ✅ **P4 #44 — Clean up README** (removed Lovable boilerplate) (PR #10)
+- ✅ **P4 #45 — CI Node 20 → 22** (PR #10)
 
 ---
 
@@ -114,11 +121,7 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 
 ### Nice-to-have (P4)
 
-- ⬜ 🟢 **Make contact email/phone clickable** (P4 #39) — mailto:/tel: links,
-  map link for address.
-- ⬜ 🟢 **Explicit favicon/apple-touch-icon/manifest** (P4 #40).
-- ⬜ 🟢 **prefers-reduced-motion for all animations** (P4 #41).
-- ⬜ 🟢 **Wire up or remove dark mode** (P4 #42) — unused .dark palette.
-- ⬜ 🟢 **`<noscript>` fallback** (P4 #43).
-- ⬜ 🟢 **Clean up README** (P4 #44) — Lovable boilerplate.
-- ⬜ 🟢 **Upgrade deploy workflow to Node 22** (P4 #45) — Node 20 deprecated in CI.
+- ⬜ 🟢 **Visible version marker** (new idea) — small build/version tag in footer
+  or an HTML comment, to know which build is live. Not yet done.
+
+*(All other P4 items done in PR #10 — see Done section.)*
