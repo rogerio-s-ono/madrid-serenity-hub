@@ -1,7 +1,8 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useConsultation } from "@/contexts/ConsultationContext";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
@@ -9,12 +10,37 @@ const Navbar = () => {
   const { openModal } = useConsultation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Navigate to a hash anchor — works from any route
+  const goToSection = useCallback(
+    (hash: string) => {
+      if (location.pathname === "/") {
+        // Already on home — just scroll to the element
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // On a detail page — navigate home, then the hash will scroll
+        navigate("/" + hash);
+      }
+    },
+    [location.pathname, navigate]
+  );
+
+  const goHome = useCallback(() => {
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
+  }, [location.pathname, navigate]);
 
   const navLinks = [
     { href: "#about", label: t("Sobre mí", "About", "Sobre mim") },
@@ -43,7 +69,11 @@ const Navbar = () => {
 
       <div className="mx-auto flex max-w-7xl items-center justify-between px-10 py-4">
         {/* Logo */}
-        <a href="#" className="block shrink-0">
+        <a
+          href="#"
+          onClick={(e) => { e.preventDefault(); goHome(); }}
+          className="block shrink-0"
+        >
           <img
             src={logo}
             alt="Heart & Soul Therapy"
@@ -57,6 +87,7 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => { e.preventDefault(); goToSection(link.href); }}
               className="group relative font-sans-body text-[10.5px] font-light uppercase tracking-[0.22em] text-foreground/55 transition-colors duration-300 hover:text-foreground"
             >
               {link.label}
@@ -117,7 +148,7 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              onClick={() => setMobileOpen(false)}
+              onClick={(e) => { e.preventDefault(); setMobileOpen(false); goToSection(link.href); }}
               className="font-sans-body text-[10.5px] font-light uppercase tracking-[0.22em] text-foreground/55 hover:text-foreground transition-colors"
             >
               {link.label}
