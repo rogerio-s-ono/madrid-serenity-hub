@@ -1,9 +1,9 @@
-import sp01 from "@/assets/specialty-01.jpg";
-import sp02 from "@/assets/specialty-02.jpg";
-import sp03 from "@/assets/specialty-03.jpg";
-import sp04 from "@/assets/specialty-04.jpg";
-import sp05 from "@/assets/specialty-05.jpg";
-import sp06 from "@/assets/specialty-06.jpg";
+import sp01 from "@/assets/specialty-01.webp";
+import sp02 from "@/assets/specialty-02.webp";
+import sp03 from "@/assets/specialty-03.webp";
+import sp04 from "@/assets/specialty-04.webp";
+import sp05 from "@/assets/specialty-05.webp";
+import sp06 from "@/assets/specialty-06.webp";
 
 export interface Specialty {
   slug: string;

@@ -3,7 +3,7 @@ import { useConsultation } from "@/contexts/ConsultationContext";
 import { motion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
