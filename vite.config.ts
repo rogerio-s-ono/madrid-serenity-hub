@@ -5,6 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Served from https://<user>.github.io/madrid-serenity-hub/ on GitHub Pages.
+  // Use "/" locally (dev/preview) so the app keeps working at the root.
+  base: mode === "production" ? "/madrid-serenity-hub/" : "/",
   server: {
     host: "::",
     port: 8080,
