@@ -36,6 +36,13 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 - ✅ **P3 #34 — ESLint: no-unused-vars + jsx-a11y plugin** (PR #7)
 - ✅ **P3 #35 — Fix the 3 lint errors** (PR #7)
 - ✅ **P3 #36 — Add meaningful test coverage** (13 tests) (PR #7)
+- ✅ **P3 #21 — Optimize hero image** 1.28 MB → 50 KB WebP (PR #8)
+- ✅ **P3 #22 — Logo PNG → WebP** 163 KB → 40 KB (PR #8)
+- ✅ **P3 #23 — Code-split bundle** (lazy-load routes) (PR #8)
+- ✅ **P3 #24 — Remove unused shadcn/ui components** (44 of 45 removed) (PR #8)
+- ✅ **P3 #25 — Remove unused dependencies** (~37 packages pruned) (PR #8)
+- ✅ **P3 #26 — Preconnect/preload fonts** (no more blocking @import) (PR #8)
+- *(also: all specialty + profile photos converted to WebP; CSS 71 KB → 28 KB)*
 
 ---
 
@@ -95,15 +102,8 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 
 ### Performance (P3)
 
-- ⬜ 🟠 **Optimize hero image** (P3 #21) — 1.28 MB JPEG dominates LCP; convert to
-  WebP/AVIF, responsive sizes, preload.
-- ⬜ 🟡 **Logo 164 KB PNG → SVG/WebP** (P3 #22).
-- ⬜ 🟠 **Code-split bundle** (P3 #23) — single 550 KB chunk; lazy-load routes.
-- ⬜ 🟡 **Remove unused shadcn/ui components** (P3 #24) — ~44 unused files.
-- ⬜ 🟡 **Remove unused dependencies** (P3 #25) — recharts, embla, day-picker,
-  cmdk, input-otp, resizable, next-themes (only imported by unused ui/).
-- ⬜ 🟡 **Preconnect/preload fonts** (P3 #26) — currently render-blocking @import.
-- ⬜ 🟡 **Lighten specialty card hover animations** (P3 #27).
+- ⬜ 🟡 **Lighten specialty card hover animations** (P3 #27) — *pending; user wants
+  to discuss this one before changing.* Only remaining P3 performance item.
 
 ### Code quality (P3) — *all done in PR #7 ✅ (see Done section)*
 

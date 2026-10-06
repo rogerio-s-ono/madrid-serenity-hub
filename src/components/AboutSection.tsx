@@ -1,6 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import taniaPhoto from "@/assets/tania-photo.jpg";
+import taniaPhoto from "@/assets/tania-photo.webp";
 
 const credentials = [
   { es: "EMDR Certificada", en: "EMDR Certified", pt: "EMDR Certificada" },
