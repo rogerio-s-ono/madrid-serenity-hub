@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronDown } from "lucide-react";
+import { X, ChevronDown, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useConsultation } from "@/contexts/ConsultationContext";
 import { specialties } from "@/data/specialties";
+import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from "@/lib/web3forms";
 
 interface ConsultationModalProps {
   open: boolean;
@@ -44,7 +45,11 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
   const [therapy, setTherapy] = useState("");
   const [showTherapy, setShowTherapy] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  // Honeypot — bots fill hidden fields, humans don't. Non-empty => reject silently.
+  const [botField, setBotField] = useState("");
   const panelRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -117,27 +122,65 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
 
   const selectedTherapy = therapyOptions.find((o) => o.value === therapy);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Build mailto link — this opens the user's mail client with a pre-filled draft.
-    // We do NOT claim the message was "received" since there is no server-side backend.
+    if (submitting) return;
+
+    // Honeypot: if the hidden field is filled, it's a bot — silently "succeed"
+    // without actually sending, so bots can't tell they were blocked.
+    if (botField) {
+      setSubmitted(true);
+      return;
+    }
+
+    setError(false);
+    setSubmitting(true);
+
     const therapyLabel = selectedTherapy?.label ?? "";
     const subjectMap: Record<string, string> = {
-      es: `Consulta Privada — ${therapyLabel}`,
-      en: `Private Consultation — ${therapyLabel}`,
-      pt: `Consulta Privada — ${therapyLabel}`,
+      es: `Nueva Consulta Privada — ${therapyLabel}`,
+      en: `New Private Consultation — ${therapyLabel}`,
+      pt: `Nova Consulta Privada — ${therapyLabel}`,
     };
-    const subject = encodeURIComponent(subjectMap[lang] ?? subjectMap["es"]);
-    const body = encodeURIComponent(
-      `Nombre / Name: ${form.name}\n` +
-      `Email: ${form.email}\n` +
-      `Teléfono / Phone: ${dialCode} ${form.phone}\n` +
-      `Tipo de terapia / Therapy type: ${selectedTherapy?.label ?? ""}\n\n` +
-      `${form.message}`
-    );
-    // Open mail client without affecting the SPA URL / hash
-    window.location.href = `mailto:consulta@taniaono.es?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: subjectMap[lang] ?? subjectMap["es"],
+      from_name: "Website — taniaono.com",
+      // Fields shown in the email / Web3Forms dashboard
+      Nombre: form.name,
+      Email: form.email,
+      Telefono: `${dialCode} ${form.phone}`,
+      "Area de interes": selectedTherapy?.label ?? "",
+      Mensaje: form.message,
+      Idioma: lang.toUpperCase(),
+      // Reply-To so Tania can respond directly to the client
+      replyto: form.email,
+      // Honeypot field name Web3Forms recognizes natively
+      botcheck: "",
+    };
+
+    try {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      // Network error (offline, blocked, etc.)
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const reset = () => {
@@ -145,6 +188,9 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
     // ✅ Do NOT reset therapy — preserve the last selection across opens
     setDialCode("+34");
     setSubmitted(false);
+    setError(false);
+    setSubmitting(false);
+    setBotField("");
   };
 
   const handleClose = () => {
@@ -220,6 +266,18 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                   </p>
 
                   <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                    {/* Honeypot — visually hidden, off-screen; bots fill it, humans don't */}
+                    <input
+                      type="checkbox"
+                      name="botcheck"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      checked={!!botField}
+                      onChange={(e) => setBotField(e.target.checked ? "1" : "")}
+                      style={{ position: "absolute", left: "-9999px", width: 0, height: 0, opacity: 0 }}
+                    />
+
                     {/* Name */}
                     <div>
                       <label htmlFor="consult-name" className={labelClass}>
@@ -418,13 +476,34 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                       </p>
                     </div>
 
+                    {/* Error message */}
+                    {error && (
+                      <div
+                        role="alert"
+                        className="border-l-2 pl-4 py-2"
+                        style={{ borderColor: "hsl(0 70% 55% / 0.6)" }}
+                      >
+                        <p className="font-sans-body text-[12px] font-light leading-[1.7] text-primary-foreground/80">
+                          {t(
+                            "No se pudo enviar el mensaje. Por favor, inténtelo de nuevo o escríbame directamente a consulta@taniaono.com o al +34 699 19 27 50.",
+                            "Your message could not be sent. Please try again, or contact me directly at consulta@taniaono.com or +34 699 19 27 50.",
+                            "Não foi possível enviar a mensagem. Por favor, tente novamente ou escreva diretamente para consulta@taniaono.com ou +34 699 19 27 50."
+                          )}
+                        </p>
+                      </div>
+                    )}
+
                     {/* CTA */}
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="gold-gradient w-full py-4 font-sans-body text-[11px] font-light uppercase tracking-[0.25em] text-accent-foreground transition-all duration-300 hover:opacity-90 hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+                        disabled={submitting}
+                        className="gold-gradient flex w-full items-center justify-center gap-2 py-4 font-sans-body text-[11px] font-light uppercase tracking-[0.25em] text-accent-foreground transition-all duration-300 hover:opacity-90 hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)] disabled:cursor-not-allowed disabled:opacity-70"
                       >
-                        {t("Enviar consulta privada", "Send private consultation", "Enviar consulta privada")}
+                        {submitting && <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={2} />}
+                        {submitting
+                          ? t("Enviando…", "Sending…", "Enviando…")
+                          : t("Enviar consulta privada", "Send private consultation", "Enviar consulta privada")}
                       </button>
                       <p className="mt-4 text-center font-sans-body text-[9px] font-light uppercase tracking-[0.18em] text-primary-foreground/50">
                         {t(
@@ -437,7 +516,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                   </form>
                 </>
               ) : (
-                /* Success state — honest: we opened a draft, not received a message */
+                /* Success state — the message was genuinely delivered server-side */
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -454,28 +533,17 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                     </svg>
                   </div>
                   <p className="section-label mb-4" style={{ color: "hsl(var(--gold-light))" }}>
-                    {t("Casi listo", "Almost There", "Quase pronto")}
+                    {t("Mensaje enviado", "Message Sent", "Mensagem enviada")}
                   </p>
                   <h3 className="font-serif-display mb-4 text-2xl font-light text-primary-foreground">
-                    {t(
-                      "Revise su correo electrónico",
-                      "Check your email client",
-                      "Verifique seu cliente de email"
-                    )}
+                    {t("Gracias por su confianza", "Thank you for your trust", "Obrigado pela sua confiança")}
                   </h3>
                   <div className="gold-line w-10 my-4 opacity-40" />
                   <p className="font-sans-body text-sm font-light leading-[1.9] text-primary-foreground/60 max-w-sm">
                     {t(
-                      "Se ha abierto un borrador en su aplicación de correo. Por favor, revise que el mensaje se ha enviado correctamente. Si no se abrió su correo, puede escribirme directamente a consulta@taniaono.es o llamar al +34 699 19 27 50.",
-                      "A draft has been opened in your email app. Please verify the message was sent successfully. If your email client didn't open, you can write to me directly at consulta@taniaono.es or call +34 699 19 27 50.",
-                      "Um rascunho foi aberto no seu aplicativo de email. Por favor, verifique se a mensagem foi enviada com sucesso. Se o seu email não abriu, pode escrever diretamente para consulta@taniaono.es ou ligar para +34 699 19 27 50."
-                    )}
-                  </p>
-                  <p className="font-sans-body mt-4 text-[11px] font-light leading-[1.8] text-primary-foreground/40 max-w-xs">
-                    {t(
-                      "Toda comunicación es estrictamente confidencial.",
-                      "All communication is strictly confidential.",
-                      "Toda comunicação é estritamente confidencial."
+                      "He recibido su consulta y me pondré en contacto con usted en las próximas 24 horas. Todo es estrictamente confidencial.",
+                      "I have received your consultation and will be in touch within the next 24 hours. Everything is strictly confidential.",
+                      "Recebi sua consulta e entrarei em contato nas próximas 24 horas. Tudo é estritamente confidencial."
                     )}
                   </p>
                   <button
