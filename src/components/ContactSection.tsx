@@ -18,9 +18,9 @@ const contactDetails = [
   },
   {
     icon: Mail,
-    labelEs: "consulta@taniaono.es",
-    labelEn: "consulta@taniaono.es",
-    labelPt: "consulta@taniaono.es",
+    labelEs: "consulta@taniaono.com",
+    labelEn: "consulta@taniaono.com",
+    labelPt: "consulta@taniaono.com",
   },
   {
     icon: Globe,
