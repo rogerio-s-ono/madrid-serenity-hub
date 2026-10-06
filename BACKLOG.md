@@ -3,7 +3,7 @@
 Tracked backlog for the website. Items are grouped by priority. Done items are
 checked off with the PR that resolved them.
 
-Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅ done
+Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅ done · ⏸️ on hold
 
 ---
 
@@ -102,8 +102,13 @@ Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅
 
 ### Performance (P3)
 
-- ⬜ 🟡 **Lighten specialty card hover animations** (P3 #27) — *pending; user wants
-  to discuss this one before changing.* Only remaining P3 performance item.
+- ⏸️ 🟡 **Lighten specialty card hover animations** (P3 #27) — **ON HOLD (user
+  decision 2026-10-06).** The user likes the current 3D hover animation and
+  chose to keep it as-is. The only performance concern is possible jank on
+  low-end devices (animated `rotateX`/`rotateY` + `box-shadow` on 6 cards).
+  Revisit only if real-device testing shows noticeable stutter. Possible future
+  options: drop the 3D tilt (keep y+scale+shadow), pre-render the shadow and
+  animate opacity, and/or respect `prefers-reduced-motion`.
 
 ### Code quality (P3) — *all done in PR #7 ✅ (see Done section)*
 
