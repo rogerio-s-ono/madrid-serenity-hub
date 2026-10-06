@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
+# Tania Ono — Psychotherapy (taniaono.com)
 
-## Project info
+Trilingual (ES / EN / PT) marketing website for **Tania Eustaquio Ono**, a
+psychotherapist in Madrid serving international families.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+> 📄 See [`PROJECT_STATUS.md`](./PROJECT_STATUS.md) for the full working context
+> (infra, phase, decisions) and [`BACKLOG.md`](./BACKLOG.md) for what's done and
+> what's left.
 
-## How can I edit this code?
+## Tech stack
 
-There are several ways of editing your application.
+- **Vite** + **React 18** + **TypeScript**
+- **Tailwind CSS** + **shadcn/ui** (tooltip only) + **framer-motion**
+- **React Router** (client-side routing)
+- Contact form backend: **Web3Forms**
+- Hosting: **GitHub Pages** (auto-deploy via GitHub Actions on push to `main`)
 
-**Use Lovable**
+## Local development
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires Node.js (22 recommended) & npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev        # http://localhost:8080
 ```
 
-**Edit a file directly in GitHub**
+## Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build      # production build to dist/
+npm run preview    # preview the production build locally
+npm run test       # run unit tests (vitest)
+npm run lint       # eslint
+```
 
-**Use GitHub Codespaces**
+## Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Every push to `main` triggers the **Deploy to GitHub Pages** workflow
+(`.github/workflows/deploy-pages.yml`), which builds and publishes `dist/`.
 
-## What technologies are used for this project?
+Current (test) URL: https://rogerio-s-ono.github.io/madrid-serenity-hub/
 
-This project is built with:
+> **Note:** the site is currently in a pre-launch/stealth phase and is blocked
+> from search-engine indexing (`noindex` + `robots.txt`). See `PROJECT_STATUS.md`
+> for the launch checklist.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Project structure
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+src/
+  assets/        images (WebP)
+  components/    section components + ui/ (tooltip)
+  contexts/      LanguageContext (ES/EN/PT), ConsultationContext
+  data/          specialties.ts, approaches.ts (content source of truth)
+  hooks/         use-go-back
+  lib/           utils, web3forms config
+  pages/         Index, SpecialtyPage, ApproachPage, NotFound
+  test/          vitest unit tests
+```
