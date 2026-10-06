@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useConsultation } from "@/contexts/ConsultationContext";
 import { specialties } from "@/data/specialties";
@@ -12,9 +12,8 @@ import NotFound from "./NotFound";
 
 const SpecialtyPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { lang, t } = useLanguage();
+  const { lang, t, pick } = useLanguage();
   const { openModal } = useConsultation();
-  const navigate = useNavigate();
   const goBack = useGoBack();
 
   const sp = specialties.find((s) => s.slug === slug);
@@ -23,9 +22,9 @@ const SpecialtyPage = () => {
     return <NotFound />;
   }
 
-  const title = lang === "es" ? sp.titleEs : lang === "pt" ? sp.titlePt : sp.titleEn;
-  const tag = lang === "es" ? sp.tagEs : lang === "pt" ? sp.tagPt : sp.tagEn;
-  const desc = lang === "es" ? sp.descEs : lang === "pt" ? sp.descPt : sp.descEn;
+  const title = pick(sp, "title");
+  const tag = pick(sp, "tag");
+  const desc = pick(sp, "desc");
   const body = lang === "es" ? sp.bodyEs : lang === "pt" ? sp.bodyPt : sp.bodyEn;
   const methods = lang === "es" ? sp.methodsEs : lang === "pt" ? sp.methodsPt : sp.methodsEn;
 

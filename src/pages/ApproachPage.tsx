@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useConsultation } from "@/contexts/ConsultationContext";
 import { approaches } from "@/data/approaches";
@@ -17,9 +17,8 @@ const iconMap: Record<string, React.ElementType> = {
 
 const ApproachPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { lang, t } = useLanguage();
+  const { lang, t, pick } = useLanguage();
   const { openModal } = useConsultation();
-  const navigate = useNavigate();
   const goBack = useGoBack();
 
   const ap = approaches.find((a) => a.slug === slug);
@@ -28,8 +27,8 @@ const ApproachPage = () => {
     return <NotFound />;
   }
 
-  const title = lang === "es" ? ap.titleEs : lang === "pt" ? ap.titlePt : ap.titleEn;
-  const desc = lang === "es" ? ap.descEs : lang === "pt" ? ap.descPt : ap.descEn;
+  const title = pick(ap, "title");
+  const desc = pick(ap, "desc");
   const body = lang === "es" ? ap.bodyEs : lang === "pt" ? ap.bodyPt : ap.bodyEn;
   const methods = lang === "es" ? ap.methodsEs : lang === "pt" ? ap.methodsPt : ap.methodsEn;
 
