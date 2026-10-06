@@ -26,17 +26,16 @@ const contactDetails = [
     labelPt: "consulta@taniaono.com",
     href: "mailto:consulta@taniaono.com",
   },
-  {
-    icon: Globe,
-    labelEs: "Español · English · Português",
-    labelEn: "Español · English · Português",
-    labelPt: "Español · English · Português",
-    href: null,
-  },
+];
+
+const languages = [
+  { code: "es" as const, label: "Español" },
+  { code: "en" as const, label: "English" },
+  { code: "pt" as const, label: "Português" },
 ];
 
 const ContactSection = () => {
-  const { t, lang } = useLanguage();
+  const { t, lang, setLang } = useLanguage();
   const { openModal } = useConsultation();
 
   const heading =
@@ -101,6 +100,32 @@ const ContactSection = () => {
                   </div>
                 );
               })}
+
+              {/* Language selector — mirrors the header's switcher */}
+              <div className="flex items-center gap-4">
+                <Globe className="h-4 w-4 shrink-0 text-accent/80" strokeWidth={1.5} aria-hidden="true" />
+                <div className="flex items-center gap-1" role="group" aria-label={t("Seleccionar idioma", "Select language", "Selecionar idioma") as string}>
+                  {languages.map((l, idx) => (
+                    <span key={l.code} className="flex items-center">
+                      <button
+                        type="button"
+                        onClick={() => setLang(l.code)}
+                        aria-pressed={lang === l.code}
+                        className={`font-sans-body text-sm font-light tracking-wide transition-colors duration-200 ${
+                          lang === l.code
+                            ? "text-accent"
+                            : "text-primary-foreground/80 hover:text-primary-foreground"
+                        }`}
+                      >
+                        {l.label}
+                      </button>
+                      {idx < languages.length - 1 && (
+                        <span className="mx-2 text-primary-foreground/30" aria-hidden="true">·</span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <p className="font-sans-body text-[10px] font-light uppercase tracking-[0.2em] text-primary-foreground/30">
