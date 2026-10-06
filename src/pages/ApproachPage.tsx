@@ -2,6 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useConsultation } from "@/contexts/ConsultationContext";
 import { approaches } from "@/data/approaches";
+import { useGoBack } from "@/hooks/use-go-back";
+import NotFound from "./NotFound";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
@@ -18,15 +20,12 @@ const ApproachPage = () => {
   const { lang, t } = useLanguage();
   const { openModal } = useConsultation();
   const navigate = useNavigate();
+  const goBack = useGoBack();
 
   const ap = approaches.find((a) => a.slug === slug);
 
   if (!ap) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-muted-foreground">Not found.</p>
-      </div>
-    );
+    return <NotFound />;
   }
 
   const title = lang === "es" ? ap.titleEs : lang === "pt" ? ap.titlePt : ap.titleEn;
@@ -45,7 +44,7 @@ const ApproachPage = () => {
         <div className="mx-auto max-w-4xl px-8">
           {/* Back button */}
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => goBack()}
             className="font-sans-body mb-10 inline-flex items-center gap-2 text-[10px] font-light uppercase tracking-[0.2em] text-primary-foreground/50 transition-colors hover:text-primary-foreground"
           >
             <ArrowLeft className="h-3 w-3" strokeWidth={1.5} />
@@ -172,7 +171,7 @@ const ApproachPage = () => {
               {t("Consulta Privada", "Private Consultation", "Consulta Privada")}
             </button>
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => goBack()}
               className="font-sans-body inline-flex items-center gap-2 border border-primary-foreground/25 px-10 py-4 text-[11px] font-light uppercase tracking-[0.22em] text-primary-foreground/60 transition-all duration-300 hover:border-gold/50 hover:text-primary-foreground"
             >
               <ArrowLeft className="h-3 w-3" strokeWidth={1.5} />

@@ -1,8 +1,24 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const goToSection = useCallback(
+    (hash: string) => {
+      if (location.pathname === "/") {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate("/" + hash);
+      }
+    },
+    [location.pathname, navigate]
+  );
 
   return (
     <footer className="bg-background border-t border-border py-14">
@@ -22,6 +38,7 @@ const Footer = () => {
               <a
                 key={href}
                 href={href}
+                onClick={(e) => { e.preventDefault(); goToSection(href); }}
                 className="font-sans-body text-[10px] font-light uppercase tracking-[0.18em] text-muted-foreground/40 hover:text-muted-foreground/80 transition-colors"
               >
                 {[

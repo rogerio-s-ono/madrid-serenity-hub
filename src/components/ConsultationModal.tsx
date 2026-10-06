@@ -72,7 +72,8 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Build mailto link
+    // Build mailto link — this opens the user's mail client with a pre-filled draft.
+    // We do NOT claim the message was "received" since there is no server-side backend.
     const therapyLabel = selectedTherapy?.label ?? "";
     const subjectMap: Record<string, string> = {
       es: `Consulta Privada — ${therapyLabel}`,
@@ -88,7 +89,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
       `${form.message}`
     );
     // Open mail client without affecting the SPA URL / hash
-    window.open(`mailto:consulta@taniaono.es?subject=${subject}&body=${body}`, "_blank");
+    window.location.href = `mailto:consulta@taniaono.es?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -374,7 +375,7 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                   </form>
                 </>
               ) : (
-                /* Success state */
+                /* Success state — honest: we opened a draft, not received a message */
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -391,17 +392,28 @@ const ConsultationModal = ({ open, onClose }: ConsultationModalProps) => {
                     </svg>
                   </div>
                   <p className="section-label mb-4" style={{ color: "hsl(var(--gold-light))" }}>
-                    {t("Mensaje enviado", "Message Sent", "Mensagem enviada")}
+                    {t("Casi listo", "Almost There", "Quase pronto")}
                   </p>
                   <h3 className="font-serif-display mb-4 text-2xl font-light text-primary-foreground">
-                    {t("Gracias por su confianza", "Thank you for your trust", "Obrigado pela sua confiança")}
+                    {t(
+                      "Revise su correo electrónico",
+                      "Check your email client",
+                      "Verifique seu cliente de email"
+                    )}
                   </h3>
                   <div className="gold-line w-10 my-4 opacity-40" />
                   <p className="font-sans-body text-sm font-light leading-[1.9] text-primary-foreground/60 max-w-sm">
                     {t(
-                      "He recibido su consulta y me pondré en contacto con usted en las próximas 24 horas. Todo es estrictamente confidencial.",
-                      "I have received your consultation and will be in touch within the next 24 hours. Everything is strictly confidential.",
-                      "Recebi sua consulta e entrarei em contato nas próximas 24 horas. Tudo é estritamente confidencial."
+                      "Se ha abierto un borrador en su aplicación de correo. Por favor, revise que el mensaje se ha enviado correctamente. Si no se abrió su correo, puede escribirme directamente a consulta@taniaono.es o llamar al +34 699 19 27 50.",
+                      "A draft has been opened in your email app. Please verify the message was sent successfully. If your email client didn't open, you can write to me directly at consulta@taniaono.es or call +34 699 19 27 50.",
+                      "Um rascunho foi aberto no seu aplicativo de email. Por favor, verifique se a mensagem foi enviada com sucesso. Se o seu email não abriu, pode escrever diretamente para consulta@taniaono.es ou ligar para +34 699 19 27 50."
+                    )}
+                  </p>
+                  <p className="font-sans-body mt-4 text-[11px] font-light leading-[1.8] text-primary-foreground/40 max-w-xs">
+                    {t(
+                      "Toda comunicación es estrictamente confidencial.",
+                      "All communication is strictly confidential.",
+                      "Toda comunicação é estritamente confidencial."
                     )}
                   </p>
                   <button
