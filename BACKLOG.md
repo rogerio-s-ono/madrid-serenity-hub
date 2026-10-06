@@ -1,0 +1,127 @@
+# Backlog — Madrid Serenity Hub (taniaono.com)
+
+Tracked backlog for the website. Items are grouped by priority. Done items are
+checked off with the PR that resolved them.
+
+Legend: 🔴 critical · 🟠 high · 🟡 medium · 🟢 low · ⬜ open · ✅ done
+
+---
+
+## ✅ Done
+
+- ✅ **P0 — Consultation form reliability** (PR #2, then replaced by real backend in PR #5)
+- ✅ **P0 — Navigation broken on detail pages** (PR #2)
+- ✅ **P0 — NotFound "Return to Home" broken link** (PR #2)
+- ✅ **P0 — Back button stranded deep-link visitors** (PR #2)
+- ✅ **P1 — Specialty & Approach cards keyboard-accessible** (PR #3)
+- ✅ **P1 — ConsultationModal focus trap / Escape / ARIA / labels** (PR #3)
+- ✅ **P1 — SpecialtyModal focus trap / Escape / ARIA** (PR #3)
+- ✅ **P1 — Testimonial carousel pause + prefers-reduced-motion** (PR #3)
+- ✅ **P1 — Low-contrast text improvements** (PR #3)
+- ✅ **P1 — Mobile menu aria-expanded + inert when closed** (PR #3)
+- ✅ **Pre-launch — noindex / robots stealth mode** (PR #4)
+- ✅ **Contact form backend — Web3Forms integration** (PR #5)
+  - Real submission, loading/success/error states, honeypot spam protection
+  - Delivers to `consulta@taniaono.com` + archived in Web3Forms dashboard
+
+---
+
+## ⬜ Open
+
+### Contact form
+
+- ⬜ 🟡 **Client confirmation email (autoresponder)** — *deferred, revisit before launch*
+  - **Goal:** when a prospective client submits the consultation form, they
+    automatically receive a confirmation/acknowledgement email (not just the
+    on-screen success message).
+  - **Why deferred:** Web3Forms autoresponder is a PRO-only feature
+    (~$49/year special plan, or ~$12/mo standard). Not worth paying during the
+    quiet testing phase.
+  - **Options evaluated:**
+    1. **Web3Forms Pro** (~$49/yr) — native autoresponder, configured in the
+       dashboard, zero code change. Cleanest. *Recommended for launch.*
+    2. **Switch to Formspree** (free tier) — has a native autoresponder on the
+       free plan (50 submissions/mo). Reliable, ~30 min to re-wire.
+    3. **Zoho Flow** (free) — detect the Web3Forms notification, parse the
+       client email from the body, send a confirmation. Works but fragile.
+    4. **Zoho filter auto-reply** (free) — ❌ not viable: replies to the
+       Web3Forms sender, not the client's Reply-To.
+  - **Current behaviour:** on-screen "Message sent / Thank you for your trust"
+    confirmation only. The client does NOT get an email.
+  - **Decision for launch:** choose Web3Forms Pro OR Formspree (both give a
+    reliable, professional confirmation email). Avoid the Zoho-parsing hacks.
+
+### Launch readiness (blockers before going public on taniaono.com)
+
+- ⬜ 🟠 **Privacy policy / legal notice / cookie notice** (P2 #38) — required in
+  Spain for a health practice; the site repeatedly promises GDPR compliance but
+  has no legal pages. Add footer links too.
+- ⬜ 🟠 **Replace fictional testimonials with real ones** — current testimonials
+  are placeholders.
+- ⬜ 🟠 **Fix/remove the hardcoded "Trustpilot 5.0" widget** (P3 #37) — currently
+  a static 5-star rating with no link to a real profile (misleading-advertising
+  risk for a regulated profession).
+- ⬜ 🟠 **Point `taniaono.com` DNS → website** — go live on the custom domain
+  (currently served from the github.io URL).
+- ⬜ 🟠 **Remove noindex / restore crawl policy** — undo PR #4: delete the robots
+  meta tags from `index.html` + `404.html`, restore an Allow policy in
+  `robots.txt`, and add a `Sitemap:` directive. Do this ONLY at public launch.
+
+### SEO & discoverability (P2)
+
+- ⬜ 🟠 **`<html lang>` hardcoded to "en"** (P2 #11) — should reflect the active
+  language (default es); update at runtime on language change.
+- ⬜ 🟠 **Per-page titles/meta/canonical** (P2 #12) — all routes share one static
+  title; SpecialtyPage/ApproachPage need unique SEO tags (e.g. react-helmet).
+- ⬜ 🟠 **Cards are not crawlable `<a>` links** (P2 #13) — detail pages only
+  reachable via JS onClick; add real anchors for crawlers.
+- ⬜ 🟡 **sitemap.xml** (P2 #14) — none exists; add + reference in robots.txt.
+- ⬜ 🟡 **Structured data (JSON-LD)** (P2 #15) — add LocalBusiness/MedicalBusiness
+  schema for local SEO.
+- ⬜ 🟡 **Lovable placeholder metadata** (P2 #16) — remove `author=Lovable`,
+  `twitter:site=@Lovable`, TODO comments, throwaway OG image; add og:url etc.
+- ⬜ 🟢 **Canonical link** (P2 #17).
+
+### i18n
+
+- ⬜ 🟡 **Persist language selection** (P2 #18) — resets to Spanish on reload;
+  save to localStorage and/or reflect in URL.
+- ⬜ 🟡 **Deduplicate language-picking logic** (P2 #20) — shared `pick()` helper
+  instead of repeated ternaries across pages/modal.
+
+### Performance (P3)
+
+- ⬜ 🟠 **Optimize hero image** (P3 #21) — 1.28 MB JPEG dominates LCP; convert to
+  WebP/AVIF, responsive sizes, preload.
+- ⬜ 🟡 **Logo 164 KB PNG → SVG/WebP** (P3 #22).
+- ⬜ 🟠 **Code-split bundle** (P3 #23) — single 550 KB chunk; lazy-load routes.
+- ⬜ 🟡 **Remove unused shadcn/ui components** (P3 #24) — ~44 unused files.
+- ⬜ 🟡 **Remove unused dependencies** (P3 #25) — recharts, embla, day-picker,
+  cmdk, input-otp, resizable, next-themes (only imported by unused ui/).
+- ⬜ 🟡 **Preconnect/preload fonts** (P3 #26) — currently render-blocking @import.
+- ⬜ 🟡 **Lighten specialty card hover animations** (P3 #27).
+
+### Code quality (P3)
+
+- ⬜ 🟡 **Delete dead App.css** (P3 #28) — Vite starter css, unused.
+- ⬜ 🟡 **Remove unused NavLink.tsx** (P3 #29).
+- ⬜ 🟡 **Remove dual toast systems** (P3 #30) — Toaster + Sonner mounted, never
+  used.
+- ⬜ 🟡 **Delete placeholder.svg** (P3 #31).
+- ⬜ 🟡 **Deduplicate ApproachSection vs approaches.ts** (P3 #32).
+- ⬜ 🟡 **Enable TypeScript strict mode** (P3 #33).
+- ⬜ 🟡 **ESLint: enable no-unused-vars + add jsx-a11y plugin** (P3 #34).
+- ⬜ 🟡 **Fix 3 lint errors** (P3 #35) — empty interface in textarea.tsx,
+  require() in tailwind.config.ts.
+- ⬜ 🟡 **Add meaningful test coverage** (P3 #36) — only a placeholder test today.
+
+### Nice-to-have (P4)
+
+- ⬜ 🟢 **Make contact email/phone clickable** (P4 #39) — mailto:/tel: links,
+  map link for address.
+- ⬜ 🟢 **Explicit favicon/apple-touch-icon/manifest** (P4 #40).
+- ⬜ 🟢 **prefers-reduced-motion for all animations** (P4 #41).
+- ⬜ 🟢 **Wire up or remove dark mode** (P4 #42) — unused .dark palette.
+- ⬜ 🟢 **`<noscript>` fallback** (P4 #43).
+- ⬜ 🟢 **Clean up README** (P4 #44) — Lovable boilerplate.
+- ⬜ 🟢 **Upgrade deploy workflow to Node 22** (P4 #45) — Node 20 deprecated in CI.
