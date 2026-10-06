@@ -106,12 +106,12 @@ const Navbar = () => {
                   className={`font-sans-body text-[10px] font-light uppercase tracking-widest transition-all duration-200 ${
                     lang === l
                       ? "text-accent"
-                      : "text-foreground/35 hover:text-foreground/70"
+                      : "text-foreground/50 hover:text-foreground/70"
                   }`}
                 >
                   {l === "es" ? "ES" : l === "en" ? "EN" : "PT"}
                 </button>
-                {i < 2 && <span className="mx-1.5 text-foreground/20 text-[10px]">·</span>}
+                {i < 2 && <span className="mx-1.5 text-foreground/30 text-[10px]">·</span>}
               </span>
             ))}
           </div>
@@ -128,7 +128,9 @@ const Navbar = () => {
         <button
           className="flex flex-col items-end gap-[5px] p-2 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={mobileOpen ? t("Cerrar menú", "Close menu", "Fechar menu") as string : t("Abrir menú", "Open menu", "Abrir menu") as string}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-nav-menu"
         >
           <span className={`block h-px bg-foreground/50 transition-all duration-300 ${mobileOpen ? "w-5 rotate-45 translate-y-[7px]" : "w-5"}`} />
           <span className={`block h-px bg-foreground/50 transition-all duration-300 ${mobileOpen ? "w-0 opacity-0" : "w-3.5"}`} />
@@ -138,10 +140,13 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       <motion.div
+        id="mobile-nav-menu"
         initial={false}
         animate={{ height: mobileOpen ? "auto" : 0, opacity: mobileOpen ? 1 : 0 }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className="overflow-hidden border-t border-border/40 bg-ivory md:hidden"
+        aria-hidden={!mobileOpen}
+        {...(!mobileOpen && { inert: "" as unknown as boolean })}
       >
         <div className="flex flex-col gap-6 px-10 py-8">
           {navLinks.map((link) => (
@@ -160,7 +165,7 @@ const Navbar = () => {
                 key={l}
                 onClick={() => setLang(l)}
                 className={`font-sans-body text-[10px] uppercase tracking-widest transition-all ${
-                  lang === l ? "text-accent" : "text-foreground/35 hover:text-foreground/70"
+                  lang === l ? "text-accent" : "text-foreground/50 hover:text-foreground/70"
                 }`}
               >
                 {l === "es" ? "ES" : l === "en" ? "EN" : "PT"}

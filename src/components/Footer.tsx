@@ -29,7 +29,7 @@ const Footer = () => {
             alt="Heart & Soul Therapy"
             className="h-10 w-auto object-contain opacity-70"
           />
-          <p className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em] text-muted-foreground/50 text-center">
+          <p className="font-sans-body text-[10px] font-light uppercase tracking-[0.22em] text-muted-foreground/60 text-center">
             © {new Date().getFullYear()} Heart & Soul Therapy · Madrid ·{" "}
             {t("Todos los derechos reservados", "All rights reserved", "Todos os direitos reservados")}
           </p>
@@ -39,7 +39,7 @@ const Footer = () => {
                 key={href}
                 href={href}
                 onClick={(e) => { e.preventDefault(); goToSection(href); }}
-                className="font-sans-body text-[10px] font-light uppercase tracking-[0.18em] text-muted-foreground/40 hover:text-muted-foreground/80 transition-colors"
+                className="font-sans-body text-[10px] font-light uppercase tracking-[0.18em] text-muted-foreground/55 hover:text-muted-foreground/80 transition-colors"
               >
                 {[
                   t("Sobre mí", "About", "Sobre mim"),

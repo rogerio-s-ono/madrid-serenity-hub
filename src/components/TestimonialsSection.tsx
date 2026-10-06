@@ -242,6 +242,7 @@ const TestimonialsSection = () => {
   const { t, lang } = useLanguage();
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [paused, setPaused] = useState(false);
 
   const goTo = useCallback(
     (index: number, dir?: number) => {
@@ -256,11 +257,13 @@ const TestimonialsSection = () => {
     goTo(nextIndex, 1);
   }, [active, goTo]);
 
-  // Auto-rotate every 10 seconds
+  // Auto-rotate every 10 seconds — pauses on hover and respects prefers-reduced-motion
   useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (paused || prefersReduced) return;
     const timer = setInterval(next, 10000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, paused]);
 
   const variants = {
     enter: (dir: number) => ({
@@ -336,7 +339,13 @@ const TestimonialsSection = () => {
         </motion.div>
 
         {/* Testimonial card — illustration left, text right */}
-        <div className="relative min-h-[260px] flex items-center">
+        <div
+          className="relative min-h-[260px] flex items-center"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          aria-live="polite"
+          aria-atomic="true"
+        >
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={active}
@@ -352,6 +361,7 @@ const TestimonialsSection = () => {
               <div
                 className="hidden md:flex items-center justify-center h-40"
                 style={{ color: "hsl(var(--gold-light))", opacity: 0.55 }}
+                aria-hidden="true"
               >
                 <Illustration />
               </div>

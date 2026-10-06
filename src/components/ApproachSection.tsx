@@ -81,7 +81,10 @@ const ApproachSection = () => {
         <div className="grid gap-0 md:grid-cols-3 border-t border-border -mx-10">
           {pillars.map((p, i) => (
             <motion.div
-              key={i}
+              key={p.slug}
+              role="button"
+              tabIndex={0}
+              aria-label={`${t(p.titleEs, p.titleEn, p.titlePt)} — ${t("Ver más", "Learn more", "Ver mais")}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -93,7 +96,13 @@ const ApproachSection = () => {
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
               onClick={() => navigate(`/enfoque/${p.slug}`)}
-              className={`relative px-10 py-12 cursor-pointer bg-background transition-colors hover:bg-accent/[0.03] ${
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  navigate(`/enfoque/${p.slug}`);
+                }
+              }}
+              className={`relative px-10 py-12 cursor-pointer bg-background transition-colors hover:bg-accent/[0.03] focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 ${
                 i > 0 ? "md:border-l md:border-border" : ""
               }`}
             >
